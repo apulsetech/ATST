@@ -1,0 +1,7 @@
+.vs/
+ATST/bin/
+ATST/obj/
+*.pdb
+*.log
+*.user
+ATST/ATST.csproj.user
