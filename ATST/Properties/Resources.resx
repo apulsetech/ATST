@@ -129,8 +129,14 @@
   <data name="StringDeviceName" xml:space="preserve">
     <value>Name</value>
   </data>
+  <data name="StringDeviceNoSearch" xml:space="preserve">
+    <value>Search</value>
+  </data>
   <data name="StringDeviceRfid" xml:space="preserve">
     <value>Rfid</value>
+  </data>
+  <data name="StringDeviceSearch" xml:space="preserve">
+    <value>Stop</value>
   </data>
   <data name="StringDeviceStatus" xml:space="preserve">
     <value>Status</value>

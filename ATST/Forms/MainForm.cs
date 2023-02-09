@@ -2,6 +2,7 @@
 using Apulsetech.Rfid;
 using Apulsetech.Rfid.Type;
 using ATST.Data;
+using ATST.GlobalKey;
 using ATST.Properties;
 using ATST.Util;
 using System;
@@ -22,24 +23,34 @@ namespace ATST.Forms
 {
     public partial class MainForm : Form, ReaderEventListener
     {
-
+        private SearchForm searchForm = null;
         public MainForm()
         {
             InitializeComponent();
             Initialize();
+
+            SearchForm.OpenFormEvent += new SearchForm.OpenFormReturn(ReturnForm);  // 활성화된 장비검색폼 객체를 리턴한다.
+            this.KeyPreview = true; // 폼이 모든 키 이벤트를 받게함. -> ESC 키를 눌렀을때 폼이 이벤트 핸들러가 발생될 수 있게하기 위함.
         }
 
         private void Initialize()
         {
-            InitItem();
+            // 이름 따로 설정안하면 ApplyResources에서 Name이 Null로 나옴
+            listview_rfid_inventory_tag_data.Columns[0].Name = "column_tag_value";
+            listview_rfid_inventory_tag_data.Columns[1].Name = "column_tag_rssi";
+            listview_rfid_inventory_tag_data.Columns[2].Name = "column_tag_port";
+
+            EnableControl(false);
         }
 
-        private void InitItem()
+        // 컨트롤 사용가능 여부 체크
+        private void EnableControl(bool enable)
         {
-            rbx_ethernet.Checked = true;
+            btn_rfid_inventory.Enabled = enable;
+            btn_rfid_clear.Enabled = enable;
+
+            btn_rfid_connect.Enabled = btn_rfid_inventory.Enabled && btn_rfid_clear.Enabled ? !enable : !enable;
         }
-
-
 
         private void rbx_ethernet_CheckedChanged(object sender, EventArgs e)
         {
@@ -116,6 +127,135 @@ namespace ATST.Forms
         private void btn_rfid_clear_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void ReturnForm(SearchForm form)
+        {
+            searchForm = form;
+        }
+
+        private void MainForm_Activated(object sender, EventArgs e)
+        {
+            // Ctrl + F1 -> 메뉴스트립의 하위 아이템 활성화
+            HotKey.RegisterHotKey(Handle, 100, HotKey.KeyModifiers.Ctrl, Keys.F1);
+            // Ctrl + F2 -> 설정스트립의 하위 아이템 활성화
+            HotKey.RegisterHotKey(Handle, 101, HotKey.KeyModifiers.Ctrl, Keys.F2);
+            // Ctrl + F3 -> 도움스트립의 하위 아이템 활성화
+            HotKey.RegisterHotKey(Handle, 102, HotKey.KeyModifiers.Ctrl, Keys.F3);
+            // Ctrl + Shift + E -> 이더넷 모드 활성화
+            HotKey.RegisterHotKey(Handle, 103, HotKey.KeyModifiers.Ctrl | HotKey.KeyModifiers.Shift, Keys.E);
+            // Ctrl + Shift + S -> 시리얼 모드 활성화
+            HotKey.RegisterHotKey(Handle, 104, HotKey.KeyModifiers.Ctrl | HotKey.KeyModifiers.Shift, Keys.S);
+            // Ctrl + Shift + I -> 인벤토리 버튼 클릭 이벤트 발생
+            HotKey.RegisterHotKey(Handle, 105, HotKey.KeyModifiers.Ctrl | HotKey.KeyModifiers.Shift, Keys.I);
+            // Ctrl + Shift + C -> 클리어 버튼 클릭 이벤트 발생
+            HotKey.RegisterHotKey(Handle, 106, HotKey.KeyModifiers.Ctrl | HotKey.KeyModifiers.Shift, Keys.C);
+            // Ctrl + Alt + S -> 장비 검색 버튼 클릭 이벤트 발생
+            HotKey.RegisterHotKey(Handle, 107, HotKey.KeyModifiers.Ctrl | HotKey.KeyModifiers.Alt, Keys.S);
+            // Ctrl + Alt + C -> 클리어 버튼 클릭 이벤트 발생
+            HotKey.RegisterHotKey(Handle, 108, HotKey.KeyModifiers.Ctrl | HotKey.KeyModifiers.Alt, Keys.C);
+            // Ctrl + Alt + O -> 확인 버튼 클릭 이벤트 발생
+            HotKey.RegisterHotKey(Handle, 109, HotKey.KeyModifiers.Ctrl | HotKey.KeyModifiers.Alt, Keys.O);
+            // Ctrl + Alt + N -> 취소 버튼 클릭 이벤트 발생
+            HotKey.RegisterHotKey(Handle, 110, HotKey.KeyModifiers.Ctrl | HotKey.KeyModifiers.Alt, Keys.N);
+        }
+
+        private void MainForm_Leave(object sender, EventArgs e)
+        {
+            // 레지스터
+            HotKey.UnregisterHotKey(Handle, 100);
+            HotKey.UnregisterHotKey(Handle, 101);
+            HotKey.UnregisterHotKey(Handle, 102);
+            HotKey.UnregisterHotKey(Handle, 103);
+            HotKey.UnregisterHotKey(Handle, 104);
+            HotKey.UnregisterHotKey(Handle, 105);
+            HotKey.UnregisterHotKey(Handle, 106);
+            HotKey.UnregisterHotKey(Handle, 107);
+            HotKey.UnregisterHotKey(Handle, 108);
+            HotKey.UnregisterHotKey(Handle, 109);
+            HotKey.UnregisterHotKey(Handle, 110);
+        }
+
+        protected override void WndProc(ref Message m)
+        {
+            const int WM_HOTKEY = 0x0312;
+
+            switch (m.Msg)
+            {
+                case WM_HOTKEY:
+                    switch (m.WParam.ToInt32())
+                    {
+                        case 100:
+                            menuToolStripMenuItem_Click(this, null);
+                            break;
+                        case 101:
+                            settingToolStripMenuItem_Click(this, null);
+                            break;
+                        case 102:
+                            helpToolStripMenuItem_Click(this, null);
+                            break;
+                        case 103:
+                            rbx_ethernet_CheckedChanged(this, null);
+                            break;
+                        case 104:
+                            rbx_serial_CheckedChanged(this, null);
+                            break;
+                        case 105:
+                            if (SharedValues.Reader != null)
+                                btn_rfid_inventory_Click(this, null);
+                            break;
+                        case 106:
+                            btn_rfid_clear_Click(this, null);
+                            break;
+                        case 107:
+                            if (searchForm != null)
+                                searchForm.btnStartSearch.PerformClick();
+                            break;
+                        case 108:
+                            if (searchForm != null)
+                                searchForm.btnClear.PerformClick();
+                            break;
+                        case 109:
+                            if (searchForm != null)
+                                searchForm.btnOk.PerformClick();
+                            break;
+                        case 110:
+                            if (searchForm != null)
+                                searchForm.btnCancel.PerformClick();
+                            break;
+                    }
+                    break;
+            }
+
+            base.WndProc(ref m);
+        }
+
+        private void menuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            menuToolStripMenuItem.ShowDropDown();   // 하위 아이템들 보여줌.
+        }
+
+        private void settingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            settingToolStripMenuItem.ShowDropDown();
+        }
+
+        private void helpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //helpToolStripMenuItem.ShowDropDown();
+        }
+
+        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.Dispose();
+        }
+
+        private void MainForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
         }
     }
 }

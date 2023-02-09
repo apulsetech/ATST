@@ -104,6 +104,7 @@ namespace ATST.Forms
             this.toolStripMenuItem2,
             this.exitToolStripMenuItem});
             this.menuToolStripMenuItem.Name = "menuToolStripMenuItem";
+            this.menuToolStripMenuItem.Click += new System.EventHandler(this.menuToolStripMenuItem_Click);
             // 
             // languageToolStripMenuItem
             // 
@@ -143,6 +144,7 @@ namespace ATST.Forms
             this.toolStripMenuItem1,
             this.deviceSettingToolStripMenuItem});
             this.settingToolStripMenuItem.Name = "settingToolStripMenuItem";
+            this.settingToolStripMenuItem.Click += new System.EventHandler(this.settingToolStripMenuItem_Click);
             // 
             // deviceSearchToolStripMenuItem
             // 
@@ -164,6 +166,7 @@ namespace ATST.Forms
             // 
             resources.ApplyResources(this.helpToolStripMenuItem, "helpToolStripMenuItem");
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Click += new System.EventHandler(this.helpToolStripMenuItem_Click);
             // 
             // statusStrip
             // 
@@ -231,7 +234,11 @@ namespace ATST.Forms
             this.Controls.Add(this.menuStrip);
             this.MainMenuStrip = this.menuStrip;
             this.Name = "MainForm";
+            this.Activated += new System.EventHandler(this.MainForm_Activated);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
             this.Load += new System.EventHandler(this.MainForm_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
+            this.Leave += new System.EventHandler(this.MainForm_Leave);
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
             this.panel1.ResumeLayout(false);

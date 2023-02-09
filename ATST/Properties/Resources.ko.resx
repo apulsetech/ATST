@@ -129,8 +129,14 @@
   <data name="StringDeviceName" xml:space="preserve">
     <value>이름</value>
   </data>
+  <data name="StringDeviceNoSearch" xml:space="preserve">
+    <value>검색</value>
+  </data>
   <data name="StringDeviceRfid" xml:space="preserve">
     <value>Rfid</value>
+  </data>
+  <data name="StringDeviceSearch" xml:space="preserve">
+    <value>중지</value>
   </data>
   <data name="StringDeviceStatus" xml:space="preserve">
     <value>상태</value>

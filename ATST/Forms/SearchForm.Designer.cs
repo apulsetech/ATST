@@ -52,25 +52,25 @@
             // 
             // btnOk
             // 
-            resources.ApplyResources(this.btnOk, "btnOk");
             this.btnOk.DialogResult = System.Windows.Forms.DialogResult.OK;
+            resources.ApplyResources(this.btnOk, "btnOk");
             this.btnOk.Name = "btnOk";
             this.btnOk.UseVisualStyleBackColor = true;
             this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
             // btnCancel
             // 
-            resources.ApplyResources(this.btnCancel, "btnCancel");
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            resources.ApplyResources(this.btnCancel, "btnCancel");
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             // 
             // listviewDeviceList
             // 
-            resources.ApplyResources(this.listviewDeviceList, "listviewDeviceList");
             this.listviewDeviceList.FullRowSelect = true;
             this.listviewDeviceList.GridLines = true;
             this.listviewDeviceList.HideSelection = false;
+            resources.ApplyResources(this.listviewDeviceList, "listviewDeviceList");
             this.listviewDeviceList.Name = "listviewDeviceList";
             this.listviewDeviceList.UseCompatibleStateImageBehavior = false;
             this.listviewDeviceList.View = System.Windows.Forms.View.Details;
@@ -86,16 +86,16 @@
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.listviewDeviceList);
             this.Name = "SearchForm";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SearchForm_KeyDown);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btnStartSearch;
-        private System.Windows.Forms.Button btnClear;
-        private System.Windows.Forms.Button btnOk;
-        private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.ListView listviewDeviceList;
+        public System.Windows.Forms.Button btnStartSearch;
+        public System.Windows.Forms.Button btnClear;
+        public System.Windows.Forms.Button btnOk;
+        public System.Windows.Forms.Button btnCancel;
     }
 }
