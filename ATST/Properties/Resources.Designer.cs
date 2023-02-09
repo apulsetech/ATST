@@ -97,11 +97,29 @@ namespace ATST.Properties {
         }
         
         /// <summary>
+        ///   Search과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string StringDeviceNoSearch {
+            get {
+                return ResourceManager.GetString("StringDeviceNoSearch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Rfid과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
         internal static string StringDeviceRfid {
             get {
                 return ResourceManager.GetString("StringDeviceRfid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Stop과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string StringDeviceSearch {
+            get {
+                return ResourceManager.GetString("StringDeviceSearch", resourceCulture);
             }
         }
         

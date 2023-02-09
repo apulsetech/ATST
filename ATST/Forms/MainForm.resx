@@ -117,13 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="&gt;&gt;exitToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;listview_rfid_inventory_tag_data.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="rbx_serial.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="&gt;&gt;settingToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="menuToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Menu</value>
+  </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="rbx_serial.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
+  </data>
+  <data name="&gt;&gt;engToolStripMenuItem.Name" xml:space="preserve">
+    <value>engToolStripMenuItem</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="rbx_serial.Location" type="System.Drawing.Point, System.Drawing">
@@ -134,6 +149,12 @@
   </data>
   <data name="rbx_serial.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
+  </data>
+  <data name="&gt;&gt;helpToolStripMenuItem.Name" xml:space="preserve">
+    <value>helpToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="rbx_serial.Text" xml:space="preserve">
     <value>Serial</value>
@@ -164,6 +185,10 @@
   </data>
   <data name="rbx_ethernet.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="btn_rfid_connect.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
   </data>
   <data name="rbx_ethernet.Text" xml:space="preserve">
     <value>Ethernet</value>
@@ -207,14 +232,23 @@
   <data name="btn_rfid_connect.Location" type="System.Drawing.Point, System.Drawing">
     <value>234, 3</value>
   </data>
+  <data name="&gt;&gt;ipAddressBox.Name" xml:space="preserve">
+    <value>ipAddressBox</value>
+  </data>
   <data name="btn_rfid_connect.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
   </data>
   <data name="btn_rfid_connect.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
+  <data name="column_tag_value.Width" type="System.Int32, mscorlib">
+    <value>300</value>
+  </data>
   <data name="btn_rfid_connect.Text" xml:space="preserve">
     <value>Connect</value>
+  </data>
+  <data name="&gt;&gt;rbx_serial.ZOrder" xml:space="preserve">
+    <value>3</value>
   </data>
   <data name="&gt;&gt;btn_rfid_connect.Name" xml:space="preserve">
     <value>btn_rfid_connect</value>
@@ -233,6 +267,12 @@
   </metadata>
   <data name="korToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>94, 22</value>
+  </data>
+  <data name="&gt;&gt;menuStrip.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="column_tag_port.Width" type="System.Int32, mscorlib">
+    <value>80</value>
   </data>
   <data name="korToolStripMenuItem.Text" xml:space="preserve">
     <value>Kor</value>
@@ -255,6 +295,9 @@
   <data name="exitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>126, 22</value>
   </data>
+  <data name="&gt;&gt;btn_rfid_inventory.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
   <data name="exitToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Exit</value>
   </data>
@@ -270,8 +313,17 @@
   <data name="deviceSearchToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Device Search</value>
   </data>
+  <data name="&gt;&gt;btn_rfid_connect.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;rbx_serial.Name" xml:space="preserve">
+    <value>rbx_serial</value>
+  </data>
   <data name="toolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
     <value>149, 6</value>
+  </data>
+  <data name="&gt;&gt;ipAddressBox.Parent" xml:space="preserve">
+    <value>panel1</value>
   </data>
   <data name="deviceSettingToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>152, 22</value>
@@ -288,8 +340,14 @@
   <data name="helpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>44, 20</value>
   </data>
+  <data name="panel1.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
   <data name="helpToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Help</value>
+  </data>
+  <data name="&gt;&gt;btn_rfid_inventory.Name" xml:space="preserve">
+    <value>btn_rfid_inventory</value>
   </data>
   <data name="menuStrip.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
@@ -300,8 +358,17 @@
   <data name="menuStrip.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
   </data>
+  <data name="&gt;&gt;column_tag_rssi.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="listview_rfid_inventory_tag_data.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
   <data name="menuStrip.Text" xml:space="preserve">
     <value>menuStrip1</value>
+  </data>
+  <data name="&gt;&gt;btn_rfid_inventory.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;menuStrip.Name" xml:space="preserve">
     <value>menuStrip</value>
@@ -342,6 +409,12 @@
   <data name="&gt;&gt;statusStrip.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
+  <data name="btn_rfid_inventory.Location" type="System.Drawing.Point, System.Drawing">
+    <value>640, 373</value>
+  </data>
+  <data name="&gt;&gt;btn_rfid_connect.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="panel1.Location" type="System.Drawing.Point, System.Drawing">
     <value>488, 27</value>
   </data>
@@ -363,8 +436,14 @@
   <data name="&gt;&gt;panel1.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
+  <data name="korToolStripMenuItem.Text" xml:space="preserve">
+    <value>Kor</value>
+  </data>
   <data name="btn_rfid_inventory.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
+  </data>
+  <data name="languageToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Language</value>
   </data>
   <data name="btn_rfid_inventory.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 3</value>
@@ -374,6 +453,12 @@
   </data>
   <data name="btn_rfid_inventory.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
+  </data>
+  <data name="settingToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Setting</value>
+  </data>
+  <data name="deviceSearchToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 22</value>
   </data>
   <data name="btn_rfid_inventory.Text" xml:space="preserve">
     <value>Inventory</value>
@@ -414,6 +499,12 @@
   <data name="&gt;&gt;btn_rfid_clear.Parent" xml:space="preserve">
     <value>panel2</value>
   </data>
+  <data name="&gt;&gt;column_tag_port.Name" xml:space="preserve">
+    <value>column_tag_port</value>
+  </data>
+  <data name="deviceSearchToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Device Search</value>
+  </data>
   <data name="&gt;&gt;btn_rfid_clear.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
@@ -444,8 +535,14 @@
   <data name="listview_rfid_inventory_tag_data.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
   </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>MainForm</value>
+  </data>
   <data name="&gt;&gt;listview_rfid_inventory_tag_data.Name" xml:space="preserve">
     <value>listview_rfid_inventory_tag_data</value>
+  </data>
+  <data name="&gt;&gt;korToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;listview_rfid_inventory_tag_data.Type" xml:space="preserve">
     <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -461,6 +558,9 @@
   </data>
   <data name="tablePanel1.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 119</value>
+  </data>
+  <data name="&gt;&gt;column_tag_rssi.Name" xml:space="preserve">
+    <value>column_tag_rssi</value>
   </data>
   <data name="tablePanel1.Size" type="System.Drawing.Size, System.Drawing">
     <value>485, 306</value>
@@ -483,14 +583,26 @@
   <data name="panel2.Location" type="System.Drawing.Point, System.Drawing">
     <value>488, 82</value>
   </data>
+  <data name="btn_rfid_connect.Text" xml:space="preserve">
+    <value>Connect</value>
+  </data>
   <data name="panel2.Size" type="System.Drawing.Size, System.Drawing">
     <value>312, 31</value>
+  </data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>7, 12</value>
   </data>
   <data name="panel2.TabIndex" type="System.Int32, mscorlib">
     <value>14</value>
   </data>
   <data name="&gt;&gt;panel2.Name" xml:space="preserve">
     <value>panel2</value>
+  </data>
+  <data name="&gt;&gt;exitToolStripMenuItem.Name" xml:space="preserve">
+    <value>exitToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;engToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;panel2.Type" xml:space="preserve">
     <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -501,8 +613,14 @@
   <data name="&gt;&gt;panel2.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="&gt;&gt;panel1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="btn_tbl_panel.Location" type="System.Drawing.Point, System.Drawing">
     <value>234, 3</value>
+  </data>
+  <data name="&gt;&gt;btn_rfid_clear.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="btn_tbl_panel.Size" type="System.Drawing.Size, System.Drawing">
     <value>72, 48</value>
@@ -519,6 +637,9 @@
   <data name="&gt;&gt;btn_tbl_panel.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;toolStripMenuItem1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;btn_tbl_panel.Parent" xml:space="preserve">
     <value>panel3</value>
   </data>
@@ -534,14 +655,26 @@
   <data name="tbx_row_tbl_panel.TabIndex" type="System.Int32, mscorlib">
     <value>17</value>
   </data>
+  <data name="&gt;&gt;rbx_ethernet.Name" xml:space="preserve">
+    <value>rbx_ethernet</value>
+  </data>
   <data name="&gt;&gt;tbx_row_tbl_panel.Name" xml:space="preserve">
     <value>tbx_row_tbl_panel</value>
+  </data>
+  <data name="&gt;&gt;btn_rfid_connect.Name" xml:space="preserve">
+    <value>btn_rfid_connect</value>
   </data>
   <data name="&gt;&gt;tbx_row_tbl_panel.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="rbx_ethernet.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 8</value>
+  </data>
   <data name="&gt;&gt;tbx_row_tbl_panel.Parent" xml:space="preserve">
     <value>panel3</value>
+  </data>
+  <data name="rbx_serial.Size" type="System.Drawing.Size, System.Drawing">
+    <value>55, 16</value>
   </data>
   <data name="&gt;&gt;tbx_row_tbl_panel.ZOrder" xml:space="preserve">
     <value>0</value>
@@ -567,11 +700,20 @@
   <data name="&gt;&gt;tbx_col_tbl_panel.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="ipAddressBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>150, 21</value>
+  </data>
   <data name="panel3.Location" type="System.Drawing.Point, System.Drawing">
     <value>488, 119</value>
   </data>
   <data name="panel3.Size" type="System.Drawing.Size, System.Drawing">
     <value>309, 57</value>
+  </data>
+  <data name="rbx_serial.Text" xml:space="preserve">
+    <value>Serial</value>
+  </data>
+  <data name="&gt;&gt;deviceSearchToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="panel3.TabIndex" type="System.Int32, mscorlib">
     <value>16</value>
@@ -579,11 +721,20 @@
   <data name="&gt;&gt;panel3.Name" xml:space="preserve">
     <value>panel3</value>
   </data>
+  <data name="&gt;&gt;btn_rfid_inventory.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
   <data name="&gt;&gt;panel3.Type" xml:space="preserve">
     <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="languageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>126, 22</value>
+  </data>
   <data name="&gt;&gt;panel3.Parent" xml:space="preserve">
     <value>$this</value>
+  </data>
+  <data name="engToolStripMenuItem.Text" xml:space="preserve">
+    <value>Eng</value>
   </data>
   <data name="&gt;&gt;panel3.ZOrder" xml:space="preserve">
     <value>0</value>
@@ -597,14 +748,26 @@
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>7, 12</value>
   </data>
+  <data name="btn_rfid_connect.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="deviceSettingToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 22</value>
+  </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>800, 450</value>
   </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterScreen</value>
   </data>
+  <data name="&gt;&gt;listview_rfid_inventory_tag_data.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
   <data name="$this.Text" xml:space="preserve">
     <value>MainForm</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItem1.Name" xml:space="preserve">
+    <value>toolStripMenuItem1</value>
   </data>
   <data name="&gt;&gt;menuToolStripMenuItem.Name" xml:space="preserve">
     <value>menuToolStripMenuItem</value>
@@ -639,14 +802,20 @@
   <data name="&gt;&gt;exitToolStripMenuItem.Name" xml:space="preserve">
     <value>exitToolStripMenuItem</value>
   </data>
+  <data name="ipAddressBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>78, 3</value>
+  </data>
+  <data name="column_tag_value.Text" xml:space="preserve">
+    <value>Tag Value</value>
+  </data>
   <data name="&gt;&gt;exitToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;settingToolStripMenuItem.Name" xml:space="preserve">
     <value>settingToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;settingToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="rbx_serial.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 30</value>
   </data>
   <data name="&gt;&gt;deviceSearchToolStripMenuItem.Name" xml:space="preserve">
     <value>deviceSearchToolStripMenuItem</value>
@@ -660,14 +829,17 @@
   <data name="&gt;&gt;toolStripMenuItem1.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="btn_rfid_clear.Location" type="System.Drawing.Point, System.Drawing">
+    <value>722, 402</value>
+  </data>
   <data name="&gt;&gt;deviceSettingToolStripMenuItem.Name" xml:space="preserve">
     <value>deviceSettingToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;deviceSettingToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;helpToolStripMenuItem.Name" xml:space="preserve">
-    <value>helpToolStripMenuItem</value>
+  <data name="btn_rfid_inventory.Text" xml:space="preserve">
+    <value>Inventory</value>
   </data>
   <data name="&gt;&gt;helpToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
