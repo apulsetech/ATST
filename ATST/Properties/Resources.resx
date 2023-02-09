@@ -123,8 +123,14 @@
   <data name="StringDeviceBarcode" xml:space="preserve">
     <value>Barcode</value>
   </data>
+  <data name="StringDeviceConnect" xml:space="preserve">
+    <value>Connect</value>
+  </data>
   <data name="StringDeviceConnection" xml:space="preserve">
     <value>Connection</value>
+  </data>
+  <data name="StringDeviceDisConnect" xml:space="preserve">
+    <value>DisConnect</value>
   </data>
   <data name="StringDeviceName" xml:space="preserve">
     <value>Name</value>

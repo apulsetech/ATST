@@ -14,6 +14,7 @@ using System.Windows.Forms;
 using System.Runtime.Remoting.Channels;
 using System.Security.Cryptography;
 using System.Globalization;
+using ATST.Diagnotics;
 
 namespace ATST.Forms
 {
@@ -137,33 +138,40 @@ namespace ATST.Forms
                 if (SharedValues.ConnectionType == SharedValues.InterfaceType.SERIAL)
                 {
                     await Reader.GetReaderAsync("COM11", 115200, 8).ConfigureAwait(true);
+                    Log.WriteLine("INFO. Reader Setting ConnectionType({0}).", SharedValues.ConnectionType);
                 }
                 else if (SharedValues.ConnectionType == SharedValues.InterfaceType.TCP)
                 {
                     SharedValues.Reader = await Reader.GetReaderAsync(ipAddressBox.GetIpData(), 5000, false, 8).ConfigureAwait(true);
+                    Log.WriteLine("INFO. Reader Setting ConnectionType({0}).", SharedValues.ConnectionType);
                 }
                 else // ConnectionType != SERIAL && ConnectionType != TCP
                 {
+                    Log.WriteLine("ERROR. NonExistent ConnectionType.");
                     return;
                 }
 
                 if (SharedValues.Reader != null)
                 {
+                    Log.WriteLine("INFO. Start Device Connect.");
+                    // 현재 폼에 이벤트 발생 설정
                     SharedValues.Reader.SetEventListener(this);
                     if (await SharedValues.Reader.StartAsync().ConfigureAwait(true))
                     {
+                        Log.WriteLine("INFO. Sucessed Device Connect.");
                         await LoadRfidSettings().ConfigureAwait(true);
 
-                        btn_rfid_connect.Enabled = true;
+                        btn_rfid_connect.Text = "해제";
+                        EnableControl(true);
                     }
                     else // error - Connection failed
                     {
-
+                        Log.WriteLine("ERROR. Failed Device Connect.");
                     }
                 }
                 else // error - Connection failed
                 {
-
+                    Log.WriteLine("ERROR. Failed Device Connect(No Reader Info).");
                 }
             }
             else // SharedValues.Reader != null
@@ -171,17 +179,22 @@ namespace ATST.Forms
                 if (await SharedValues.Reader.GetConnectionStatusAsync().ConfigureAwait(true))
                 {
                     await SharedValues.Reader.DestroyAsync().ConfigureAwait(true);
+                    Log.WriteLine("INFO. Sucessed Device DisConnect.");
                 }
+
+                Log.WriteLine("INFO. RemoveEventListener().");
                 SharedValues.Reader.RemoveEventListener(this);
                 SharedValues.Reader = null;
 
-                btn_rfid_connect.Enabled = true;
+                btn_rfid_connect.Text = "연결";
+                EnableControl(false);
             }
         }
 
         private async Task LoadRfidSettings()
         {
+            Log.WriteLine("INFO. SetInventoryAntennaPortReportStateAsync({0}).", RFID.ON);
             await SharedValues.Reader.SetInventoryAntennaPortReportStateAsync(RFID.ON).ConfigureAwait(true);
         }
     }
-}
+} 

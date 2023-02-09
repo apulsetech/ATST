@@ -2,6 +2,7 @@
 using Apulsetech.Remote.Type;
 using Apulsetech.Type;
 using ATST.Data;
+using ATST.Diagnotics;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -123,11 +124,13 @@ namespace ATST.Forms
         {
             if (mRemoteDeviceScanner.Started)
             {
+                Log.WriteLine("INFO. Stop RemoteDevice Scan.");
                 mRemoteDeviceScanner.ScanRemoteDevice(false);
                 btnStartSearch.Text = Properties.Resources.StringDeviceNoSearch;
             }
             else
             {
+                Log.WriteLine("INFO. Start RemoteDevice Scan.");
                 listviewDeviceList.Items.Clear();
                 mRemoteDeviceScanner.ScanRemoteDevice(true);
                 btnStartSearch.Text = Properties.Resources.StringDeviceSearch;
@@ -144,8 +147,15 @@ namespace ATST.Forms
         {
             if (mRemoteDeviceScanner.Started)
                 mRemoteDeviceScanner.ScanRemoteDevice(false);
-            MainForm mainform = (MainForm)Owner;
             SharedValues.Ethernet = listviewDeviceList.Items[listviewDeviceList.FocusedItem.Index].SubItems[2].Text;//텍스트 전송
+            if (SharedValues.Ethernet != null)
+            {
+                Log.WriteLine("INFO. Set RemoteDevice Address.");
+                DialogResult = DialogResult.OK;
+                Close();
+            }
+            else
+                Log.WriteLine("ERROR. Failed Set RemoteDevice Address.");
         }
 
         private void listviewDeviceList_DoubleClick(object sender, EventArgs e)
@@ -154,8 +164,14 @@ namespace ATST.Forms
                 mRemoteDeviceScanner.ScanRemoteDevice(false);
             MainForm mainform = (MainForm)Owner;
             SharedValues.Ethernet = listviewDeviceList.Items[listviewDeviceList.FocusedItem.Index].SubItems[2].Text;//텍스트 전송
-            DialogResult = DialogResult.OK;
-            Close();
+            if (SharedValues.Ethernet != null)
+            {
+                Log.WriteLine("INFO. Set RemoteDevice Address.");
+                DialogResult = DialogResult.OK;
+                Close();
+            }
+            else
+                Log.WriteLine("ERROR. Failed Set RemoteDevice Address.");
         }
 
         private void SearchForm_KeyDown(object sender, KeyEventArgs e)

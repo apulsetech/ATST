@@ -117,52 +117,133 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="StringDeviceAddress" xml:space="preserve">
-    <value>주소</value>
+  <data name="&gt;&gt;txbLog.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="StringDeviceBarcode" xml:space="preserve">
-    <value>바코드</value>
+  <data name="&gt;&gt;btnClear.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
-  <data name="StringDeviceConnect" xml:space="preserve">
-    <value>연결</value>
+  <data name="&gt;&gt;btnClear.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="StringDeviceConnection" xml:space="preserve">
-    <value>연결</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>700, 370</value>
   </data>
-  <data name="StringDeviceDisConnect" xml:space="preserve">
-    <value>해제</value>
+  <data name="&gt;&gt;txbLogBox.Name" xml:space="preserve">
+    <value>txbLogBox</value>
   </data>
-  <data name="StringDeviceName" xml:space="preserve">
-    <value>이름</value>
+  <data name="&gt;&gt;txbLogBox.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="StringDeviceNoSearch" xml:space="preserve">
-    <value>검색</value>
+  <data name="&gt;&gt;button1.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
-  <data name="StringDeviceRfid" xml:space="preserve">
-    <value>Rfid</value>
+  <data name="&gt;&gt;btnClear.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="StringDeviceSearch" xml:space="preserve">
-    <value>중지</value>
+  <data name="txbLog.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 12</value>
   </data>
-  <data name="StringDeviceStatus" xml:space="preserve">
-    <value>상태</value>
+  <data name="&gt;&gt;txbLogBox.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
-  <data name="StringDeviceType" xml:space="preserve">
-    <value>타입</value>
+  <data name="&gt;&gt;txbLog.Name" xml:space="preserve">
+    <value>txbLog</value>
   </data>
-  <data name="StringFailedStartInventory" xml:space="preserve">
-    <value>인벤토리 시작 실패</value>
+  <data name="&gt;&gt;txbLog.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
-  <data name="StringFailedStopInventory" xml:space="preserve">
-    <value>인벤토리 종료 실패</value>
+  <data name="$this.Text" xml:space="preserve">
+    <value>LogDialog</value>
   </data>
-  <data name="StringName" xml:space="preserve">
-    <value>ATST </value>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>LogDialog</value>
   </data>
-  <data name="StringStartInventory" xml:space="preserve">
-    <value>인벤토리 시작</value>
+  <data name="&gt;&gt;txbLog.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="StringStopInventory" xml:space="preserve">
-    <value>인벤토리 종료</value>
+  <data name="textBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>676, 321</value>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="textBox1.ScrollBars" type="System.Windows.Forms.ScrollBars, System.Windows.Forms">
+    <value>Both</value>
+  </data>
+  <data name="textBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 12</value>
+  </data>
+  <data name="button1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>92, 23</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>7, 12</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="textBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="btnClear.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="button1.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="txbLogBox.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;button1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="btnClear.Location" type="System.Drawing.Point, System.Drawing">
+    <value>596, 339</value>
+  </data>
+  <data name="&gt;&gt;txbLogBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;button1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;button1.Name" xml:space="preserve">
+    <value>button1</value>
+  </data>
+  <data name="button1.Text" xml:space="preserve">
+    <value>Clear</value>
+  </data>
+  <data name="&gt;&gt;textBox1.Name" xml:space="preserve">
+    <value>textBox1</value>
+  </data>
+  <data name="&gt;&gt;btnClear.Name" xml:space="preserve">
+    <value>btnClear</value>
+  </data>
+  <data name="&gt;&gt;textBox1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="textBox1.Multiline" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;textBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="txbLogBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 12</value>
+  </data>
+  <data name="button1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>596, 339</value>
+  </data>
+  <data name="txbLog.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;textBox1.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>ko</value>
+  </metadata>
 </root>

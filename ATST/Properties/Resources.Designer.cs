@@ -79,11 +79,29 @@ namespace ATST.Properties {
         }
         
         /// <summary>
+        ///   Connect과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string StringDeviceConnect {
+            get {
+                return ResourceManager.GetString("StringDeviceConnect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Connection과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
         internal static string StringDeviceConnection {
             get {
                 return ResourceManager.GetString("StringDeviceConnection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   DisConnect과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string StringDeviceDisConnect {
+            get {
+                return ResourceManager.GetString("StringDeviceDisConnect", resourceCulture);
             }
         }
         

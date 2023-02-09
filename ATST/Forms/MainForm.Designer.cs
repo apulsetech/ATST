@@ -30,6 +30,7 @@ namespace ATST.Forms
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.rbx_serial = new System.Windows.Forms.RadioButton();
             this.rbx_ethernet = new System.Windows.Forms.RadioButton();
@@ -41,6 +42,8 @@ namespace ATST.Forms
             this.korToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.engToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
+            this.logToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deviceSearchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -61,6 +64,7 @@ namespace ATST.Forms
             this.panel3 = new System.Windows.Forms.Panel();
             this.tbx_row_tbl_panel = new System.Windows.Forms.TextBox();
             this.tbx_col_tbl_panel = new System.Windows.Forms.TextBox();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.menuStrip.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -97,91 +101,96 @@ namespace ATST.Forms
             // 
             // menuStrip
             // 
+            resources.ApplyResources(this.menuStrip, "menuStrip");
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuToolStripMenuItem,
             this.settingToolStripMenuItem,
             this.helpToolStripMenuItem});
-            resources.ApplyResources(this.menuStrip, "menuStrip");
             this.menuStrip.Name = "menuStrip";
             // 
             // menuToolStripMenuItem
             // 
+            resources.ApplyResources(this.menuToolStripMenuItem, "menuToolStripMenuItem");
             this.menuToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.languageToolStripMenuItem,
             this.toolStripMenuItem2,
+            this.logToolStripMenuItem,
+            this.toolStripSeparator1,
             this.exitToolStripMenuItem});
             this.menuToolStripMenuItem.Name = "menuToolStripMenuItem";
-
-            resources.ApplyResources(this.menuToolStripMenuItem, "menuToolStripMenuItem");
-
             this.menuToolStripMenuItem.Click += new System.EventHandler(this.menuToolStripMenuItem_Click);
-
             // 
             // languageToolStripMenuItem
             // 
+            resources.ApplyResources(this.languageToolStripMenuItem, "languageToolStripMenuItem");
             this.languageToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.korToolStripMenuItem,
             this.engToolStripMenuItem});
             this.languageToolStripMenuItem.Name = "languageToolStripMenuItem";
-            resources.ApplyResources(this.languageToolStripMenuItem, "languageToolStripMenuItem");
             // 
             // korToolStripMenuItem
             // 
-            this.korToolStripMenuItem.Name = "korToolStripMenuItem";
             resources.ApplyResources(this.korToolStripMenuItem, "korToolStripMenuItem");
+            this.korToolStripMenuItem.Name = "korToolStripMenuItem";
             this.korToolStripMenuItem.Click += new System.EventHandler(this.ToolStripMenuItem_Click);
             // 
             // engToolStripMenuItem
             // 
-            this.engToolStripMenuItem.Name = "engToolStripMenuItem";
             resources.ApplyResources(this.engToolStripMenuItem, "engToolStripMenuItem");
+            this.engToolStripMenuItem.Name = "engToolStripMenuItem";
             this.engToolStripMenuItem.Click += new System.EventHandler(this.ToolStripMenuItem_Click);
             // 
             // toolStripMenuItem2
             // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
             resources.ApplyResources(this.toolStripMenuItem2, "toolStripMenuItem2");
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            // 
+            // logToolStripMenuItem
+            // 
+            resources.ApplyResources(this.logToolStripMenuItem, "logToolStripMenuItem");
+            this.logToolStripMenuItem.Name = "logToolStripMenuItem";
+            this.logToolStripMenuItem.Click += new System.EventHandler(this.logToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            resources.ApplyResources(this.toolStripSeparator1, "toolStripSeparator1");
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
             // 
             // exitToolStripMenuItem
             // 
-            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             resources.ApplyResources(this.exitToolStripMenuItem, "exitToolStripMenuItem");
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             // 
             // settingToolStripMenuItem
             // 
+            resources.ApplyResources(this.settingToolStripMenuItem, "settingToolStripMenuItem");
             this.settingToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.deviceSearchToolStripMenuItem,
             this.toolStripMenuItem1,
             this.deviceSettingToolStripMenuItem});
             this.settingToolStripMenuItem.Name = "settingToolStripMenuItem";
-
-            resources.ApplyResources(this.settingToolStripMenuItem, "settingToolStripMenuItem");
-
             this.settingToolStripMenuItem.Click += new System.EventHandler(this.settingToolStripMenuItem_Click);
-
             // 
             // deviceSearchToolStripMenuItem
             // 
-            this.deviceSearchToolStripMenuItem.Name = "deviceSearchToolStripMenuItem";
             resources.ApplyResources(this.deviceSearchToolStripMenuItem, "deviceSearchToolStripMenuItem");
+            this.deviceSearchToolStripMenuItem.Name = "deviceSearchToolStripMenuItem";
             this.deviceSearchToolStripMenuItem.Click += new System.EventHandler(this.deviceSearchToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             resources.ApplyResources(this.toolStripMenuItem1, "toolStripMenuItem1");
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             // 
             // deviceSettingToolStripMenuItem
             // 
-            this.deviceSettingToolStripMenuItem.Name = "deviceSettingToolStripMenuItem";
             resources.ApplyResources(this.deviceSettingToolStripMenuItem, "deviceSettingToolStripMenuItem");
+            this.deviceSettingToolStripMenuItem.Name = "deviceSettingToolStripMenuItem";
             // 
             // helpToolStripMenuItem
             // 
-            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-
             resources.ApplyResources(this.helpToolStripMenuItem, "helpToolStripMenuItem");
-
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Click += new System.EventHandler(this.helpToolStripMenuItem_Click);
             // 
             // statusStrip
@@ -191,11 +200,11 @@ namespace ATST.Forms
             // 
             // panel1
             // 
+            resources.ApplyResources(this.panel1, "panel1");
             this.panel1.Controls.Add(this.btn_rfid_connect);
             this.panel1.Controls.Add(this.ipAddressBox);
             this.panel1.Controls.Add(this.rbx_ethernet);
             this.panel1.Controls.Add(this.rbx_serial);
-            resources.ApplyResources(this.panel1, "panel1");
             this.panel1.Name = "panel1";
             // 
             // btn_rfid_inventory
@@ -214,6 +223,7 @@ namespace ATST.Forms
             // 
             // listview_rfid_inventory_tag_data
             // 
+            resources.ApplyResources(this.listview_rfid_inventory_tag_data, "listview_rfid_inventory_tag_data");
             this.listview_rfid_inventory_tag_data.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.column_tag_value,
             this.column_tag_rssi,
@@ -221,7 +231,6 @@ namespace ATST.Forms
             this.listview_rfid_inventory_tag_data.FullRowSelect = true;
             this.listview_rfid_inventory_tag_data.GridLines = true;
             this.listview_rfid_inventory_tag_data.HideSelection = false;
-            resources.ApplyResources(this.listview_rfid_inventory_tag_data, "listview_rfid_inventory_tag_data");
             this.listview_rfid_inventory_tag_data.Name = "listview_rfid_inventory_tag_data";
             this.listview_rfid_inventory_tag_data.UseCompatibleStateImageBehavior = false;
             this.listview_rfid_inventory_tag_data.View = System.Windows.Forms.View.Details;
@@ -242,12 +251,13 @@ namespace ATST.Forms
             // 
             resources.ApplyResources(this.tablePanel1, "tablePanel1");
             this.tablePanel1.Name = "tablePanel1";
+            this.tablePanel1.Load += new System.EventHandler(this.tablePanel1_Load);
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.btn_rfid_inventory);
-            this.panel2.Controls.Add(this.btn_rfid_clear);
             resources.ApplyResources(this.panel2, "panel2");
+            this.panel2.Controls.Add(this.btn_rfid_clear);
+            this.panel2.Controls.Add(this.btn_rfid_inventory);
             this.panel2.Name = "panel2";
             // 
             // btn_tbl_panel
@@ -259,10 +269,10 @@ namespace ATST.Forms
             // 
             // panel3
             // 
+            resources.ApplyResources(this.panel3, "panel3");
             this.panel3.Controls.Add(this.tbx_row_tbl_panel);
             this.panel3.Controls.Add(this.tbx_col_tbl_panel);
             this.panel3.Controls.Add(this.btn_tbl_panel);
-            resources.ApplyResources(this.panel3, "panel3");
             this.panel3.Name = "panel3";
             // 
             // tbx_row_tbl_panel
@@ -274,6 +284,11 @@ namespace ATST.Forms
             // 
             resources.ApplyResources(this.tbx_col_tbl_panel, "tbx_col_tbl_panel");
             this.tbx_col_tbl_panel.Name = "tbx_col_tbl_panel";
+            // 
+            // contextMenuStrip1
+            // 
+            resources.ApplyResources(this.contextMenuStrip1, "contextMenuStrip1");
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
             // 
             // MainForm
             // 
@@ -336,5 +351,8 @@ namespace ATST.Forms
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.TextBox tbx_row_tbl_panel;
         private System.Windows.Forms.TextBox tbx_col_tbl_panel;
+        private System.Windows.Forms.ToolStripMenuItem logToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
     }
 }
