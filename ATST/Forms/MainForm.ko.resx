@@ -193,8 +193,17 @@
   <data name="helpToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;도움</value>
   </data>
+  <data name="btn_rfid_inventory.Location" type="System.Drawing.Point, System.Drawing">
+    <value>488, 82</value>
+  </data>
+  <data name="btn_rfid_inventory.Size" type="System.Drawing.Size, System.Drawing">
+    <value>228, 23</value>
+  </data>
   <data name="btn_rfid_inventory.Text" xml:space="preserve">
     <value>인벤토리</value>
+  </data>
+  <data name="btn_rfid_clear.Location" type="System.Drawing.Point, System.Drawing">
+    <value>722, 82</value>
   </data>
   <data name="btn_rfid_clear.Text" xml:space="preserve">
     <value>초기화</value>
@@ -204,6 +213,9 @@
   </data>
   <data name="column_tag_port.Text" xml:space="preserve">
     <value>포트</value>
+  </data>
+  <data name="listview_rfid_inventory_tag_data.Size" type="System.Drawing.Size, System.Drawing">
+    <value>485, 78</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>ATST</value>

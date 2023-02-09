@@ -257,5 +257,15 @@ namespace ATST.Forms
                 this.Close();
             }
         }
+
+        private void btn_tbl_panel_Click(object sender, EventArgs e)
+        {
+            if (tablePanel1.set_panel(
+                Int32.Parse(tbx_col_tbl_panel.Text),
+                Int32.Parse(tbx_row_tbl_panel.Text)))
+            {
+
+            }
+        }
     }
 }
