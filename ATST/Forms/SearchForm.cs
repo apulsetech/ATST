@@ -31,6 +31,9 @@ namespace ATST.Forms
             SIZE_REMOTE_DEVICE_LISTVIEW_COLUMN_STATUS +
             SIZE_REMOTE_DEVICE_LISTVIEW_COLUMN_FORCE_CONNECTION;
 
+        public delegate void OpenFormReturn(SearchForm form);
+        public static event OpenFormReturn OpenFormEvent;
+
         private RemoteDeviceScanner mRemoteDeviceScanner;
         private MsgEvent mMainFormEvent;
         private MsgEvent mMsgEvent = new MsgEvent();
@@ -44,6 +47,8 @@ namespace ATST.Forms
         {
             InitializeComponent();
             Initialize();
+            OpenFormEvent(this);
+            this.KeyPreview = true;
         }
 
         private void Initialize()
@@ -119,13 +124,13 @@ namespace ATST.Forms
             if (mRemoteDeviceScanner.Started)
             {
                 mRemoteDeviceScanner.ScanRemoteDevice(false);
-                btnStartSearch.Text = "Search";
+                btnStartSearch.Text = Properties.Resources.StringDeviceNoSearch;
             }
             else
             {
                 listviewDeviceList.Items.Clear();
                 mRemoteDeviceScanner.ScanRemoteDevice(true);
-                btnStartSearch.Text = "Stop";
+                btnStartSearch.Text = Properties.Resources.StringDeviceSearch;
             }
         }
 
@@ -151,6 +156,13 @@ namespace ATST.Forms
             SharedValues.Ethernet = listviewDeviceList.Items[listviewDeviceList.FocusedItem.Index].SubItems[2].Text;//텍스트 전송
             DialogResult = DialogResult.OK;
             Close();
+        }
+
+        private void SearchForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            // ESC키를 눌렀을 때 창이 닫히게 처리함.
+            if (e.KeyCode == Keys.Escape)
+                this.Close();
         }
     }
 }
