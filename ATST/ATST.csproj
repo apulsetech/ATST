@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="Data\Config.cs" />
     <Compile Include="Data\SharedValues.cs" />
+    <Compile Include="Data\XmlConfigManager.cs" />
     <Compile Include="Diagnotics\Log.cs" />
     <Compile Include="Forms\Diagnotics\LogDialog.cs">
       <SubType>Form</SubType>
@@ -89,6 +90,7 @@
     <Compile Include="GlobalKey\HotKey.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Data\CreateConfig.cs" />
     <Compile Include="Util\SysUtil.cs" />
     <EmbeddedResource Include="Forms\Diagnotics\LogDialog.ko.resx">
       <DependentUpon>LogDialog.cs</DependentUpon>

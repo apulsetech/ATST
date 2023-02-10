@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -16,6 +17,22 @@ namespace ATST.Util
         {
             // 빌드 번호 및 어셈블리 버전 정보 가져오기
             return assembly.GetName().Version.ToString();
+        }
+
+        // Retrieve Module Name
+        public static string GetModuleName()
+        { return GetModuleName(Assembly.GetCallingAssembly()); }
+        public static string GetModuleName(Assembly assembly)
+        {
+            return Path.GetFileNameWithoutExtension(assembly.ManifestModule.Name);
+        }
+
+        //Retrieve Module Path
+        public static string GetModulePath()
+        { return GetModulePath(Assembly.GetCallingAssembly()); }
+        public static string GetModulePath(Assembly assembly)
+        {
+            return Path.GetDirectoryName(assembly.Location);
         }
     }
 }
