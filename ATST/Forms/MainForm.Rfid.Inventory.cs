@@ -1,5 +1,6 @@
 ﻿using Apulsetech.Rfid.Type;
 using ATST.Data;
+using ATST.Diagnotics;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -36,12 +37,14 @@ namespace ATST.Forms
                 if ((result == RfidResult.SUCCESS) ||
                     (result == RfidResult.NOT_INVENTORY_STATE))
                 {
+                    Log.WriteLine("INFO. Successed Inventory Stop.");
                     mRfidInventoryStarted = false;
                     ToggleRfidInventoryButton();
                 }
                 else
                 {
                     MessageBox.Show(Properties.Resources.StringFailedStopInventory);
+                    Log.WriteLine("ERROR. Failed Inventory Stop.");
                 }
             }
             else//Inventory Start
@@ -50,12 +53,14 @@ namespace ATST.Forms
 
                 if (result == RfidResult.SUCCESS)
                 {
+                    Log.WriteLine("INFO. Successed Inventory Start.");
                     mRfidInventoryStarted = true;
                     ToggleRfidInventoryButton();
                 }
                 else
                 {
                     MessageBox.Show(Properties.Resources.StringFailedStartInventory);
+                    Log.WriteLine("ERROR. Failed Inventory Start.");
                 }
             }
         }

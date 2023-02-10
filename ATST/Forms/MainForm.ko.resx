@@ -133,6 +133,30 @@
   <data name="btn_rfid_connect.Text" xml:space="preserve">
     <value>연결</value>
   </data>
+  <data name="menuToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>43, 20</value>
+  </data>
+  <data name="menuToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;메뉴</value>
+  </data>
+  <data name="settingToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>43, 20</value>
+  </data>
+  <data name="settingToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;설정</value>
+  </data>
+  <data name="helpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>43, 20</value>
+  </data>
+  <data name="helpToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;도움</value>
+  </data>
+  <data name="menuStrip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>805, 24</value>
+  </data>
+  <data name="languageToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;언어</value>
+  </data>
   <data name="korToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>110, 22</value>
   </data>
@@ -145,26 +169,11 @@
   <data name="engToolStripMenuItem.Text" xml:space="preserve">
     <value>영어</value>
   </data>
-  <data name="languageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>110, 22</value>
-  </data>
-  <data name="languageToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;언어</value>
-  </data>
-  <data name="toolStripMenuItem2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>107, 6</value>
-  </data>
-  <data name="exitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>110, 22</value>
+  <data name="logToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;로그</value>
   </data>
   <data name="exitToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;끝내기</value>
-  </data>
-  <data name="menuToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>43, 20</value>
-  </data>
-  <data name="menuToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;메뉴</value>
   </data>
   <data name="deviceSearchToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>126, 22</value>
@@ -181,32 +190,23 @@
   <data name="deviceSettingToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;장비 설정</value>
   </data>
-  <data name="settingToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>43, 20</value>
-  </data>
-  <data name="settingToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;설정</value>
-  </data>
-  <data name="helpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>43, 20</value>
-  </data>
-  <data name="helpToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;도움</value>
+  <data name="statusStrip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>805, 22</value>
   </data>
   <data name="btn_rfid_inventory.Location" type="System.Drawing.Point, System.Drawing">
-    <value>488, 82</value>
-  </data>
-  <data name="btn_rfid_inventory.Size" type="System.Drawing.Size, System.Drawing">
-    <value>228, 23</value>
+    <value>3, 5</value>
   </data>
   <data name="btn_rfid_inventory.Text" xml:space="preserve">
     <value>인벤토리</value>
   </data>
   <data name="btn_rfid_clear.Location" type="System.Drawing.Point, System.Drawing">
-    <value>722, 82</value>
+    <value>234, 5</value>
   </data>
   <data name="btn_rfid_clear.Text" xml:space="preserve">
     <value>초기화</value>
+  </data>
+  <data name="listview_rfid_inventory_tag_data.Size" type="System.Drawing.Size, System.Drawing">
+    <value>485, 78</value>
   </data>
   <data name="column_tag_value.Text" xml:space="preserve">
     <value>태그 값</value>
@@ -214,8 +214,11 @@
   <data name="column_tag_port.Text" xml:space="preserve">
     <value>포트</value>
   </data>
-  <data name="listview_rfid_inventory_tag_data.Size" type="System.Drawing.Size, System.Drawing">
-    <value>485, 78</value>
+  <data name="tablePanel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>490, 306</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>805, 450</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>ATST</value>
