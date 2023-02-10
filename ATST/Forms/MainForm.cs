@@ -288,7 +288,9 @@ namespace ATST.Forms
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            
+            Log.WriteLine("INFO. Close Application.");
+            GC.Collect();
+            Application.Exit();
         }
 
         private void MainForm_KeyDown(object sender, KeyEventArgs e)
