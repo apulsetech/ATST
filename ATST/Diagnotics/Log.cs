@@ -34,8 +34,15 @@ namespace ATST.Diagnotics
             if (string.IsNullOrEmpty(baseDirectory))
                 return;
 
+            string folderPath = baseDirectory + "Log"; 
+            DirectoryInfo di = new DirectoryInfo(folderPath);
+
+            if (!di.Exists)
+                di.Create();
+
             baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
             baseDirectory = baseDirectory + "Log" +"\\log_" + DateTime.Now.ToString("yyyyMMdd") + ".txt";
+
             if (!File.Exists(baseDirectory))
             {
                 FileStream fileStream = File.Create(baseDirectory);
