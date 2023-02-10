@@ -1,6 +1,4 @@
 ﻿using Apulsetech.Event;
-using Apulsetech.Rfid;
-using Apulsetech.Rfid.Type;
 using ATST.Data;
 using ATST.Diagnotics;
 using ATST.Forms.Diagnotics;
@@ -8,17 +6,8 @@ using ATST.GlobalKey;
 using ATST.Properties;
 using ATST.Util;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
-using System.Drawing;
 using System.Globalization;
-using System.Linq;
-using System.Reflection;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ATST.Forms
@@ -53,6 +42,15 @@ namespace ATST.Forms
             listview_rfid_inventory_tag_data.Columns[2].Name = "column_tag_port";
 
             EnableControl(false);
+            InitializeCreateConfig();
+        }
+
+        private void InitializeCreateConfig()
+        {
+            CreateConfig.MainConfig();
+
+            tbx_col_tbl_panel.Text = Config.Panel_Column.ToString();
+            tbx_row_tbl_panel.Text = Config.Panel_Row.ToString();
         }
 
         // 컨트롤 사용가능 여부 체크
@@ -94,7 +92,7 @@ namespace ATST.Forms
                 rbx_ethernet.Checked = false;
                 rbx_serial.Checked = true;
             }
-            SharedValues.ConnectionType = SharedValues.InterfaceType.SERIAL; 
+            SharedValues.ConnectionType = SharedValues.InterfaceType.SERIAL;
         }
 
         private void deviceSearchToolStripMenuItem_Click(object sender, EventArgs e)
@@ -309,7 +307,8 @@ namespace ATST.Forms
                 Int32.Parse(tbx_col_tbl_panel.Text),
                 Int32.Parse(tbx_row_tbl_panel.Text)))
             {
-
+                Config.Panel_Row = Convert.ToInt32(tbx_row_tbl_panel.Text);
+                Config.Panel_Column = Convert.ToInt32(tbx_col_tbl_panel.Text);
             }
         }
 
@@ -345,7 +344,7 @@ namespace ATST.Forms
                         Log.OutputLog -= form.m_fnOutputLog;
                         Log.OutputLog += m_fnOutputLog;
                     }
-                   
+
                 }
             });
             thread.Start();
