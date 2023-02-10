@@ -139,6 +139,7 @@ namespace ATST.Forms
                 {
                     await Reader.GetReaderAsync("COM11", 115200, 8).ConfigureAwait(true);
                     Log.WriteLine("INFO. Reader Setting ConnectionType({0}).", SharedValues.ConnectionType);
+                    
                 }
                 else if (SharedValues.ConnectionType == SharedValues.InterfaceType.TCP)
                 {
@@ -161,7 +162,7 @@ namespace ATST.Forms
                         Log.WriteLine("INFO. Sucessed Device Connect.");
                         await LoadRfidSettings().ConfigureAwait(true);
 
-                        btn_rfid_connect.Text = "해제";
+                        btn_rfid_connect.Text = Properties.Resources.StringDeviceConnect;
                         EnableControl(true);
                     }
                     else // error - Connection failed
@@ -186,7 +187,7 @@ namespace ATST.Forms
                 SharedValues.Reader.RemoveEventListener(this);
                 SharedValues.Reader = null;
 
-                btn_rfid_connect.Text = "연결";
+                btn_rfid_connect.Text = Properties.Resources.StringDeviceDisConnect;
                 EnableControl(false);
             }
         }

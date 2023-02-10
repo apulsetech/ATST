@@ -101,14 +101,9 @@ namespace ATST.Forms
         {
             using (SearchForm dlg = new SearchForm())
             {
-                //dlg.Owner = this;
-                /*
+                //dlg.Owner = this;         
                 if (dlg.ShowDialog() == DialogResult.OK)
                     ipAddressBox.SetIpData(SharedValues.Ethernet);
-                */
-
-                dlg.Show(); //????????????????
-                
             }
         }
 

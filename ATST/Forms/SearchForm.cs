@@ -50,6 +50,8 @@ namespace ATST.Forms
             Initialize();
             OpenFormEvent(this);
             this.KeyPreview = true;
+
+            
         }
 
         private void Initialize()

@@ -124,13 +124,13 @@
     <value>바코드</value>
   </data>
   <data name="StringDeviceConnect" xml:space="preserve">
-    <value>연결</value>
+    <value>해제</value>
   </data>
   <data name="StringDeviceConnection" xml:space="preserve">
     <value>연결</value>
   </data>
   <data name="StringDeviceDisConnect" xml:space="preserve">
-    <value>해제</value>
+    <value>연결</value>
   </data>
   <data name="StringDeviceName" xml:space="preserve">
     <value>이름</value>
