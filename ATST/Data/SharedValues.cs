@@ -16,12 +16,14 @@ namespace ATST.Data
             TCP
         }
 
-
         private static string mEthernet = string.Empty;
         private static InterfaceType mConnectionType = InterfaceType.SERIAL;
         private static Reader mReader = null;
         private static SensorReader mSensorReader = null;
         private static bool mReaderConnected = false;
+        private static int mNumberOfAntennaPorts = 1;
+        public static Dictionary<string, TagInfo> mTagSaveDictionary = new Dictionary<string, TagInfo>();
+
 
         public static string Ethernet
         {
@@ -41,6 +43,16 @@ namespace ATST.Data
             set => mReaderConnected = value;
         }
 
+        public static int NumberOfAntennaPorts
+        {
+            get => mNumberOfAntennaPorts;
+            set
+            {
+                if (value > 0)
+                    mNumberOfAntennaPorts = value;
+            }
+        }
+
         public static Reader Reader
         {
             get => mReader;
@@ -57,6 +69,8 @@ namespace ATST.Data
                 }
             }
         }
+
+        
 
     }
 }

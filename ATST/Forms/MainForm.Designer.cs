@@ -30,6 +30,7 @@ namespace ATST.Forms
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.rbx_serial = new System.Windows.Forms.RadioButton();
             this.rbx_ethernet = new System.Windows.Forms.RadioButton();
@@ -41,6 +42,8 @@ namespace ATST.Forms
             this.korToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.engToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
+            this.logToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deviceSearchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -60,6 +63,7 @@ namespace ATST.Forms
             this.panel3 = new System.Windows.Forms.Panel();
             this.tbx_row_tbl_panel = new System.Windows.Forms.TextBox();
             this.tbx_col_tbl_panel = new System.Windows.Forms.TextBox();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tablePanel1 = new CsControl.Control.TablePanel();
             this.menuStrip.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -109,6 +113,8 @@ namespace ATST.Forms
             this.menuToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.languageToolStripMenuItem,
             this.toolStripMenuItem2,
+            this.logToolStripMenuItem,
+            this.toolStripSeparator1,
             this.exitToolStripMenuItem});
             this.menuToolStripMenuItem.Name = "menuToolStripMenuItem";
             resources.ApplyResources(this.menuToolStripMenuItem, "menuToolStripMenuItem");
@@ -138,6 +144,17 @@ namespace ATST.Forms
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
             resources.ApplyResources(this.toolStripMenuItem2, "toolStripMenuItem2");
+            // 
+            // logToolStripMenuItem
+            // 
+            this.logToolStripMenuItem.Name = "logToolStripMenuItem";
+            resources.ApplyResources(this.logToolStripMenuItem, "logToolStripMenuItem");
+            this.logToolStripMenuItem.Click += new System.EventHandler(this.logToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            resources.ApplyResources(this.toolStripSeparator1, "toolStripSeparator1");
             // 
             // exitToolStripMenuItem
             // 
@@ -232,8 +249,8 @@ namespace ATST.Forms
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.btn_rfid_inventory);
             this.panel2.Controls.Add(this.btn_rfid_clear);
+            this.panel2.Controls.Add(this.btn_rfid_inventory);
             resources.ApplyResources(this.panel2, "panel2");
             this.panel2.Name = "panel2";
             // 
@@ -261,6 +278,11 @@ namespace ATST.Forms
             // 
             resources.ApplyResources(this.tbx_col_tbl_panel, "tbx_col_tbl_panel");
             this.tbx_col_tbl_panel.Name = "tbx_col_tbl_panel";
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            resources.ApplyResources(this.contextMenuStrip1, "contextMenuStrip1");
             // 
             // tablePanel1
             // 
@@ -327,6 +349,9 @@ namespace ATST.Forms
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.TextBox tbx_row_tbl_panel;
         private System.Windows.Forms.TextBox tbx_col_tbl_panel;
+        private System.Windows.Forms.ToolStripMenuItem logToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private CsControl.Control.TablePanel tablePanel1;
     }
 }

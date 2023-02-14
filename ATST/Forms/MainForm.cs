@@ -1,22 +1,14 @@
 ﻿using Apulsetech.Event;
-using Apulsetech.Rfid;
-using Apulsetech.Rfid.Type;
 using ATST.Data;
+using ATST.Diagnotics;
+using ATST.Forms.Diagnotics;
 using ATST.GlobalKey;
 using ATST.Properties;
 using ATST.Util;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
-using System.Drawing;
 using System.Globalization;
-using System.Linq;
-using System.Reflection;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ATST.Forms
@@ -24,10 +16,20 @@ namespace ATST.Forms
     public partial class MainForm : Form, ReaderEventListener
     {
         private SearchForm searchForm = null;
+
+        private Log.LogEventHandler m_fnOutputLog;
+
+        // Log창 닫혀있을때 로그 저장할 텍스트박스
+        public TextBox txb = new TextBox();
+
         public MainForm()
         {
             InitializeComponent();
             Initialize();
+
+            Log.OutputLog += this.OutputLog;
+
+            m_fnOutputLog = new Log.LogEventHandler(OutputLog); // Invoke시 사용하거나 Event의 콜백메서드를 삭제하기 위함.
 
             SearchForm.OpenFormEvent += new SearchForm.OpenFormReturn(ReturnForm);  // 활성화된 장비검색폼 객체를 리턴한다.
             this.KeyPreview = true; // 폼이 모든 키 이벤트를 받게함. -> ESC 키를 눌렀을때 폼이 이벤트 핸들러가 발생될 수 있게하기 위함.
@@ -41,6 +43,15 @@ namespace ATST.Forms
             listview_rfid_inventory_tag_data.Columns[2].Name = "column_tag_port";
 
             EnableControl(false);
+            InitializeCreateConfig();
+        }
+
+        private void InitializeCreateConfig()
+        {
+            CreateConfig.MainConfig();
+
+            tbx_col_tbl_panel.Text = Config.Panel_Column.ToString();
+            tbx_row_tbl_panel.Text = Config.Panel_Row.ToString();
         }
 
         // 컨트롤 사용가능 여부 체크
@@ -49,16 +60,39 @@ namespace ATST.Forms
             btn_rfid_inventory.Enabled = enable;
             btn_rfid_clear.Enabled = enable;
 
-            btn_rfid_connect.Enabled = btn_rfid_inventory.Enabled && btn_rfid_clear.Enabled ? !enable : !enable;
+            btn_rfid_connect.Enabled = btn_rfid_inventory.Enabled && btn_rfid_clear.Enabled ? enable : !enable;
+        }
+
+        public void OutputLog(String msg)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(m_fnOutputLog, msg);
+                return;
+            }
+
+            txb.AppendText(msg);
+            txb.Select(txb.TextLength, 0);
+            txb.ScrollToCaret();
         }
 
         private void rbx_ethernet_CheckedChanged(object sender, EventArgs e)
         {
+            if (rbx_serial.Checked)
+            {
+                rbx_serial.Checked = false;
+                rbx_ethernet.Checked = true;
+            }
             SharedValues.ConnectionType = SharedValues.InterfaceType.TCP;
         }
 
         private void rbx_serial_CheckedChanged(object sender, EventArgs e)
         {
+            if (rbx_ethernet.Checked)
+            {
+                rbx_ethernet.Checked = false;
+                rbx_serial.Checked = true;
+            }
             SharedValues.ConnectionType = SharedValues.InterfaceType.SERIAL;
         }
 
@@ -66,7 +100,7 @@ namespace ATST.Forms
         {
             using (SearchForm dlg = new SearchForm())
             {
-                dlg.Owner = this;
+                //dlg.Owner = this;         
                 if (dlg.ShowDialog() == DialogResult.OK)
                     ipAddressBox.SetIpData(SharedValues.Ethernet);
             }
@@ -158,6 +192,8 @@ namespace ATST.Forms
             HotKey.RegisterHotKey(Handle, 109, HotKey.KeyModifiers.Ctrl | HotKey.KeyModifiers.Alt, Keys.O);
             // Ctrl + Alt + N -> 취소 버튼 클릭 이벤트 발생
             HotKey.RegisterHotKey(Handle, 110, HotKey.KeyModifiers.Ctrl | HotKey.KeyModifiers.Alt, Keys.N);
+            // Ctrl + Shift + N -> 장비 연결 
+            HotKey.RegisterHotKey(Handle, 111, HotKey.KeyModifiers.Ctrl | HotKey.KeyModifiers.Shift, Keys.N);
         }
 
         private void MainForm_Leave(object sender, EventArgs e)
@@ -174,6 +210,7 @@ namespace ATST.Forms
             HotKey.UnregisterHotKey(Handle, 108);
             HotKey.UnregisterHotKey(Handle, 109);
             HotKey.UnregisterHotKey(Handle, 110);
+            HotKey.UnregisterHotKey(Handle, 111);
         }
 
         protected override void WndProc(ref Message m)
@@ -223,6 +260,9 @@ namespace ATST.Forms
                             if (searchForm != null)
                                 searchForm.btnCancel.PerformClick();
                             break;
+                        case 111:
+                            btn_rfid_connect_Click(this, null);
+                            break;
                     }
                     break;
             }
@@ -247,14 +287,18 @@ namespace ATST.Forms
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            this.Dispose();
+            Log.WriteLine("INFO. Close Application.");
+            GC.Collect();
+            Application.Exit();
         }
 
         private void MainForm_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
             {
-                this.Close();
+                Log.WriteLine("INFO. Close Application.");
+                GC.Collect();
+                Application.Exit();
             }
         }
 
@@ -264,8 +308,48 @@ namespace ATST.Forms
                 Int32.Parse(tbx_col_tbl_panel.Text),
                 Int32.Parse(tbx_row_tbl_panel.Text)))
             {
-
+                Config.Panel_Row = Convert.ToInt32(tbx_row_tbl_panel.Text);
+                Config.Panel_Column = Convert.ToInt32(tbx_col_tbl_panel.Text);
             }
+        }
+
+        private void tablePanel1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void logToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Thread thread = new Thread(() =>
+            {
+                using (LogDialog form = new LogDialog(this))
+                {
+                    // LogDialog를 Main의 자식폼으로 해서 부모폼인 Main폼에 포커스가 가도록 하기 위함.
+                    form.Owner = this;
+                    // 기존 이벤트에 대한 콜백메서드 삭제 (Log폼이 안띄어져있을때까지 사용한 콜백 메서드)
+                    Log.OutputLog -= m_fnOutputLog;
+                    // Log폼이 띄어졌으니 실시간으로 출력해야 하므로 새로운 콜백메서드 등록
+                    Log.OutputLog += form.m_fnOutputLog;
+
+                    // Owner설정 시 크로스 스레드 문제 처리를 위함.
+                    if (InvokeRequired)
+                    {
+                        Invoke(new MethodInvoker(delegate ()
+                        {
+                            form.ShowDialog();
+                        }));
+                    }
+
+                    if (form.DialogResult == DialogResult.Cancel)
+                    {
+                        Log.OutputLog -= form.m_fnOutputLog;
+                        Log.OutputLog += m_fnOutputLog;
+                    }
+
+                }
+            });
+            thread.Start();
+
         }
     }
 }

@@ -14,11 +14,16 @@ using System.Windows.Forms;
 using System.Runtime.Remoting.Channels;
 using System.Security.Cryptography;
 using System.Globalization;
+using ATST.Diagnotics;
+using Apulsetech.Rfid.Vendor.Chip.Impinj;
+using System.Diagnostics;
+using static Apulsetech.Rfid.Type.RFID.Untraceable;
 
 namespace ATST.Forms
 {
     public partial class MainForm
     {
+
         public virtual void OnReaderDeviceStateChanged(Reader reader, DeviceEvent state)
         {
             switch (state)
@@ -57,10 +62,14 @@ namespace ATST.Forms
                         }
                     }
                     break;
+                case Reader.READER_CALLBACK_EVENT_START_INVENTORY:
+                case Reader.READER_CALLBACK_EVENT_STOP_INVENTORY:
                 default:
                     break;
             }
         }
+
+
 
         public virtual void OnReaderRemoteKeyEvent(Reader reader, int action, int keyCode)
         {
@@ -104,6 +113,8 @@ namespace ATST.Forms
             }));
         }
 
+        int currentPort = 0;
+
         private void AddTagItem(string epc,
                                 string rssi,
                                 string port)
@@ -125,8 +136,23 @@ namespace ATST.Forms
                 listview_rfid_inventory_tag_data.Items.Add(item);
                 listview_rfid_inventory_tag_data.EndUpdate();
             }
-        }
 
+            // 로직 구현
+            currentPort = Convert.ToInt32(port);
+
+
+            // 첫번째 포트 저장
+            first_port_set(port);
+
+            // 포트 순회해서 상태 변환
+            allport_inputstate_change(port);
+
+            // 출고 처리
+            output_proccess(epc, port, rssi);
+
+            // 입고 처리
+            input_proccess(epc, port, rssi);
+        }
 
         private async void btn_rfid_connect_Click(object sender, EventArgs e)
         {
@@ -137,33 +163,41 @@ namespace ATST.Forms
                 if (SharedValues.ConnectionType == SharedValues.InterfaceType.SERIAL)
                 {
                     await Reader.GetReaderAsync("COM11", 115200, 8).ConfigureAwait(true);
+                    Log.WriteLine("INFO. Reader Setting ConnectionType({0}).", SharedValues.ConnectionType);
+
                 }
                 else if (SharedValues.ConnectionType == SharedValues.InterfaceType.TCP)
                 {
                     SharedValues.Reader = await Reader.GetReaderAsync(ipAddressBox.GetIpData(), 5000, false, 8).ConfigureAwait(true);
+                    Log.WriteLine("INFO. Reader Setting ConnectionType({0}).", SharedValues.ConnectionType);
                 }
                 else // ConnectionType != SERIAL && ConnectionType != TCP
                 {
+                    Log.WriteLine("ERROR. NonExistent ConnectionType.");
                     return;
                 }
 
                 if (SharedValues.Reader != null)
                 {
+                    Log.WriteLine("INFO. Start Device Connect.");
+                    // 현재 폼에 이벤트 발생 설정
                     SharedValues.Reader.SetEventListener(this);
                     if (await SharedValues.Reader.StartAsync().ConfigureAwait(true))
                     {
+                        Log.WriteLine("INFO. Sucessed Device Connect.");
                         await LoadRfidSettings().ConfigureAwait(true);
 
-                        btn_rfid_connect.Enabled = true;
+                        btn_rfid_connect.Text = Properties.Resources.StringDeviceConnect;
+                        EnableControl(true);
                     }
                     else // error - Connection failed
                     {
-
+                        Log.WriteLine("ERROR. Failed Device Connect.");
                     }
                 }
                 else // error - Connection failed
                 {
-
+                    Log.WriteLine("ERROR. Failed Device Connect(No Reader Info).");
                 }
             }
             else // SharedValues.Reader != null
@@ -171,16 +205,21 @@ namespace ATST.Forms
                 if (await SharedValues.Reader.GetConnectionStatusAsync().ConfigureAwait(true))
                 {
                     await SharedValues.Reader.DestroyAsync().ConfigureAwait(true);
+                    Log.WriteLine("INFO. Sucessed Device DisConnect.");
                 }
+
+                Log.WriteLine("INFO. RemoveEventListener().");
                 SharedValues.Reader.RemoveEventListener(this);
                 SharedValues.Reader = null;
 
-                btn_rfid_connect.Enabled = true;
+                btn_rfid_connect.Text = Properties.Resources.StringDeviceDisConnect;
+                EnableControl(false);
             }
         }
 
         private async Task LoadRfidSettings()
         {
+            Log.WriteLine("INFO. SetInventoryAntennaPortReportStateAsync({0}).", RFID.ON);
             await SharedValues.Reader.SetInventoryAntennaPortReportStateAsync(RFID.ON).ConfigureAwait(true);
         }
     }
