@@ -351,5 +351,10 @@ namespace ATST.Forms
             thread.Start();
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            SharedValues.Reader.SetRadioPower(10);
+        }
     }
 }

@@ -65,6 +65,7 @@ namespace ATST.Forms
             this.tbx_col_tbl_panel = new System.Windows.Forms.TextBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tablePanel1 = new CsControl.Control.TablePanel();
+            this.button1 = new System.Windows.Forms.Button();
             this.menuStrip.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -223,6 +224,7 @@ namespace ATST.Forms
             // 
             // listview_rfid_inventory_tag_data
             // 
+            resources.ApplyResources(this.listview_rfid_inventory_tag_data, "listview_rfid_inventory_tag_data");
             this.listview_rfid_inventory_tag_data.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.column_tag_value,
             this.column_tag_rssi,
@@ -230,7 +232,6 @@ namespace ATST.Forms
             this.listview_rfid_inventory_tag_data.FullRowSelect = true;
             this.listview_rfid_inventory_tag_data.GridLines = true;
             this.listview_rfid_inventory_tag_data.HideSelection = false;
-            resources.ApplyResources(this.listview_rfid_inventory_tag_data, "listview_rfid_inventory_tag_data");
             this.listview_rfid_inventory_tag_data.Name = "listview_rfid_inventory_tag_data";
             this.listview_rfid_inventory_tag_data.UseCompatibleStateImageBehavior = false;
             this.listview_rfid_inventory_tag_data.View = System.Windows.Forms.View.Details;
@@ -289,14 +290,22 @@ namespace ATST.Forms
             resources.ApplyResources(this.tablePanel1, "tablePanel1");
             this.tablePanel1.Name = "tablePanel1";
             // 
+            // button1
+            // 
+            resources.ApplyResources(this.button1, "button1");
+            this.button1.Name = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.listview_rfid_inventory_tag_data);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.tablePanel1);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.listview_rfid_inventory_tag_data);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.menuStrip);
@@ -353,5 +362,6 @@ namespace ATST.Forms
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private CsControl.Control.TablePanel tablePanel1;
+        private System.Windows.Forms.Button button1;
     }
 }

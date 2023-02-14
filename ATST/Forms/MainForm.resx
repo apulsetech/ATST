@@ -253,7 +253,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;menuStrip.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>8</value>
   </data>
   <data name="menuToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>50, 20</value>
@@ -349,7 +349,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;statusStrip.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="panel1.Location" type="System.Drawing.Point, System.Drawing">
     <value>488, 27</value>
@@ -370,7 +370,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;panel1.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="btn_rfid_inventory.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -426,11 +426,32 @@
   <data name="&gt;&gt;btn_rfid_clear.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="listview_rfid_inventory_tag_data.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="column_tag_value.Text" xml:space="preserve">
+    <value>Tag Value</value>
+  </data>
+  <data name="column_tag_value.Width" type="System.Int32, mscorlib">
+    <value>300</value>
+  </data>
+  <data name="column_tag_rssi.Text" xml:space="preserve">
+    <value>Rssi</value>
+  </data>
+  <data name="column_tag_rssi.Width" type="System.Int32, mscorlib">
+    <value>80</value>
+  </data>
+  <data name="column_tag_port.Text" xml:space="preserve">
+    <value>Port</value>
+  </data>
+  <data name="column_tag_port.Width" type="System.Int32, mscorlib">
+    <value>80</value>
+  </data>
   <data name="listview_rfid_inventory_tag_data.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 27</value>
   </data>
   <data name="listview_rfid_inventory_tag_data.Size" type="System.Drawing.Size, System.Drawing">
-    <value>485, 86</value>
+    <value>485, 398</value>
   </data>
   <data name="listview_rfid_inventory_tag_data.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
@@ -445,40 +466,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;listview_rfid_inventory_tag_data.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="column_tag_value.Text" xml:space="preserve">
-    <value>Tag Value</value>
-  </data>
-  <data name="column_tag_value.Width" type="System.Int32, mscorlib">
-    <value>300</value>
-  </data>
-  <data name="tablePanel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>485, 306</value>
-  </data>
-  <data name="column_tag_rssi.Text" xml:space="preserve">
-    <value>Rssi</value>
-  </data>
-  <data name="column_tag_rssi.Width" type="System.Int32, mscorlib">
-    <value>80</value>
-  </data>
-  <data name="column_tag_port.Text" xml:space="preserve">
-    <value>Port</value>
-  </data>
-  <data name="&gt;&gt;tablePanel1.Name" xml:space="preserve">
-    <value>tablePanel1</value>
-  </data>
-  <data name="&gt;&gt;tablePanel1.Type" xml:space="preserve">
-    <value>CsControl.Control.TablePanel, CsControl, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;tablePanel1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;tablePanel1.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="column_tag_port.Width" type="System.Int32, mscorlib">
-    <value>80</value>
+    <value>0</value>
   </data>
   <data name="panel2.Location" type="System.Drawing.Point, System.Drawing">
     <value>488, 82</value>
@@ -499,7 +487,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;panel2.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>5</value>
   </data>
   <data name="btn_tbl_panel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -571,7 +559,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;panel3.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>4</value>
   </data>
   <data name="tbx_row_tbl_panel.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 33</value>
@@ -615,44 +603,6 @@
   <data name="&gt;&gt;tbx_col_tbl_panel.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="panel3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>488, 119</value>
-  </data>
-  <data name="tablePanel1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left, Right</value>
-  </data>
-  <data name="tablePanel1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 119</value>
-  </data>
-  <data name="tablePanel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>485, 306</value>
-  </data>
-  <data name="panel3.TabIndex" type="System.Int32, mscorlib">
-    <value>16</value>
-  </data>
-  <data name="tablePanel1.TabIndex" type="System.Int32, mscorlib">
-    <value>17</value>
-  </data>
-  <data name="&gt;&gt;tablePanel1.Name" xml:space="preserve">
-    <value>tablePanel1</value>
-  </data>
-  <data name="&gt;&gt;tablePanel1.Type" xml:space="preserve">
-    <value>CsControl.Control.TablePanel, CsControl, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;panel3.Name" xml:space="preserve">
-    <value>panel3</value>
-  </data>
-  <data name="&gt;&gt;panel3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;panel3.Parent" xml:space="preserve">
-  </data>
-  <data name="&gt;&gt;tablePanel1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;panel3.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
   <metadata name="contextMenuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>233, 5</value>
   </metadata>
@@ -665,8 +615,53 @@
   <data name="&gt;&gt;contextMenuStrip1.Type" xml:space="preserve">
     <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="tablePanel1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="tablePanel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 119</value>
+  </data>
+  <data name="tablePanel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>485, 306</value>
+  </data>
+  <data name="tablePanel1.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="&gt;&gt;tablePanel1.Name" xml:space="preserve">
+    <value>tablePanel1</value>
+  </data>
+  <data name="&gt;&gt;tablePanel1.Type" xml:space="preserve">
+    <value>CsControl.Control.TablePanel, CsControl, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;tablePanel1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
   <data name="&gt;&gt;tablePanel1.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>3</value>
+  </data>
+  <data name="button1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>669, 360</value>
+  </data>
+  <data name="button1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="button1.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="button1.Text" xml:space="preserve">
+    <value>button1</value>
+  </data>
+  <data name="&gt;&gt;button1.Name" xml:space="preserve">
+    <value>button1</value>
+  </data>
+  <data name="&gt;&gt;button1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;button1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;button1.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
