@@ -18,6 +18,7 @@ namespace ATST.Forms
         private int first_port = 0; // 첫번째 포트 저장 변수
         private int Last_port = 127; // 마지막 포트 저장 변수
         private bool first_Inv = true;  // 첫번째 인벤토리 판단
+        private int previous_port = 0; // 이전 포트 저장 변수
 
         private void first_port_set(string port)
         {
@@ -45,27 +46,24 @@ namespace ATST.Forms
         {
             try
             {
-                // 처음 포트로 돌아와 인벤토리를 시작할 때
-                if ((Int32.Parse(port) == first_port))
+                // 딕셔너리에 데이터가 있는지 확인하고 
+                if (SharedValues.mTagSaveDictionary.Count > 0)
                 {
-                    // 딕셔너리에 데이터가 있는지 확인하고 
-                    if (SharedValues.mTagSaveDictionary.Count > 0)
-                    {
-                        // Value에 Check가 true인 키들을 리스트로 모아서 
-                        var KeyList = SharedValues.mTagSaveDictionary.Where(x => x.Value.Check.Equals(true) && !x.Value.Port.Equals(Last_port)).Select(x => x.Key);
+                    int current_port = Int32.Parse(port);
+                    previous_port_search(current_port);
 
-                        // 일치하는 키들의 Check값을 false로 변경
-                        foreach (var key in KeyList)
+                    // Value에 Check가 true인 키들을 리스트로 모아서 
+                    var KeyList = SharedValues.mTagSaveDictionary.Where(x => x.Value.Check.Equals(true) && x.Value.Port.Equals(previous_port)).Select(x => x.Key);
+
+                    // 일치하는 키들의 Check값을 false로 변경
+                    foreach (var key in KeyList)
+                    {
+                        if (SharedValues.mTagSaveDictionary.ContainsKey((string)key))
                         {
-                            if (SharedValues.mTagSaveDictionary.ContainsKey((string)key))
-                            {
-                                SharedValues.mTagSaveDictionary[(string)key].Check = false;
-                            }
+                            SharedValues.mTagSaveDictionary[(string)key].Check = false;
                         }
                     }
-
                 }
-
             }
             catch
             {
@@ -73,18 +71,10 @@ namespace ATST.Forms
             }
         }
 
-        private void output_proccess(string epc, string port, string rssi)
+        private void previous_port_search(int current_port)
         {
-            int current_port = Int32.Parse(port);
-            // 첫번째 인벤토리 시작하면서 첫번째 포트의 라운지 타임일때 출고 처리 방지를 위함. 
-            if (current_port == first_port && first_Inv)
-            {
-                first_Inv = false;
-                return;
-            }
-
             // 현재 포트의 이전 포트 (현재 포트의 이전  포트가[활성화 되었던 안되었던] 마지막 포트일때를 고려)
-            int previous_port = current_port - 1;
+            previous_port = current_port - 1;
             if (current_port == first_port)
                 previous_port = Last_port;
 
@@ -100,6 +90,19 @@ namespace ATST.Forms
                     break;
                 }
             }
+        }
+
+        private void output_proccess(string epc, string port, string rssi)
+        {
+            int current_port = Int32.Parse(port);
+            // 첫번째 인벤토리 시작하면서 첫번째 포트의 라운지 타임일때 출고 처리 방지를 위함. 
+            if (current_port == first_port && first_Inv)
+            {
+                first_Inv = false;
+                return;
+            }
+
+            previous_port_search(current_port);
 
             // 딕셔너리에서 port 값이 이전 포트인 데이터들을 검색함.
             var previous_port_value = SharedValues.mTagSaveDictionary.Where(x => x.Value.Port.Equals(previous_port)).Select(x => x.Key);
