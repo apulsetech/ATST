@@ -1,4 +1,5 @@
-﻿using Apulsetech.Rfid.Type;
+﻿using Apulsetech.Rfid;
+using Apulsetech.Rfid.Type;
 using ATST.Data;
 using ATST.Diagnotics;
 using System;
@@ -7,6 +8,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -28,6 +30,7 @@ namespace ATST.Forms
             {
                 first_port = Convert.ToInt32(port);
                 Last_port_set();
+                //Last_port = 0;
             }
         }
 
@@ -42,19 +45,21 @@ namespace ATST.Forms
             }
         }
 
-        private void allport_inputstate_change(string port)
+        private void allport_inputstate_change(int save_port)
         {
             try
             {
                 // 딕셔너리에 데이터가 있는지 확인하고 
                 if (SharedValues.mTagSaveDictionary.Count > 0)
                 {
-                    int current_port = Int32.Parse(port);
-                    previous_port_search(current_port);
+                    //int current_port = port;
+                    //previous_port_search(current_port);
 
                     // Value에 Check가 true인 키들을 리스트로 모아서 
-                    var KeyList = SharedValues.mTagSaveDictionary.Where(x => x.Value.Check.Equals(true) && x.Value.Port.Equals(previous_port)).Select(x => x.Key);
-
+                    var KeyList = SharedValues.mTagSaveDictionary.Where(x => x.Value.Check.Equals(true) && x.Value.Port.Equals(save_port)).Select(x => x.Key).ToList();
+                    var KeyList1 = SharedValues.mTagSaveDictionary.Where(x => x.Value.Check.Equals(true)).Select(x => x.Key).ToList();
+                    var KeyList2 = SharedValues.mTagSaveDictionary.Where(x => x.Value.Port.Equals(save_port)).Select(x => x.Key).ToList();
+                    
                     // 일치하는 키들의 Check값을 false로 변경
                     foreach (var key in KeyList)
                     {
@@ -131,7 +136,7 @@ namespace ATST.Forms
                 if (!SharedValues.mTagSaveDictionary.ContainsKey(epc))
                 {
                     // 없으면 추가
-                    SharedValues.mTagSaveDictionary.Add(epc, new TagInfo(epc, Int32.Parse(port) - 1, double.Parse(rssi), true));
+                    SharedValues.mTagSaveDictionary.Add(epc, new TagInfo(epc, Int32.Parse(port), double.Parse(rssi), true));
                     Log.WriteLine("INFO. Input Data -> EPC : {0}, Port : {1}, Rssi : {2}, Check : {3}",
                         SharedValues.mTagSaveDictionary[epc].Epc, SharedValues.mTagSaveDictionary[epc].Port, SharedValues.mTagSaveDictionary[epc].Rssi, SharedValues.mTagSaveDictionary[epc].Check);
 
@@ -157,6 +162,44 @@ namespace ATST.Forms
             {
                 Log.WriteLine("ERROR. Failed input_proccess()");
             }
+        }
+
+
+        private void out_proccess( string epc, string port, string rssi)
+        {
+            if (SavePort != Int32.Parse(port))
+            {
+                if (SavePort != -1)
+                {
+                    allport_outputstate_Remove(SavePort);
+                    allport_inputstate_change(SavePort);
+                }
+                SavePort = Int32.Parse(port);
+            }
+        }
+        private void allport_outputstate_Remove(int save_port)
+        {
+            var previous_port_value = SharedValues.mTagSaveDictionary.Where(x => x.Value.Port.Equals(save_port)).Select(x => x.Key);
+
+            foreach (var Key in previous_port_value)
+            {
+                // check 상태가 false이면
+                // 저번 사이클에서 읽혔던 태그가 현재 사이클에서는 안읽혔다는 뜻이므로 제거함.
+                if (SharedValues.mTagSaveDictionary[Key].Check == false)
+                {
+                    Log.WriteLine("INFO. Output Data -> EPC : {0}, Port : {1}, Rssi : {2}, Check : {3}",
+                       SharedValues.mTagSaveDictionary[Key].Epc, SharedValues.mTagSaveDictionary[Key].Port, SharedValues.mTagSaveDictionary[Key].Rssi, SharedValues.mTagSaveDictionary[Key].Check);
+                    SharedValues.mTagSaveDictionary.Remove(Key);
+
+                    // 출고 사운드 추가
+                    // 태그 카운트 다운
+                }
+            }
+        }
+
+        private void in_proccess(string epc, string port, string rssi)
+        {
+
         }
     }
 }
