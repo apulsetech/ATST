@@ -6,6 +6,7 @@ using ATST.GlobalKey;
 using ATST.Properties;
 using ATST.Util;
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Windows.Forms;

@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="Data\Config.cs" />
     <Compile Include="Data\SharedValues.cs" />
+    <Compile Include="Data\TagInfo.cs" />
     <Compile Include="Data\XmlConfigManager.cs" />
     <Compile Include="Diagnotics\Log.cs" />
     <Compile Include="Forms\Diagnotics\LogDialog.cs">
@@ -70,6 +71,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MainForm.Data.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\MainForm.Designer.cs">

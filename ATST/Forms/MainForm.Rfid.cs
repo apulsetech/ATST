@@ -15,11 +15,15 @@ using System.Runtime.Remoting.Channels;
 using System.Security.Cryptography;
 using System.Globalization;
 using ATST.Diagnotics;
+using Apulsetech.Rfid.Vendor.Chip.Impinj;
+using System.Diagnostics;
+using static Apulsetech.Rfid.Type.RFID.Untraceable;
 
 namespace ATST.Forms
 {
     public partial class MainForm
     {
+
         public virtual void OnReaderDeviceStateChanged(Reader reader, DeviceEvent state)
         {
             switch (state)
@@ -58,10 +62,14 @@ namespace ATST.Forms
                         }
                     }
                     break;
+                case Reader.READER_CALLBACK_EVENT_START_INVENTORY:
+                case Reader.READER_CALLBACK_EVENT_STOP_INVENTORY:
                 default:
                     break;
             }
         }
+
+
 
         public virtual void OnReaderRemoteKeyEvent(Reader reader, int action, int keyCode)
         {
@@ -105,6 +113,8 @@ namespace ATST.Forms
             }));
         }
 
+        int currentPort = 0;
+
         private void AddTagItem(string epc,
                                 string rssi,
                                 string port)
@@ -126,8 +136,23 @@ namespace ATST.Forms
                 listview_rfid_inventory_tag_data.Items.Add(item);
                 listview_rfid_inventory_tag_data.EndUpdate();
             }
-        }
 
+            // 로직 구현
+            currentPort = Convert.ToInt32(port);
+
+
+            // 첫번째 포트 저장
+            first_port_set(port);
+
+            // 포트 순회해서 상태 변환
+            allport_inputstate_change(port);
+
+            // 출고 처리
+            output_proccess(epc, port, rssi);
+
+            // 입고 처리
+            input_proccess(epc, port, rssi);
+        }
 
         private async void btn_rfid_connect_Click(object sender, EventArgs e)
         {
@@ -139,7 +164,7 @@ namespace ATST.Forms
                 {
                     await Reader.GetReaderAsync("COM11", 115200, 8).ConfigureAwait(true);
                     Log.WriteLine("INFO. Reader Setting ConnectionType({0}).", SharedValues.ConnectionType);
-                    
+
                 }
                 else if (SharedValues.ConnectionType == SharedValues.InterfaceType.TCP)
                 {
@@ -198,4 +223,4 @@ namespace ATST.Forms
             await SharedValues.Reader.SetInventoryAntennaPortReportStateAsync(RFID.ON).ConfigureAwait(true);
         }
     }
-} 
+}
