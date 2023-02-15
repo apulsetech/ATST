@@ -66,6 +66,7 @@ namespace ATST.Forms
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tablePanel1 = new CsControl.Control.TablePanel();
             this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.menuStrip.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -201,11 +202,11 @@ namespace ATST.Forms
             // 
             // panel1
             // 
+            resources.ApplyResources(this.panel1, "panel1");
             this.panel1.Controls.Add(this.btn_rfid_connect);
             this.panel1.Controls.Add(this.ipAddressBox);
             this.panel1.Controls.Add(this.rbx_ethernet);
             this.panel1.Controls.Add(this.rbx_serial);
-            resources.ApplyResources(this.panel1, "panel1");
             this.panel1.Name = "panel1";
             // 
             // btn_rfid_inventory
@@ -224,7 +225,6 @@ namespace ATST.Forms
             // 
             // listview_rfid_inventory_tag_data
             // 
-            resources.ApplyResources(this.listview_rfid_inventory_tag_data, "listview_rfid_inventory_tag_data");
             this.listview_rfid_inventory_tag_data.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.column_tag_value,
             this.column_tag_rssi,
@@ -232,6 +232,7 @@ namespace ATST.Forms
             this.listview_rfid_inventory_tag_data.FullRowSelect = true;
             this.listview_rfid_inventory_tag_data.GridLines = true;
             this.listview_rfid_inventory_tag_data.HideSelection = false;
+            resources.ApplyResources(this.listview_rfid_inventory_tag_data, "listview_rfid_inventory_tag_data");
             this.listview_rfid_inventory_tag_data.Name = "listview_rfid_inventory_tag_data";
             this.listview_rfid_inventory_tag_data.UseCompatibleStateImageBehavior = false;
             this.listview_rfid_inventory_tag_data.View = System.Windows.Forms.View.Details;
@@ -250,9 +251,9 @@ namespace ATST.Forms
             // 
             // panel2
             // 
+            resources.ApplyResources(this.panel2, "panel2");
             this.panel2.Controls.Add(this.btn_rfid_clear);
             this.panel2.Controls.Add(this.btn_rfid_inventory);
-            resources.ApplyResources(this.panel2, "panel2");
             this.panel2.Name = "panel2";
             // 
             // btn_tbl_panel
@@ -264,10 +265,10 @@ namespace ATST.Forms
             // 
             // panel3
             // 
+            resources.ApplyResources(this.panel3, "panel3");
             this.panel3.Controls.Add(this.tbx_row_tbl_panel);
             this.panel3.Controls.Add(this.tbx_col_tbl_panel);
             this.panel3.Controls.Add(this.btn_tbl_panel);
-            resources.ApplyResources(this.panel3, "panel3");
             this.panel3.Name = "panel3";
             // 
             // tbx_row_tbl_panel
@@ -297,10 +298,18 @@ namespace ATST.Forms
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // button2
+            // 
+            resources.ApplyResources(this.button2, "button2");
+            this.button2.Name = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.listview_rfid_inventory_tag_data);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.tablePanel1);
@@ -363,5 +372,6 @@ namespace ATST.Forms
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private CsControl.Control.TablePanel tablePanel1;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }

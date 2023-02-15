@@ -8,6 +8,7 @@ using ATST.Util;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -354,7 +355,12 @@ namespace ATST.Forms
 
         private void button1_Click(object sender, EventArgs e)
         {
-            SharedValues.Reader.SetRadioPower(10);
+            SharedValues.Reader.SetRadioPower(12);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            SharedValues.Reader.SetRadioPower(30);
         }
     }
 }

@@ -18,6 +18,7 @@ using ATST.Diagnotics;
 using Apulsetech.Rfid.Vendor.Chip.Impinj;
 using System.Diagnostics;
 using static Apulsetech.Rfid.Type.RFID.Untraceable;
+using ATST.Util;
 
 namespace ATST.Forms
 {
@@ -142,8 +143,9 @@ namespace ATST.Forms
             currentPort = Convert.ToInt32(port);
 
             out_proccess(epc, port, rssi);
-
+            //Task.Run(async () => {await input_proccess(epc, port, rssi).ConfigureAwait(true); });
             input_proccess(epc, port, rssi);
+
             // 첫번째 포트 저장
             /*first_port_set(port);
 
@@ -156,7 +158,7 @@ namespace ATST.Forms
             // 입고 처리
             input_proccess(epc, port, rssi);*/
 
-            var EpcList = SharedValues.mTagSaveDictionary.Select(x => x.Value).ToList();
+            /*var EpcList = SharedValues.mTagSaveDictionary.Select(x => x.Value).ToList();
 
             listview_rfid_inventory_tag_data.Items.Clear();
             foreach (var value in EpcList)
@@ -169,8 +171,12 @@ namespace ATST.Forms
                 listview_rfid_inventory_tag_data.BeginUpdate();
                 listview_rfid_inventory_tag_data.Items.Add(item);
                 listview_rfid_inventory_tag_data.EndUpdate();
-            }
+            }*/
 
+            /*var cnt0 = SharedValues.mTagSaveDictionary.Where(x => x.Value.Port.Equals(0)).ToList();
+            var cnt1 = SharedValues.mTagSaveDictionary.Where(x => x.Value.Port.Equals(1)).ToList();
+            tablePanel1.DataViewTagCntNum(0, cnt0.Count);
+            tablePanel1.DataViewTagCntNum(1, cnt1.Count);*/
         }
 
         private async void btn_rfid_connect_Click(object sender, EventArgs e)
@@ -181,7 +187,7 @@ namespace ATST.Forms
             {
                 if (SharedValues.ConnectionType == SharedValues.InterfaceType.SERIAL)
                 {
-                    await Reader.GetReaderAsync("COM11", 115200, 2).ConfigureAwait(true);
+                    await Reader.GetReaderAsync("COM11", 115200, 1).ConfigureAwait(true);
                     Log.WriteLine("INFO. Reader Setting ConnectionType({0}).", SharedValues.ConnectionType);
 
                 }
