@@ -18,6 +18,7 @@ using ATST.Diagnotics;
 using Apulsetech.Rfid.Vendor.Chip.Impinj;
 using System.Diagnostics;
 using static Apulsetech.Rfid.Type.RFID.Untraceable;
+using System.Threading;
 
 namespace ATST.Forms
 {
@@ -113,43 +114,47 @@ namespace ATST.Forms
             }));
         }
 
-        int currentPort = 0;
+        private int currentport = 0;
+        private int SavePort = -1;
 
         private void AddTagItem(string epc,
                                 string rssi,
                                 string port)
         {
-            ListViewItem item = listview_rfid_inventory_tag_data.FindItemWithText(epc);
-            if (item != null)
+
+            currentport = Convert.ToInt32(port);
+
+            // 로직 구현
+            if (SharedValues.NumberOfAntennaPorts > 1)
+                out_proccess(epc, port, rssi);
+
+            input_proccess(epc, port, rssi);
+
+            // 리스트 뷰 출력
+            output_to_list(port);
+
+        }
+
+        private async Task one_port_proccess()
+        {
+            if (mRfidInventoryStarted)
             {
-                item.SubItems[1].Text = rssi;
-                item.SubItems[2].Text = port;
+                await Task.Delay(3000);
+
+                one_out_proccess(currentport);
+
+                await one_port_proccess();
             }
             else
             {
-                string[] items = new string[3];
-                items[0] = epc;
-                items[1] = rssi;
-                items[2] = port;
-                item = new ListViewItem(items);
-                listview_rfid_inventory_tag_data.BeginUpdate();
-                listview_rfid_inventory_tag_data.Items.Add(item);
-                listview_rfid_inventory_tag_data.EndUpdate();
+                return;
             }
+        }
 
-            // 로직 구현
-
-            // 첫번째 포트 저장
-            first_port_set(port);
-
-            // 포트 순회해서 상태 변환
-            allport_inputstate_change(port);
-
-            // 출고 처리
-            output_proccess(epc, port, rssi);
-
-            // 입고 처리
-            input_proccess(epc, port, rssi);
+        private void output_to_list(string port)
+        {
+            var datacount = SharedValues.mTagSaveDictionary.Where(x => x.Value.Port.Equals(Int32.Parse(port))).ToList();
+            tablePanel1.DataViewTagCntNum(Int32.Parse(port), datacount.Count());
         }
 
         private async void btn_rfid_connect_Click(object sender, EventArgs e)
@@ -160,13 +165,13 @@ namespace ATST.Forms
             {
                 if (SharedValues.ConnectionType == SharedValues.InterfaceType.SERIAL)
                 {
-                    await Reader.GetReaderAsync("COM11", 115200, 8).ConfigureAwait(true);
+                    await Reader.GetReaderAsync("COM11", 115200, 2).ConfigureAwait(true);
                     Log.WriteLine("INFO. Reader Setting ConnectionType({0}).", SharedValues.ConnectionType);
 
                 }
                 else if (SharedValues.ConnectionType == SharedValues.InterfaceType.TCP)
                 {
-                    SharedValues.Reader = await Reader.GetReaderAsync(ipAddressBox.GetIpData(), 5000, false, 8).ConfigureAwait(true);
+                    SharedValues.Reader = await Reader.GetReaderAsync(ipAddressBox.GetIpData(), 5000, false, 1).ConfigureAwait(true);
                     Log.WriteLine("INFO. Reader Setting ConnectionType({0}).", SharedValues.ConnectionType);
                 }
                 else // ConnectionType != SERIAL && ConnectionType != TCP
@@ -184,6 +189,8 @@ namespace ATST.Forms
                     {
                         Log.WriteLine("INFO. Sucessed Device Connect.");
                         await LoadRfidSettings().ConfigureAwait(true);
+
+                        SharedValues.NumberOfAntennaPorts = SharedValues.Reader.GetAntennaPortCount();
 
                         btn_rfid_connect.Text = Properties.Resources.StringDeviceConnect;
                         EnableControl(true);

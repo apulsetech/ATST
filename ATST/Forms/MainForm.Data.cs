@@ -22,6 +22,7 @@ namespace ATST.Forms
         private bool first_Inv = true;  // 첫번째 인벤토리 판단
         private int previous_port = 0; // 이전 포트 저장 변수
 
+        /*
         private void first_port_set(string port)
         {
             // 처음 인벤토리가 시작될때만 검사
@@ -33,7 +34,7 @@ namespace ATST.Forms
                 //Last_port = 0;
             }
         }
-
+        
         private void Last_port_set()
         {
             // 안테나 활성 여부 체크
@@ -44,6 +45,7 @@ namespace ATST.Forms
                     Last_port = i;
             }
         }
+        */
 
         private void allport_inputstate_change(int save_port)
         {
@@ -57,9 +59,7 @@ namespace ATST.Forms
 
                     // Value에 Check가 true인 키들을 리스트로 모아서 
                     var KeyList = SharedValues.mTagSaveDictionary.Where(x => x.Value.Check.Equals(true) && x.Value.Port.Equals(save_port)).Select(x => x.Key).ToList();
-                    var KeyList1 = SharedValues.mTagSaveDictionary.Where(x => x.Value.Check.Equals(true)).Select(x => x.Key).ToList();
-                    var KeyList2 = SharedValues.mTagSaveDictionary.Where(x => x.Value.Port.Equals(save_port)).Select(x => x.Key).ToList();
-                    
+
                     // 일치하는 키들의 Check값을 false로 변경
                     foreach (var key in KeyList)
                     {
@@ -76,6 +76,7 @@ namespace ATST.Forms
             }
         }
 
+        /*
         private void previous_port_search(int current_port)
         {
             // 현재 포트의 이전 포트 (현재 포트의 이전  포트가[활성화 되었던 안되었던] 마지막 포트일때를 고려)
@@ -96,7 +97,8 @@ namespace ATST.Forms
                 }
             }
         }
-
+        */
+        /*
         private void output_proccess(string epc, string port, string rssi)
         {
             int current_port = Int32.Parse(port);
@@ -127,9 +129,11 @@ namespace ATST.Forms
                 }
             }
         }
+        */
 
         private void input_proccess(string epc, string port, string rssi)
         {
+
             try
             {
                 // 중복된 태그가 메모리에 있는지 검사
@@ -146,26 +150,33 @@ namespace ATST.Forms
                 else
                 {
                     // 중복된 태그가 메모리에 존재하면
+                    // rssi,true로
+                    SharedValues.mTagSaveDictionary[epc].Check = true;
+                    SharedValues.mTagSaveDictionary[epc].Port = Int32.Parse(port);
+                    SharedValues.mTagSaveDictionary[epc].Rssi = Double.Parse(rssi);
+
+
                     // 제거해줌.
-                    Log.WriteLine("INFO. Output Data -> EPC : {0}, Port : {1}, Rssi : {2}, Check : {3}",
-                       SharedValues.mTagSaveDictionary[epc].Epc, SharedValues.mTagSaveDictionary[epc].Port, SharedValues.mTagSaveDictionary[epc].Rssi, SharedValues.mTagSaveDictionary[epc].Check);
-                    SharedValues.mTagSaveDictionary.Remove(epc);
+                    //Log.WriteLine("INFO. Output Data -> EPC : {0}, Port : {1}, Rssi : {2}, Check : {3}",
+                    // SharedValues.mTagSaveDictionary[epc].Epc, SharedValues.mTagSaveDictionary[epc].Port, SharedValues.mTagSaveDictionary[epc].Rssi, SharedValues.mTagSaveDictionary[epc].Check);
+                    //SharedValues.mTagSaveDictionary.Remove(epc);
 
                     // 출고 사운드 출력
                     // 태그 카운트 다운
 
                     // 기존에 있던 데이터를 지워줬으니 새롭게 저장
-                    input_proccess(epc, port, rssi);
+                    //await input_proccess(epc, port, rssi).ConfigureAwait(true);
                 }
             }
             catch
             {
                 Log.WriteLine("ERROR. Failed input_proccess()");
             }
+
         }
 
 
-        private void out_proccess( string epc, string port, string rssi)
+        private void out_proccess(string epc, string port, string rssi)
         {
             if (SavePort != Int32.Parse(port))
             {
@@ -177,29 +188,60 @@ namespace ATST.Forms
                 SavePort = Int32.Parse(port);
             }
         }
+
+        private void one_out_proccess(int currentport)
+        {
+            if (SavePort != -1)
+            {
+                allport_outputstate_Remove(SavePort);
+                allport_inputstate_change(SavePort);
+            }
+            SavePort = currentport;
+        }
+
+       /* private void allport_outputstate_Remove(int save_port)
+        {
+            Task.Run(async () => {
+                var previous_port_value = SharedValues.mTagSaveDictionary.Where(x => x.Value.Port.Equals(save_port)).Select(x => x.Key);
+                foreach (var Key in previous_port_value)
+                {
+                    // check 상태가 false이면
+                    // 저번 사이클에서 읽혔던 태그가 현재 사이클에서는 안읽혔다는 뜻이므로 제거함.
+                    if (SharedValues.mTagSaveDictionary[Key].Check == false)
+                    {
+                        Log.WriteLine("INFO. Output Data -> EPC : {0}, Port : {1}, Rssi : {2}, Check : {3}",
+                           SharedValues.mTagSaveDictionary[Key].Epc, SharedValues.mTagSaveDictionary[Key].Port, SharedValues.mTagSaveDictionary[Key].Rssi, SharedValues.mTagSaveDictionary[Key].Check);
+                        SharedValues.mTagSaveDictionary.Remove(Key);
+                        // 출고 사운드 추가
+                        // 태그 카운트 다운
+                    }
+                }
+            });
+        }*/
+
         private void allport_outputstate_Remove(int save_port)
         {
-            var previous_port_value = SharedValues.mTagSaveDictionary.Where(x => x.Value.Port.Equals(save_port)).Select(x => x.Key);
+            var previous_port_value = SharedValues.mTagSaveDictionary.Where(x => x.Value.Port.Equals(save_port)).Select(x => x.Key).ToList();
 
-            foreach (var Key in previous_port_value)
+            for (int i = 0; i < previous_port_value.Count; i++)
             {
                 // check 상태가 false이면
                 // 저번 사이클에서 읽혔던 태그가 현재 사이클에서는 안읽혔다는 뜻이므로 제거함.
-                if (SharedValues.mTagSaveDictionary[Key].Check == false)
+                if (SharedValues.mTagSaveDictionary[previous_port_value[i]].Check == false)
                 {
                     Log.WriteLine("INFO. Output Data -> EPC : {0}, Port : {1}, Rssi : {2}, Check : {3}",
-                       SharedValues.mTagSaveDictionary[Key].Epc, SharedValues.mTagSaveDictionary[Key].Port, SharedValues.mTagSaveDictionary[Key].Rssi, SharedValues.mTagSaveDictionary[Key].Check);
-                    SharedValues.mTagSaveDictionary.Remove(Key);
+                       SharedValues.mTagSaveDictionary[previous_port_value[i]].Epc, SharedValues.mTagSaveDictionary[previous_port_value[i]].Port, SharedValues.mTagSaveDictionary[previous_port_value[i]].Rssi, SharedValues.mTagSaveDictionary[previous_port_value[i]].Check);
+                    SharedValues.mTagSaveDictionary.Remove(previous_port_value[i]);
 
                     // 출고 사운드 추가
                     // 태그 카운트 다운
                 }
             }
+
+            var datacount = SharedValues.mTagSaveDictionary.Where(x => x.Value.Port.Equals(0)).ToList();
+
+            tablePanel1.DataViewTagCntNum(0, datacount.Count());
         }
 
-        private void in_proccess(string epc, string port, string rssi)
-        {
-
-        }
     }
 }
