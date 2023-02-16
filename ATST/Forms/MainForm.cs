@@ -362,5 +362,19 @@ namespace ATST.Forms
         {
             SharedValues.Reader.SetRadioPower(30);
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                var tag_cnt = SharedValues.mTagSaveDictionary.Where(x => x.Value.Port.Equals(i)).ToList();
+                tablePanel1.DataViewTagCntNum(i, tag_cnt.Count);
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            SharedValues.Reader.SetDwellTime(Int32.Parse(textBox1.Text));
+        }
     }
 }
