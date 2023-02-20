@@ -108,21 +108,22 @@ namespace ATST.Forms
                 }
             }
 
-            Invoke(new Action(delegate ()
+            Invoke(new Action(delegate()
             {
                 AddTagItem(epc, rssi, port);
             }));
         }
 
-        int SavePort = -1;
+        private int SavePort = -1;
 
         private void AddTagItem(string epc,
                                 string rssi,
                                 string port)
         {
-            // 로직 구현
+            //출고 로직
             output_proccess(epc, port, rssi);
 
+            //입고 로직
             input_proccess(epc, port, rssi);
         }
 
