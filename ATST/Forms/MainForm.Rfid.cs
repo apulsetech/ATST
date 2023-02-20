@@ -126,7 +126,7 @@ namespace ATST.Forms
 
             // 로직 구현
             if (SharedValues.NumberOfAntennaPorts > 1)
-                out_proccess(epc, port, rssi);
+                //out_proccess(epc, port, rssi);
 
             input_proccess(epc, port, rssi);
 
@@ -139,7 +139,7 @@ namespace ATST.Forms
         {
             if (mRfidInventoryStarted)
             {
-                await Task.Delay(3000);
+                await Task.Delay(1000);
 
                 one_out_proccess(currentport);
 
@@ -171,7 +171,7 @@ namespace ATST.Forms
                 }
                 else if (SharedValues.ConnectionType == SharedValues.InterfaceType.TCP)
                 {
-                    SharedValues.Reader = await Reader.GetReaderAsync(ipAddressBox.GetIpData(), 5000, false, 1).ConfigureAwait(true);
+                    SharedValues.Reader = await Reader.GetReaderAsync(ipAddressBox.GetIpData(), 5000, false, 4).ConfigureAwait(true);
                     Log.WriteLine("INFO. Reader Setting ConnectionType({0}).", SharedValues.ConnectionType);
                 }
                 else // ConnectionType != SERIAL && ConnectionType != TCP

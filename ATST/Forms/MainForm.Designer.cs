@@ -208,6 +208,7 @@ namespace ATST.Forms
             this.panel1.Controls.Add(this.rbx_serial);
             resources.ApplyResources(this.panel1, "panel1");
             this.panel1.Name = "panel1";
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // btn_rfid_inventory
             // 

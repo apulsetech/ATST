@@ -361,5 +361,10 @@ namespace ATST.Forms
         {
             SharedValues.Reader.SetRadioPower(12);
         }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

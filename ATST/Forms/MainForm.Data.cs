@@ -221,6 +221,8 @@ namespace ATST.Forms
 
         private void allport_outputstate_Remove(int save_port)
         {
+            
+
             var previous_port_value = SharedValues.mTagSaveDictionary.Where(x => x.Value.Port.Equals(save_port)).Select(x => x.Key).ToList();
 
             for (int i = 0; i < previous_port_value.Count; i++)
