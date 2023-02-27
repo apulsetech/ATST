@@ -8,6 +8,7 @@ using ATST.Util;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -296,6 +297,12 @@ namespace ATST.Forms
         {
             if (e.KeyCode == Keys.Escape)
             {
+                if (SharedValues.Reader != null)
+                {
+                    Popup.Show(Properties.Resources.StringExitError);
+                    return;
+                }
+
                 Log.WriteLine("INFO. Close Application.");
                 GC.Collect();
                 Application.Exit();
@@ -311,6 +318,8 @@ namespace ATST.Forms
                 Config.Panel_Row = Convert.ToInt32(tbx_row_tbl_panel.Text);
                 Config.Panel_Column = Convert.ToInt32(tbx_col_tbl_panel.Text);
             }
+
+            //SharedValues.Reader.
         }
 
         private void tablePanel1_Load(object sender, EventArgs e)
@@ -354,17 +363,50 @@ namespace ATST.Forms
 
         private void button1_Click(object sender, EventArgs e)
         {
-            SharedValues.Reader.SetRadioPower(30);
+            SharedValues.Reader.SetRadioPower(17);
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            SharedValues.Reader.SetRadioPower(12);
+            SharedValues.Reader.SetRadioPower(30);
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                var tag_cnt = SharedValues.mTagSaveDictionary.Where(x => x.Value.Port.Equals(i)).ToList();
+                tablePanel1.DataViewTagCntNum(i, tag_cnt.Count);
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            SharedValues.Reader.SetDwellTime(Int32.Parse(textBox1.Text));
+            SharedValues.Reader.SetRadioPower(30);
+        }
+
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void deviceSettingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (SettingForm form = new SettingForm())
+            {
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+
+                }
+            }
+        }
+
+        private int AntCount = 1;
+        private void btnSettingAntCount_Click(object sender, EventArgs e)
+        {
+            AntCount = Convert.ToInt32(txbAntCount.Text);
         }
     }
 }

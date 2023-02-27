@@ -117,58 +117,74 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="StringDeviceAddress" xml:space="preserve">
-    <value>Address</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="tabPage2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>369, 0</value>
   </data>
-  <data name="StringDeviceBarcode" xml:space="preserve">
-    <value>Barcode</value>
+  <data name="tabPage3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>369, 0</value>
   </data>
-  <data name="StringDeviceConnect" xml:space="preserve">
-    <value>DisConnect</value>
+  <data name="tabPage4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>369, 0</value>
   </data>
-  <data name="StringDeviceConnection" xml:space="preserve">
-    <value>Connection</value>
+  <data name="tabPage5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>369, 0</value>
   </data>
-  <data name="StringDeviceDisConnect" xml:space="preserve">
-    <value>Connect</value>
+  <data name="tabPage6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>369, 0</value>
   </data>
-  <data name="StringDeviceName" xml:space="preserve">
-    <value>Name</value>
+  <data name="tabPage7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>369, 0</value>
   </data>
-  <data name="StringDeviceNoSearch" xml:space="preserve">
-    <value>Search</value>
+  <data name="tabAntennaPorts.Size" type="System.Drawing.Size, System.Drawing">
+    <value>377, 22</value>
   </data>
-  <data name="StringDeviceRfid" xml:space="preserve">
-    <value>Rfid</value>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>62, 12</value>
   </data>
-  <data name="StringDeviceSearch" xml:space="preserve">
-    <value>Stop</value>
+  <data name="label1.Text" xml:space="preserve">
+    <value>사용 여부</value>
   </data>
-  <data name="StringDeviceStatus" xml:space="preserve">
-    <value>Status</value>
+  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>134, 40</value>
   </data>
-  <data name="StringDeviceType" xml:space="preserve">
-    <value>Type</value>
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>62, 12</value>
   </data>
-  <data name="StringExitError" xml:space="preserve">
-    <value>Device is Connected.</value>
+  <data name="label2.Text" xml:space="preserve">
+    <value>파워 게인</value>
   </data>
-  <data name="StringFailedStartInventory" xml:space="preserve">
-    <value>String Failed To Start Inventory</value>
+  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>269, 40</value>
   </data>
-  <data name="StringFailedStopInventory" xml:space="preserve">
-    <value>String Failed To Stop Inventory</value>
+  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>62, 12</value>
   </data>
-  <data name="StringInvalidParameterRange" xml:space="preserve">
-    <value>Invalid parameter range!</value>
+  <data name="label3.Text" xml:space="preserve">
+    <value>드웰 타임</value>
   </data>
-  <data name="StringName" xml:space="preserve">
-    <value>ATST</value>
+  <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 90</value>
   </data>
-  <data name="StringStartInventory" xml:space="preserve">
-    <value>Inventory Start</value>
+  <data name="btnSave.Font" type="System.Drawing.Font, System.Drawing">
+    <value>굴림, 9pt, style=Bold</value>
   </data>
-  <data name="StringStopInventory" xml:space="preserve">
-    <value>Inventory Stop</value>
+  <data name="btnSave.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 46</value>
+  </data>
+  <data name="btnSave.Text" xml:space="preserve">
+    <value>저장</value>
+  </data>
+  <data name="btnCancle.Font" type="System.Drawing.Font, System.Drawing">
+    <value>굴림, 9pt, style=Bold</value>
+  </data>
+  <data name="btnCancle.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 46</value>
+  </data>
+  <data name="btnCancle.Text" xml:space="preserve">
+    <value>취소</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>설정폼</value>
   </data>
 </root>

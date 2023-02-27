@@ -160,6 +160,15 @@ namespace ATST.Properties {
         }
         
         /// <summary>
+        ///   Device is Connected.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string StringExitError {
+            get {
+                return ResourceManager.GetString("StringExitError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   String Failed To Start Inventory과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
         internal static string StringFailedStartInventory {
@@ -174,6 +183,15 @@ namespace ATST.Properties {
         internal static string StringFailedStopInventory {
             get {
                 return ResourceManager.GetString("StringFailedStopInventory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Invalid parameter range!과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string StringInvalidParameterRange {
+            get {
+                return ResourceManager.GetString("StringInvalidParameterRange", resourceCulture);
             }
         }
         
