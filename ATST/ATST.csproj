@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\Config.cs" />
+    <Compile Include="Data\ReadInfo.cs" />
     <Compile Include="Data\SharedValues.cs" />
     <Compile Include="Data\TagInfo.cs" />
     <Compile Include="Data\XmlConfigManager.cs" />

@@ -116,6 +116,7 @@ namespace ATST.Forms
 
         private int currentPort = 0;
         private int SavePort = -1;
+        private int SavePort2 = -1;
 
         private void AddTagItem(string epc,
                                 string rssi,
@@ -129,8 +130,10 @@ namespace ATST.Forms
             if (SharedValues.NumberOfAntennaPorts > 1)
                 output_proccess(epc, port, rssi);
 
-            // 입고
-            input_proccess(epc, port, rssi);
+            // 입고 카운트 및 입고 처리
+            input_count(epc, port, rssi);
+
+            //input_proccess(epc, port, rssi);
 
             // 리스트 뷰 출력
             output_to_list(port);
@@ -173,7 +176,7 @@ namespace ATST.Forms
                 }
                 else if (SharedValues.ConnectionType == SharedValues.InterfaceType.TCP)
                 {
-                    SharedValues.Reader = await Reader.GetReaderAsync(ipAddressBox.GetIpData(), 5000, false, 4).ConfigureAwait(true);
+                    SharedValues.Reader = await Reader.GetReaderAsync(ipAddressBox.GetIpData(), 5000, false, AntCount).ConfigureAwait(true);
                     Log.WriteLine("INFO. Reader Setting ConnectionType({0}).", SharedValues.ConnectionType);
                 }
                 else // ConnectionType != SERIAL && ConnectionType != TCP

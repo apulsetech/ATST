@@ -279,7 +279,7 @@ namespace ATST.Forms
                                                                     "{0} ms", mAntennaDwellTime[groupIndex * 16 + i]);
 
             }
-        }
+        } 
 
         private void SaveAntennaSettings()
         {

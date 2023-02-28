@@ -20,6 +20,5 @@ namespace ATST.Data
             Rssi = rssi;
             Check = check;
         }
-
     }
 }
