@@ -66,11 +66,13 @@ namespace ATST.Forms
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tablePanel1 = new CsControl.Control.TablePanel();
             this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.btn_test = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.txbAntCount = new System.Windows.Forms.TextBox();
+            this.btnSettingAntCount = new System.Windows.Forms.Button();
             this.menuStrip.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -192,6 +194,7 @@ namespace ATST.Forms
             // 
             this.deviceSettingToolStripMenuItem.Name = "deviceSettingToolStripMenuItem";
             resources.ApplyResources(this.deviceSettingToolStripMenuItem, "deviceSettingToolStripMenuItem");
+            this.deviceSettingToolStripMenuItem.Click += new System.EventHandler(this.deviceSettingToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -212,6 +215,7 @@ namespace ATST.Forms
             this.panel1.Controls.Add(this.rbx_ethernet);
             this.panel1.Controls.Add(this.rbx_serial);
             this.panel1.Name = "panel1";
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // btn_rfid_inventory
             // 
@@ -302,13 +306,6 @@ namespace ATST.Forms
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // button2
-            // 
-            resources.ApplyResources(this.button2, "button2");
-            this.button2.Name = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
             // button3
             // 
             resources.ApplyResources(this.button3, "button3");
@@ -333,10 +330,31 @@ namespace ATST.Forms
             resources.ApplyResources(this.textBox1, "textBox1");
             this.textBox1.Name = "textBox1";
             // 
+            // button2
+            // 
+            resources.ApplyResources(this.button2, "button2");
+            this.button2.Name = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // txbAntCount
+            // 
+            resources.ApplyResources(this.txbAntCount, "txbAntCount");
+            this.txbAntCount.Name = "txbAntCount";
+            // 
+            // btnSettingAntCount
+            // 
+            resources.ApplyResources(this.btnSettingAntCount, "btnSettingAntCount");
+            this.btnSettingAntCount.Name = "btnSettingAntCount";
+            this.btnSettingAntCount.UseVisualStyleBackColor = true;
+            this.btnSettingAntCount.Click += new System.EventHandler(this.btnSettingAntCount_Click);
+            // 
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnSettingAntCount);
+            this.Controls.Add(this.txbAntCount);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.btn_test);
             this.Controls.Add(this.button4);
@@ -409,5 +427,7 @@ namespace ATST.Forms
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.TextBox btn_test;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txbAntCount;
+        private System.Windows.Forms.Button btnSettingAntCount;
     }
 }

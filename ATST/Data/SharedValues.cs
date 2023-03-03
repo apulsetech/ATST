@@ -23,6 +23,7 @@ namespace ATST.Data
         private static bool mReaderConnected = false;
         private static int mNumberOfAntennaPorts = 1;
         public static Dictionary<string, TagInfo> mTagSaveDictionary = new Dictionary<string, TagInfo>();
+        public static Dictionary<string, ReadInfo> mTagStateDictionary = new Dictionary<string, ReadInfo>();
 
 
         public static string Ethernet

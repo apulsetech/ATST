@@ -8,6 +8,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -16,14 +17,15 @@ namespace ATST.Forms
     public partial class MainForm
     {
         private bool mRfidInventoryStarted = false;
+        CancellationTokenSource tokenSource;
 
         private async void btn_rfid_inventory_Click(object sender, EventArgs e)
         {
-            btn_rfid_inventory.Enabled = false;
+            //btn_rfid_inventory.Enabled = false;
 
             await ToggleRfidInventory().ConfigureAwait(true);
-
-            btn_rfid_inventory.Enabled = true;
+            
+            //btn_rfid_inventory.Enabled = true;
         }
 
         private async Task ToggleRfidInventory()
@@ -40,6 +42,9 @@ namespace ATST.Forms
                     Log.WriteLine("INFO. Successed Inventory Stop.");
                     mRfidInventoryStarted = false;
                     ToggleRfidInventoryButton();
+
+                    //await Task.Run(() => tokenSource.Cancel());\
+                    //tokenSource.Cancel();
                 }
                 else
                 {
@@ -56,6 +61,10 @@ namespace ATST.Forms
                     Log.WriteLine("INFO. Successed Inventory Start.");
                     mRfidInventoryStarted = true;
                     ToggleRfidInventoryButton();
+
+                    // tokenSource = new CancellationTokenSource();
+                    if (SharedValues.NumberOfAntennaPorts == 1)
+                        await one_port_proccess();
                 }
                 else
                 {

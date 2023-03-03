@@ -114,34 +114,69 @@ namespace ATST.Forms
             }));
         }
 
+        private int currentPort = 0;
         private int SavePort = -1;
+        private int SavePort2 = -1;
 
         private void AddTagItem(string epc,
                                 string rssi,
                                 string port)
         {
-            //출고 로직
-            output_proccess(epc, port, rssi);
 
-            //입고 로직
-            input_proccess(epc, port, rssi);
+
+            currentPort = Convert.ToInt32(port);
+
+            // 출고
+            if (SharedValues.NumberOfAntennaPorts > 1)
+                output_proccess(epc, port, rssi);
+
+            // 입고 카운트 및 입고 처리
+            input_count(epc, port, rssi);
+
+            //input_proccess(epc, port, rssi);
+
+            // 리스트 뷰 출력
+            output_to_list(port);
+
+        }
+
+        private async Task one_port_proccess()
+        {
+            if (mRfidInventoryStarted)
+            {
+                await Task.Delay(1000);
+
+               one_out_proccess(currentPort);
+
+                await one_port_proccess();
+            }
+            else
+            {
+                return;
+            }
+        }
+
+        private void output_to_list(string port)
+        {
+            var datacount = SharedValues.mTagSaveDictionary.Where(x => x.Value.Port.Equals(Int32.Parse(port))).ToList();
+            tablePanel1.DataViewTagCntNum(Int32.Parse(port), datacount.Count());
         }
 
         private async void btn_rfid_connect_Click(object sender, EventArgs e)
-        {
+        { 
             btn_rfid_connect.Enabled = false;
 
             if (SharedValues.Reader == null)
             {
                 if (SharedValues.ConnectionType == SharedValues.InterfaceType.SERIAL)
                 {
-                    SharedValues.Reader = await Reader.GetReaderAsync(btn_test.Text, 115200, 128).ConfigureAwait(true);
+                    SharedValues.Reader = await Reader.GetReaderAsync(btn_test.Text, 115200, AntCount).ConfigureAwait(true);
                     Log.WriteLine("INFO. Reader Setting ConnectionType({0}).", SharedValues.ConnectionType);
 
                 }
                 else if (SharedValues.ConnectionType == SharedValues.InterfaceType.TCP)
                 {
-                    SharedValues.Reader = await Reader.GetReaderAsync(ipAddressBox.GetIpData(), 5000, false, 8).ConfigureAwait(true);
+                    SharedValues.Reader = await Reader.GetReaderAsync(ipAddressBox.GetIpData(), 5000, false, AntCount).ConfigureAwait(true);
                     Log.WriteLine("INFO. Reader Setting ConnectionType({0}).", SharedValues.ConnectionType);
                 }
                 else // ConnectionType != SERIAL && ConnectionType != TCP
@@ -159,6 +194,8 @@ namespace ATST.Forms
                     {
                         Log.WriteLine("INFO. Sucessed Device Connect.");
                         await LoadRfidSettings().ConfigureAwait(true);
+
+                        SharedValues.NumberOfAntennaPorts = SharedValues.Reader.GetAntennaPortCount();
 
                         btn_rfid_connect.Text = Properties.Resources.StringDeviceConnect;
                         EnableControl(true);

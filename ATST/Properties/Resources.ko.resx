@@ -150,11 +150,17 @@
   <data name="StringDeviceType" xml:space="preserve">
     <value>타입</value>
   </data>
+  <data name="StringExitError" xml:space="preserve">
+    <value>장비가 연결되어 있습니다.</value>
+  </data>
   <data name="StringFailedStartInventory" xml:space="preserve">
     <value>인벤토리 시작 실패</value>
   </data>
   <data name="StringFailedStopInventory" xml:space="preserve">
     <value>인벤토리 종료 실패</value>
+  </data>
+  <data name="StringInvalidParameterRange" xml:space="preserve">
+    <value>유효하지 않은 파라미터 범위입니다!</value>
   </data>
   <data name="StringName" xml:space="preserve">
     <value>ATST </value>

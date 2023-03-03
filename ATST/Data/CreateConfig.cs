@@ -88,4 +88,5 @@ namespace ATST.Util
     {
         public string CultureName { get; set; }
     }
+
 }
