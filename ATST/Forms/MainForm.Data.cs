@@ -69,6 +69,10 @@ namespace ATST.Forms
                 SharedValues.mTagStateDictionary[epc].state_switch = true;
                 Debug.WriteLine("func2 Count Port : {0} Key : {1}, Count : {2}",
                     current_port, epc, SharedValues.mTagStateDictionary[epc].read_count);
+
+                if (SharedValues.mTagStateDictionary[epc].read_count == 3)
+                    input_proccess(epc, port, rssi);
+
             }
             else if (SharedValues.mTagStateDictionary[epc].Port != current_port &&
                     SharedValues.mTagStateDictionary[epc].other_count < 3)
@@ -78,26 +82,28 @@ namespace ATST.Forms
                 SharedValues.mTagStateDictionary[epc].state_switch = true;
                 Debug.WriteLine("Other Key : {0}, o_Port : {1}, o_Count : {2}"
                     , epc, SharedValues.mTagStateDictionary[epc].other_port, SharedValues.mTagStateDictionary[epc].other_count);
-            }
-            else if (SharedValues.mTagStateDictionary[epc].other_port == current_port &&
-                       SharedValues.mTagStateDictionary[epc].other_count == 3)
-            {
-                SharedValues.mTagStateDictionary[epc].Port = SharedValues.mTagStateDictionary[epc].other_port;
-                SharedValues.mTagStateDictionary[epc].read_count = SharedValues.mTagStateDictionary[epc].other_count;
-                SharedValues.mTagStateDictionary[epc].other_port = -1;
-                SharedValues.mTagStateDictionary[epc].other_count = 0;
-                input_proccess(epc, port, rssi);
+
+                if (SharedValues.mTagStateDictionary[epc].other_count == 3)
+                {
+                    SharedValues.mTagStateDictionary[epc].Port = SharedValues.mTagStateDictionary[epc].other_port;
+                    SharedValues.mTagStateDictionary[epc].read_count = SharedValues.mTagStateDictionary[epc].other_count;
+                    SharedValues.mTagStateDictionary[epc].other_port = -1;
+                    SharedValues.mTagStateDictionary[epc].other_count = 0;
+                    SharedValues.mTagStateDictionary[epc].state_switch = true;
+                    input_proccess(epc, port, rssi);
+                }
             }
             else if (SharedValues.mTagStateDictionary[epc].Port == current_port)
             {
+                // 입고된 태그가 한두번 안읽혀서 카운트가 감소했었는데, 이번에 읽혀서 카운트 하나씩 복구시켜줌
                 if (SharedValues.mTagStateDictionary[epc].read_count < 3)
                 {
                     SharedValues.mTagStateDictionary[epc].read_count += 1;
-                    Debug.WriteLine("Count Port : {0} Key : {1}, Count : {2}",
+                    Debug.WriteLine("ReCount Port : {0} Key : {1}, Count : {2}",
                    current_port, epc, SharedValues.mTagStateDictionary[epc].read_count);
                 }
                 SharedValues.mTagStateDictionary[epc].state_switch = true;  // 입고 후에도 읽히고 있다는 뜻
-                input_proccess(epc, port, rssi);
+                //input_proccess(epc, port, rssi);
             }
 
         }
@@ -160,8 +166,10 @@ namespace ATST.Forms
             if (SharedValues.mTagSaveDictionary.Count > 0)
             {
                 switch_countdown(currentport);
-                oneport_state_remove(currentport);
-                oneport_state_change(currentport);
+                allport_state_remove(currentport);
+                allport_state_change(currentport);
+                //oneport_state_remove(currentport);
+                //oneport_state_change(currentport);
             }
         }
 
@@ -195,6 +203,18 @@ namespace ATST.Forms
                         Debug.WriteLine("mTagSaveDictionary Remove Key : {0}", Key_List[i]);
                     };
                 }
+                else if (SharedValues.mTagStateDictionary[Key_List[i]].other_count < 1
+                    && SharedValues.mTagStateDictionary[Key_List[i]].other_port != -1)
+                {
+                    SharedValues.mTagStateDictionary.Remove(Key_List[i]);
+                    Debug.WriteLine("mTagStateDictionary Remove Key (other): {0}", Key_List[i]);
+
+                    SharedValues.mTagSaveDictionary.Remove(Key_List[i]);
+                    var tag_cnt = SharedValues.mTagSaveDictionary.Where(
+                        x => x.Value.Port.Equals(port)).ToList();
+                    tablePanel1.DataViewTagCntNum(port, tag_cnt.Count);
+                    Debug.WriteLine("mTagSaveDictionary Remove Key : {0}", Key_List[i]);
+                }
             }
         }
 
@@ -215,7 +235,8 @@ namespace ATST.Forms
 
             for (int i = 0; i < Key_List.Count; i++)
             {
-                if (SharedValues.mTagStateDictionary[Key_List[i]].read_count < 1)
+                if (SharedValues.mTagStateDictionary[Key_List[i]].read_count < 1 &&
+                    (SharedValues.mTagStateDictionary[Key_List[i]].other_port == -1))
                 {
                     SharedValues.mTagStateDictionary.Remove(Key_List[i]);
                     Debug.WriteLine("mTagStateDictionary Remove Key : {0}", Key_List[i]);
@@ -239,9 +260,28 @@ namespace ATST.Forms
                        x.Value.state_switch.Equals(false)).Select(x => x.Key).ToList();
             for (int i = 0; i < Key_List.Count; i++)
             {
-                SharedValues.mTagStateDictionary[Key_List[i]].read_count -= 1;
-                Debug.WriteLine("CountDown Key : {0}, Count : {1}", Key_List[i], SharedValues.mTagStateDictionary[Key_List[i]].read_count);
+                // mTagSaveDictionary에는 포함되어 있지 않은 즉, 아직 입고되지 않은 태그는 한번만 안읽혀도 0처리
+                if (SharedValues.mTagStateDictionary[Key_List[i]].other_port == -1 &&
+                    !SharedValues.mTagSaveDictionary.ContainsKey(Key_List[i]))
+                {
+                    SharedValues.mTagStateDictionary[Key_List[i]].read_count -= 1;
+                    SharedValues.mTagStateDictionary[Key_List[i]].read_count = 0;
+                    Debug.WriteLine("CountDown Key : {0}, Count : {1}", Key_List[i], SharedValues.mTagStateDictionary[Key_List[i]].read_count);
+                }
+                // other_port가 -1이 아닌 즉, 입고되었던 태그가 다른 태그에서 읽혔는데 입고 전에 한번이라도 안읽히면 0처리
+                else if (SharedValues.mTagStateDictionary[Key_List[i]].other_port != -1)
+                {
+                    SharedValues.mTagStateDictionary[Key_List[i]].other_count = 0;
+                    Debug.WriteLine("CountDown Key (other): {0}, Count : {1}", Key_List[i], SharedValues.mTagStateDictionary[Key_List[i]].other_count);
+                }
+                // mTagSaveDictionary에 포함되어진 즉, 입고처리된 태그는 1씩 카운트다운해서 0까지 카운트되면 제거되도록
+                else if (SharedValues.mTagSaveDictionary.ContainsKey(Key_List[i]))
+                {
+                    SharedValues.mTagStateDictionary[Key_List[i]].read_count -= 1;
+                    Debug.WriteLine("CountDown Key : {0}, Count : {1}", Key_List[i], SharedValues.mTagStateDictionary[Key_List[i]].read_count);
+                }
             }
+
         }
 
         private void allport_state_change(int port)
