@@ -34,6 +34,10 @@ namespace ATST.Forms
                 {
                     if (SharedValues.mTagSaveDictionary[epc].Port != int.Parse(port))
                     {
+                        if (Convert.ToDouble(rssi) > SharedValues.mTagSaveDictionary[epc].Rssi)
+                        {
+                            
+                        }
                         int num = SharedValues.mTagSaveDictionary[epc].Port;
 
                         SharedValues.mTagSaveDictionary[epc].Port = int.Parse(port);
