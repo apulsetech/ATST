@@ -117,94 +117,124 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="StringAction" xml:space="preserve">
-    <value>동작</value>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="cbxContinuousMode.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="StringBank" xml:space="preserve">
-    <value>뱅크</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="cbxContinuousMode.Size" type="System.Drawing.Size, System.Drawing">
+    <value>76, 16</value>
   </data>
-  <data name="StringDeviceAddress" xml:space="preserve">
-    <value>주소</value>
+  <data name="cbxContinuousMode.Text" xml:space="preserve">
+    <value>연속 모드</value>
   </data>
-  <data name="StringDeviceBarcode" xml:space="preserve">
-    <value>바코드</value>
+  <data name="cbxToggle.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="StringDeviceConnect" xml:space="preserve">
-    <value>해제</value>
+  <data name="cbxToggle.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 16</value>
   </data>
-  <data name="StringDeviceConnection" xml:space="preserve">
-    <value>연결</value>
+  <data name="cbxToggle.Text" xml:space="preserve">
+    <value>토글</value>
   </data>
-  <data name="StringDeviceDisConnect" xml:space="preserve">
-    <value>연결</value>
+  <data name="cbxSound.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="StringDeviceName" xml:space="preserve">
-    <value>이름</value>
+  <data name="cbxSound.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 16</value>
   </data>
-  <data name="StringDeviceNoSearch" xml:space="preserve">
-    <value>검색</value>
+  <data name="cbxSound.Text" xml:space="preserve">
+    <value>사운드</value>
   </data>
-  <data name="StringDeviceRfid" xml:space="preserve">
-    <value>Rfid</value>
+  <data name="cbxTrigger.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="StringDeviceSearch" xml:space="preserve">
-    <value>중지</value>
+  <data name="cbxTrigger.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 16</value>
   </data>
-  <data name="StringDeviceStatus" xml:space="preserve">
-    <value>상태</value>
+  <data name="cbxTrigger.Text" xml:space="preserve">
+    <value>트리거</value>
   </data>
-  <data name="StringDeviceType" xml:space="preserve">
-    <value>타입</value>
+  <data name="cbxBeepUniqueOnly.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="StringEntry" xml:space="preserve">
-    <value>엔트리</value>
+  <data name="cbxBeepUniqueOnly.Size" type="System.Drawing.Size, System.Drawing">
+    <value>76, 16</value>
   </data>
-  <data name="StringExitError" xml:space="preserve">
-    <value>장비가 연결되어 있습니다.</value>
+  <data name="cbxBeepUniqueOnly.Text" xml:space="preserve">
+    <value>중복 무음</value>
   </data>
-  <data name="StringFailedStartInventory" xml:space="preserve">
-    <value>인벤토리 시작 실패</value>
+  <data name="cbxRemoteFilter.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="StringFailedStopInventory" xml:space="preserve">
-    <value>인벤토리 종료 실패</value>
+  <data name="cbxRemoteFilter.Size" type="System.Drawing.Size, System.Drawing">
+    <value>88, 16</value>
   </data>
-  <data name="StringInvalidParameterRange" xml:space="preserve">
-    <value>유효하지 않은 파라미터 범위입니다!</value>
+  <data name="cbxRemoteFilter.Text" xml:space="preserve">
+    <value>리모트 필터</value>
   </data>
-  <data name="StringInvalidRfidInstance" xml:space="preserve">
-    <value>RFID 리더 인스턴스가 존재하지 않습니다!</value>
+  <data name="cbxFilter.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="StringLength" xml:space="preserve">
-    <value>길이</value>
+  <data name="cbxFilter.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 16</value>
   </data>
-  <data name="StringMask" xml:space="preserve">
-    <value>마스크</value>
+  <data name="cbxFilter.Text" xml:space="preserve">
+    <value>필터</value>
   </data>
-  <data name="StringName" xml:space="preserve">
-    <value>ATST </value>
+  <data name="cbxPC.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="StringOffset" xml:space="preserve">
-    <value>오프셋</value>
+  <data name="cbxPC.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 16</value>
   </data>
-  <data name="StringReaderSettingSuccess" xml:space="preserve">
-    <value>리더 설정값 저장에 성공하였습니다.</value>
+  <data name="cbxRssi.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="StringSelectionFailedToSetSElectionMaskState" xml:space="preserve">
-    <value>선택 마스크 활성화 설정에 실패하였습니다!</value>
+  <data name="cbxRssi.Size" type="System.Drawing.Size, System.Drawing">
+    <value>51, 16</value>
   </data>
-  <data name="StringSelectionInvalidSelectionMask" xml:space="preserve">
-    <value>선택 마스크가 유효하지 않습니다!</value>
+  <data name="cbxPhase.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="StringSelectionMaskParamIsNoValid" xml:space="preserve">
-    <value>선택 마스크의 파라미터 값이 유효하지 않습니다!</value>
+  <data name="cbxPhase.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 16</value>
   </data>
-  <data name="StringStartInventory" xml:space="preserve">
-    <value>인벤토리 시작</value>
+  <data name="cbxPhase.Text" xml:space="preserve">
+    <value>위상</value>
   </data>
-  <data name="StringStopInventory" xml:space="preserve">
-    <value>인벤토리 종료</value>
+  <data name="cbxChannel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="StringTarget" xml:space="preserve">
-    <value>타겟</value>
+  <data name="cbxChannel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 16</value>
+  </data>
+  <data name="cbxChannel.Text" xml:space="preserve">
+    <value>채널</value>
+  </data>
+  <data name="cbxFastID.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cbxFastID.Size" type="System.Drawing.Size, System.Drawing">
+    <value>59, 16</value>
+  </data>
+  <data name="btnSelectionMask.Text" xml:space="preserve">
+    <value>선택 마스크</value>
+  </data>
+  <data name="btnSettings.Text" xml:space="preserve">
+    <value>설정</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>411, 215</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
+    <value>CenterParent</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>리더설정폼</value>
   </data>
 </root>

@@ -1,6 +1,6 @@
 ﻿namespace ATST.Forms
 {
-    partial class SettingForm
+    partial class AntennaSettingForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AntennaSettingForm));
             this.tabAntennaPorts = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -119,7 +119,6 @@
             // 
             // tabAntennaPorts
             // 
-            resources.ApplyResources(this.tabAntennaPorts, "tabAntennaPorts");
             this.tabAntennaPorts.Controls.Add(this.tabPage1);
             this.tabAntennaPorts.Controls.Add(this.tabPage2);
             this.tabAntennaPorts.Controls.Add(this.tabPage3);
@@ -128,6 +127,7 @@
             this.tabAntennaPorts.Controls.Add(this.tabPage6);
             this.tabAntennaPorts.Controls.Add(this.tabPage7);
             this.tabAntennaPorts.Controls.Add(this.tabPage8);
+            resources.ApplyResources(this.tabAntennaPorts, "tabAntennaPorts");
             this.tabAntennaPorts.Name = "tabAntennaPorts";
             this.tabAntennaPorts.SelectedIndex = 0;
             // 
@@ -381,113 +381,113 @@
             // 
             // comboBoxAntenna15PowerGain
             // 
-            resources.ApplyResources(this.comboBoxAntenna15PowerGain, "comboBoxAntenna15PowerGain");
             this.comboBoxAntenna15PowerGain.FormattingEnabled = true;
+            resources.ApplyResources(this.comboBoxAntenna15PowerGain, "comboBoxAntenna15PowerGain");
             this.comboBoxAntenna15PowerGain.Name = "comboBoxAntenna15PowerGain";
             this.comboBoxAntenna15PowerGain.SelectedIndexChanged += new System.EventHandler(this.comboBoxAntenna15PowerGain_SelectedIndexChanged);
             // 
             // comboBoxAntenna14PowerGain
             // 
-            resources.ApplyResources(this.comboBoxAntenna14PowerGain, "comboBoxAntenna14PowerGain");
             this.comboBoxAntenna14PowerGain.FormattingEnabled = true;
+            resources.ApplyResources(this.comboBoxAntenna14PowerGain, "comboBoxAntenna14PowerGain");
             this.comboBoxAntenna14PowerGain.Name = "comboBoxAntenna14PowerGain";
             this.comboBoxAntenna14PowerGain.SelectedIndexChanged += new System.EventHandler(this.comboBoxAntenna14PowerGain_SelectedIndexChanged);
             // 
             // comboBoxAntenna13PowerGain
             // 
-            resources.ApplyResources(this.comboBoxAntenna13PowerGain, "comboBoxAntenna13PowerGain");
             this.comboBoxAntenna13PowerGain.FormattingEnabled = true;
+            resources.ApplyResources(this.comboBoxAntenna13PowerGain, "comboBoxAntenna13PowerGain");
             this.comboBoxAntenna13PowerGain.Name = "comboBoxAntenna13PowerGain";
             this.comboBoxAntenna13PowerGain.SelectedIndexChanged += new System.EventHandler(this.comboBoxAntenna13PowerGain_SelectedIndexChanged);
             // 
             // comboBoxAntenna12PowerGain
             // 
-            resources.ApplyResources(this.comboBoxAntenna12PowerGain, "comboBoxAntenna12PowerGain");
             this.comboBoxAntenna12PowerGain.FormattingEnabled = true;
+            resources.ApplyResources(this.comboBoxAntenna12PowerGain, "comboBoxAntenna12PowerGain");
             this.comboBoxAntenna12PowerGain.Name = "comboBoxAntenna12PowerGain";
             this.comboBoxAntenna12PowerGain.SelectedIndexChanged += new System.EventHandler(this.comboBoxAntenna12PowerGain_SelectedIndexChanged);
             // 
             // comboBoxAntenna11PowerGain
             // 
-            resources.ApplyResources(this.comboBoxAntenna11PowerGain, "comboBoxAntenna11PowerGain");
             this.comboBoxAntenna11PowerGain.FormattingEnabled = true;
+            resources.ApplyResources(this.comboBoxAntenna11PowerGain, "comboBoxAntenna11PowerGain");
             this.comboBoxAntenna11PowerGain.Name = "comboBoxAntenna11PowerGain";
             this.comboBoxAntenna11PowerGain.SelectedIndexChanged += new System.EventHandler(this.comboBoxAntenna11PowerGain_SelectedIndexChanged);
             // 
             // comboBoxAntenna10PowerGain
             // 
-            resources.ApplyResources(this.comboBoxAntenna10PowerGain, "comboBoxAntenna10PowerGain");
             this.comboBoxAntenna10PowerGain.FormattingEnabled = true;
+            resources.ApplyResources(this.comboBoxAntenna10PowerGain, "comboBoxAntenna10PowerGain");
             this.comboBoxAntenna10PowerGain.Name = "comboBoxAntenna10PowerGain";
             this.comboBoxAntenna10PowerGain.SelectedIndexChanged += new System.EventHandler(this.comboBoxAntenna10PowerGain_SelectedIndexChanged);
             // 
             // comboBoxAntenna9PowerGain
             // 
-            resources.ApplyResources(this.comboBoxAntenna9PowerGain, "comboBoxAntenna9PowerGain");
             this.comboBoxAntenna9PowerGain.FormattingEnabled = true;
+            resources.ApplyResources(this.comboBoxAntenna9PowerGain, "comboBoxAntenna9PowerGain");
             this.comboBoxAntenna9PowerGain.Name = "comboBoxAntenna9PowerGain";
             this.comboBoxAntenna9PowerGain.SelectedIndexChanged += new System.EventHandler(this.comboBoxAntenna9PowerGain_SelectedIndexChanged);
             // 
             // comboBoxAntenna8PowerGain
             // 
-            resources.ApplyResources(this.comboBoxAntenna8PowerGain, "comboBoxAntenna8PowerGain");
             this.comboBoxAntenna8PowerGain.FormattingEnabled = true;
+            resources.ApplyResources(this.comboBoxAntenna8PowerGain, "comboBoxAntenna8PowerGain");
             this.comboBoxAntenna8PowerGain.Name = "comboBoxAntenna8PowerGain";
             this.comboBoxAntenna8PowerGain.SelectedIndexChanged += new System.EventHandler(this.comboBoxAntenna8PowerGain_SelectedIndexChanged);
             // 
             // comboBoxAntenna7PowerGain
             // 
-            resources.ApplyResources(this.comboBoxAntenna7PowerGain, "comboBoxAntenna7PowerGain");
             this.comboBoxAntenna7PowerGain.FormattingEnabled = true;
+            resources.ApplyResources(this.comboBoxAntenna7PowerGain, "comboBoxAntenna7PowerGain");
             this.comboBoxAntenna7PowerGain.Name = "comboBoxAntenna7PowerGain";
             this.comboBoxAntenna7PowerGain.SelectedIndexChanged += new System.EventHandler(this.comboBoxAntenna7PowerGain_SelectedIndexChanged);
             // 
             // comboBoxAntenna6PowerGain
             // 
-            resources.ApplyResources(this.comboBoxAntenna6PowerGain, "comboBoxAntenna6PowerGain");
             this.comboBoxAntenna6PowerGain.FormattingEnabled = true;
+            resources.ApplyResources(this.comboBoxAntenna6PowerGain, "comboBoxAntenna6PowerGain");
             this.comboBoxAntenna6PowerGain.Name = "comboBoxAntenna6PowerGain";
             this.comboBoxAntenna6PowerGain.SelectedIndexChanged += new System.EventHandler(this.comboBoxAntenna6PowerGain_SelectedIndexChanged);
             // 
             // comboBoxAntenna5PowerGain
             // 
-            resources.ApplyResources(this.comboBoxAntenna5PowerGain, "comboBoxAntenna5PowerGain");
             this.comboBoxAntenna5PowerGain.FormattingEnabled = true;
+            resources.ApplyResources(this.comboBoxAntenna5PowerGain, "comboBoxAntenna5PowerGain");
             this.comboBoxAntenna5PowerGain.Name = "comboBoxAntenna5PowerGain";
             this.comboBoxAntenna5PowerGain.SelectedIndexChanged += new System.EventHandler(this.comboBoxAntenna5PowerGain_SelectedIndexChanged);
             // 
             // comboBoxAntenna4PowerGain
             // 
-            resources.ApplyResources(this.comboBoxAntenna4PowerGain, "comboBoxAntenna4PowerGain");
             this.comboBoxAntenna4PowerGain.FormattingEnabled = true;
+            resources.ApplyResources(this.comboBoxAntenna4PowerGain, "comboBoxAntenna4PowerGain");
             this.comboBoxAntenna4PowerGain.Name = "comboBoxAntenna4PowerGain";
             this.comboBoxAntenna4PowerGain.SelectedIndexChanged += new System.EventHandler(this.comboBoxAntenna4PowerGain_SelectedIndexChanged);
             // 
             // comboBoxAntenna3PowerGain
             // 
-            resources.ApplyResources(this.comboBoxAntenna3PowerGain, "comboBoxAntenna3PowerGain");
             this.comboBoxAntenna3PowerGain.FormattingEnabled = true;
+            resources.ApplyResources(this.comboBoxAntenna3PowerGain, "comboBoxAntenna3PowerGain");
             this.comboBoxAntenna3PowerGain.Name = "comboBoxAntenna3PowerGain";
             this.comboBoxAntenna3PowerGain.SelectedIndexChanged += new System.EventHandler(this.comboBoxAntenna3PowerGain_SelectedIndexChanged);
             // 
             // comboBoxAntenna2PowerGain
             // 
-            resources.ApplyResources(this.comboBoxAntenna2PowerGain, "comboBoxAntenna2PowerGain");
             this.comboBoxAntenna2PowerGain.FormattingEnabled = true;
+            resources.ApplyResources(this.comboBoxAntenna2PowerGain, "comboBoxAntenna2PowerGain");
             this.comboBoxAntenna2PowerGain.Name = "comboBoxAntenna2PowerGain";
             this.comboBoxAntenna2PowerGain.SelectedIndexChanged += new System.EventHandler(this.comboBoxAntenna2PowerGain_SelectedIndexChanged);
             // 
             // comboBoxAntenna1PowerGain
             // 
-            resources.ApplyResources(this.comboBoxAntenna1PowerGain, "comboBoxAntenna1PowerGain");
             this.comboBoxAntenna1PowerGain.FormattingEnabled = true;
+            resources.ApplyResources(this.comboBoxAntenna1PowerGain, "comboBoxAntenna1PowerGain");
             this.comboBoxAntenna1PowerGain.Name = "comboBoxAntenna1PowerGain";
             this.comboBoxAntenna1PowerGain.SelectedIndexChanged += new System.EventHandler(this.comboBoxAntenna1PowerGain_SelectedIndexChanged);
             // 
             // comboBoxAntenna0PowerGain
             // 
-            resources.ApplyResources(this.comboBoxAntenna0PowerGain, "comboBoxAntenna0PowerGain");
             this.comboBoxAntenna0PowerGain.FormattingEnabled = true;
+            resources.ApplyResources(this.comboBoxAntenna0PowerGain, "comboBoxAntenna0PowerGain");
             this.comboBoxAntenna0PowerGain.Name = "comboBoxAntenna0PowerGain";
             this.comboBoxAntenna0PowerGain.SelectedIndexChanged += new System.EventHandler(this.comboBoxAntenna0PowerGain_SelectedIndexChanged);
             // 
@@ -685,8 +685,8 @@
             // 
             // label5
             // 
-            resources.ApplyResources(this.label5, "label5");
             this.label5.BackColor = System.Drawing.Color.Gainsboro;
+            resources.ApplyResources(this.label5, "label5");
             this.label5.Name = "label5";
             // 
             // btnSave

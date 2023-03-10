@@ -45,6 +45,7 @@
     <Reference Include="CsControl, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -86,17 +87,35 @@
     <Compile Include="Forms\MainForm.Rfid.Inventory.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\ReaderSettingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ReaderSettingForm.Designer.cs">
+      <DependentUpon>ReaderSettingForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\SearchForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\SearchForm.Designer.cs">
       <DependentUpon>SearchForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\SettingForm.cs">
+    <Compile Include="Forms\AntennaSettingForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\SettingForm.Designer.cs">
-      <DependentUpon>SettingForm.cs</DependentUpon>
+    <Compile Include="Forms\AntennaSettingForm.Designer.cs">
+      <DependentUpon>AntennaSettingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SelectionMaskForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SelectionMaskForm.Designer.cs">
+      <DependentUpon>SelectionMaskForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SelectionMaskSelectionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SelectionMaskSelectionForm.Designer.cs">
+      <DependentUpon>SelectionMaskSelectionForm.cs</DependentUpon>
     </Compile>
     <Compile Include="GlobalKey\HotKey.cs" />
     <Compile Include="Program.cs" />
@@ -109,6 +128,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Diagnotics\LogDialog.resx">
       <DependentUpon>LogDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MainForm.hu.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MainForm.ko-KP.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainForm.ko-KR.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -123,17 +148,38 @@
       <DependentUpon>MainForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ReaderSettingForm.ko.resx">
+      <DependentUpon>ReaderSettingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ReaderSettingForm.resx">
+      <DependentUpon>ReaderSettingForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\SearchForm.ko.resx">
       <DependentUpon>SearchForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SearchForm.resx">
       <DependentUpon>SearchForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\SettingForm.ko.resx">
-      <DependentUpon>SettingForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\AntennaSettingForm.ko-KR.resx">
+      <DependentUpon>AntennaSettingForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\SettingForm.resx">
-      <DependentUpon>SettingForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\AntennaSettingForm.ko.resx">
+      <DependentUpon>AntennaSettingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AntennaSettingForm.resx">
+      <DependentUpon>AntennaSettingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SelectionMaskForm.ko.resx">
+      <DependentUpon>SelectionMaskForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SelectionMaskForm.resx">
+      <DependentUpon>SelectionMaskForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SelectionMaskSelectionForm.ko.resx">
+      <DependentUpon>SelectionMaskSelectionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SelectionMaskSelectionForm.resx">
+      <DependentUpon>SelectionMaskSelectionForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.ko.resx" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -146,6 +192,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="app.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

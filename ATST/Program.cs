@@ -1,4 +1,5 @@
 ﻿using ATST.Data;
+using ATST.Diagnotics;
 using ATST.Forms;
 using ATST.Util;
 using System;
@@ -21,6 +22,7 @@ namespace ATST
             Assembly assembly = Assembly.GetExecutingAssembly();
             string moduleName = SysUtil.GetModuleName(assembly);
             Config.Load(assembly);
+            Log.WriteLine("BEGIN. ==================== {0} ====================", moduleName);
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="StringAction" xml:space="preserve">
+    <value>Action</value>
+  </data>
+  <data name="StringBank" xml:space="preserve">
+    <value>Bank</value>
+  </data>
   <data name="StringDeviceAddress" xml:space="preserve">
     <value>Address</value>
   </data>
@@ -150,6 +156,9 @@
   <data name="StringDeviceType" xml:space="preserve">
     <value>Type</value>
   </data>
+  <data name="StringEntry" xml:space="preserve">
+    <value>Entry(s)</value>
+  </data>
   <data name="StringExitError" xml:space="preserve">
     <value>Device is Connected.</value>
   </data>
@@ -162,13 +171,40 @@
   <data name="StringInvalidParameterRange" xml:space="preserve">
     <value>Invalid parameter range!</value>
   </data>
+  <data name="StringInvalidRfidInstance" xml:space="preserve">
+    <value>The instance of RFID reader is not valid!</value>
+  </data>
+  <data name="StringLength" xml:space="preserve">
+    <value>Length</value>
+  </data>
+  <data name="StringMask" xml:space="preserve">
+    <value>Mask</value>
+  </data>
   <data name="StringName" xml:space="preserve">
     <value>ATST</value>
+  </data>
+  <data name="StringOffset" xml:space="preserve">
+    <value>Offset</value>
+  </data>
+  <data name="StringReaderSettingSuccess" xml:space="preserve">
+    <value>The reader settings have been saved successfully.</value>
+  </data>
+  <data name="StringSelectionFailedToSetSElectionMaskState" xml:space="preserve">
+    <value>Failed to set selection mask state!</value>
+  </data>
+  <data name="StringSelectionInvalidSelectionMask" xml:space="preserve">
+    <value>Invalid selection mask!</value>
+  </data>
+  <data name="StringSelectionMaskParamIsNoValid" xml:space="preserve">
+    <value>The parameters of selection mask is not valid!</value>
   </data>
   <data name="StringStartInventory" xml:space="preserve">
     <value>Inventory Start</value>
   </data>
   <data name="StringStopInventory" xml:space="preserve">
     <value>Inventory Stop</value>
+  </data>
+  <data name="StringTarget" xml:space="preserve">
+    <value>Target</value>
   </data>
 </root>

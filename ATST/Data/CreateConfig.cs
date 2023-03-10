@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing.Text;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -16,13 +17,16 @@ namespace ATST.Util
         {
             var data = new Data
             {
-                CultureName = ""
+                CultureName = "Ko-KR",
+                States = new bool[128],
+                PowerGains = new int[128],
+                DwellTiems = new int[128]
             };
 
             var design = new Design
             {
                 panel_column = 0,
-                panel_row = 0
+                panel_row = 0,
             };
 
             var setting = new Setting
@@ -70,11 +74,13 @@ namespace ATST.Util
     {
         public Data data { get; set; }
         public Design design { get; set; }
+        public Test test { get; set; }
 
         public Setting()
         {
             data = new Data();
             design = new Design();
+            test = new Test();
         }
     }
 
@@ -82,11 +88,23 @@ namespace ATST.Util
     {
         public int panel_row { get; set; }
         public int panel_column { get; set; }
+        public int asdfasdf { get; set;  }
     }
 
     public class Data
     {
         public string CultureName { get; set; }
+
+        public bool[] States { get; set; }
+
+        public int[] PowerGains { get; set; }
+
+        public int[] DwellTiems { get; set; }
+    }
+
+    public class Test
+    {
+        public string TestInfo { get; set; }
     }
 
 }

@@ -61,6 +61,24 @@ namespace ATST.Properties {
         }
         
         /// <summary>
+        ///   Action과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string StringAction {
+            get {
+                return ResourceManager.GetString("StringAction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Bank과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string StringBank {
+            get {
+                return ResourceManager.GetString("StringBank", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Address과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
         internal static string StringDeviceAddress {
@@ -160,6 +178,15 @@ namespace ATST.Properties {
         }
         
         /// <summary>
+        ///   Entry(s)과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string StringEntry {
+            get {
+                return ResourceManager.GetString("StringEntry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Device is Connected.과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
         internal static string StringExitError {
@@ -196,11 +223,83 @@ namespace ATST.Properties {
         }
         
         /// <summary>
+        ///   The instance of RFID reader is not valid!과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string StringInvalidRfidInstance {
+            get {
+                return ResourceManager.GetString("StringInvalidRfidInstance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Length과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string StringLength {
+            get {
+                return ResourceManager.GetString("StringLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Mask과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string StringMask {
+            get {
+                return ResourceManager.GetString("StringMask", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   ATST과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
         internal static string StringName {
             get {
                 return ResourceManager.GetString("StringName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Offset과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string StringOffset {
+            get {
+                return ResourceManager.GetString("StringOffset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   The reader settings have been saved successfully.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string StringReaderSettingSuccess {
+            get {
+                return ResourceManager.GetString("StringReaderSettingSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Failed to set selection mask state!과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string StringSelectionFailedToSetSElectionMaskState {
+            get {
+                return ResourceManager.GetString("StringSelectionFailedToSetSElectionMaskState", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Invalid selection mask!과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string StringSelectionInvalidSelectionMask {
+            get {
+                return ResourceManager.GetString("StringSelectionInvalidSelectionMask", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   The parameters of selection mask is not valid!과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string StringSelectionMaskParamIsNoValid {
+            get {
+                return ResourceManager.GetString("StringSelectionMaskParamIsNoValid", resourceCulture);
             }
         }
         
@@ -219,6 +318,15 @@ namespace ATST.Properties {
         internal static string StringStopInventory {
             get {
                 return ResourceManager.GetString("StringStopInventory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Target과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string StringTarget {
+            get {
+                return ResourceManager.GetString("StringTarget", resourceCulture);
             }
         }
     }

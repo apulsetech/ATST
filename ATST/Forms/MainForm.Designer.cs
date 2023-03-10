@@ -49,30 +49,27 @@ namespace ATST.Forms
             this.deviceSearchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.deviceSettingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.readerSettingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.selectMaskToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnComPortSearch = new System.Windows.Forms.Button();
+            this.cbxConnectionInterfacePort = new System.Windows.Forms.ComboBox();
             this.btn_rfid_inventory = new System.Windows.Forms.Button();
             this.btn_rfid_clear = new System.Windows.Forms.Button();
-            this.listview_rfid_inventory_tag_data = new System.Windows.Forms.ListView();
-            this.column_tag_value = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.column_tag_rssi = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.column_tag_port = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel2 = new System.Windows.Forms.Panel();
             this.btn_tbl_panel = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.tbx_row_tbl_panel = new System.Windows.Forms.TextBox();
             this.tbx_col_tbl_panel = new System.Windows.Forms.TextBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tablePanel1 = new CsControl.Control.TablePanel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.btn_test = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.txbAntCount = new System.Windows.Forms.TextBox();
-            this.btnSettingAntCount = new System.Windows.Forms.Button();
+            this.io_data_listview = new CsControl.Control.io_data_listview();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txbAntCount1 = new System.Windows.Forms.TextBox();
+            this.btnAntCount = new System.Windows.Forms.Button();
             this.menuStrip.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -97,6 +94,7 @@ namespace ATST.Forms
             // 
             // ipAddressBox
             // 
+            this.ipAddressBox.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             resources.ApplyResources(this.ipAddressBox, "ipAddressBox");
             this.ipAddressBox.Name = "ipAddressBox";
             // 
@@ -174,7 +172,9 @@ namespace ATST.Forms
             this.settingToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.deviceSearchToolStripMenuItem,
             this.toolStripMenuItem1,
-            this.deviceSettingToolStripMenuItem});
+            this.deviceSettingToolStripMenuItem,
+            this.readerSettingToolStripMenuItem,
+            this.selectMaskToolStripMenuItem});
             this.settingToolStripMenuItem.Name = "settingToolStripMenuItem";
             resources.ApplyResources(this.settingToolStripMenuItem, "settingToolStripMenuItem");
             this.settingToolStripMenuItem.Click += new System.EventHandler(this.settingToolStripMenuItem_Click);
@@ -196,26 +196,49 @@ namespace ATST.Forms
             resources.ApplyResources(this.deviceSettingToolStripMenuItem, "deviceSettingToolStripMenuItem");
             this.deviceSettingToolStripMenuItem.Click += new System.EventHandler(this.deviceSettingToolStripMenuItem_Click);
             // 
+            // readerSettingToolStripMenuItem
+            // 
+            this.readerSettingToolStripMenuItem.Name = "readerSettingToolStripMenuItem";
+            resources.ApplyResources(this.readerSettingToolStripMenuItem, "readerSettingToolStripMenuItem");
+            this.readerSettingToolStripMenuItem.Click += new System.EventHandler(this.readerSettingToolStripMenuItem_Click);
+            // 
+            // selectMaskToolStripMenuItem
+            // 
+            this.selectMaskToolStripMenuItem.Name = "selectMaskToolStripMenuItem";
+            resources.ApplyResources(this.selectMaskToolStripMenuItem, "selectMaskToolStripMenuItem");
+            this.selectMaskToolStripMenuItem.Click += new System.EventHandler(this.selectMaskToolStripMenuItem_Click);
+            // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             resources.ApplyResources(this.helpToolStripMenuItem, "helpToolStripMenuItem");
             this.helpToolStripMenuItem.Click += new System.EventHandler(this.helpToolStripMenuItem_Click);
             // 
-            // statusStrip
-            // 
-            resources.ApplyResources(this.statusStrip, "statusStrip");
-            this.statusStrip.Name = "statusStrip";
-            // 
             // panel1
             // 
             resources.ApplyResources(this.panel1, "panel1");
+            this.panel1.Controls.Add(this.btnComPortSearch);
+            this.panel1.Controls.Add(this.cbxConnectionInterfacePort);
             this.panel1.Controls.Add(this.btn_rfid_connect);
             this.panel1.Controls.Add(this.ipAddressBox);
             this.panel1.Controls.Add(this.rbx_ethernet);
             this.panel1.Controls.Add(this.rbx_serial);
             this.panel1.Name = "panel1";
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // btnComPortSearch
+            // 
+            resources.ApplyResources(this.btnComPortSearch, "btnComPortSearch");
+            this.btnComPortSearch.Name = "btnComPortSearch";
+            this.btnComPortSearch.UseVisualStyleBackColor = true;
+            this.btnComPortSearch.Click += new System.EventHandler(this.btnComPortSearch_Click);
+            // 
+            // cbxConnectionInterfacePort
+            // 
+            this.cbxConnectionInterfacePort.FormattingEnabled = true;
+            resources.ApplyResources(this.cbxConnectionInterfacePort, "cbxConnectionInterfacePort");
+            this.cbxConnectionInterfacePort.Name = "cbxConnectionInterfacePort";
+            this.cbxConnectionInterfacePort.DropDown += new System.EventHandler(this.cbxConnectionInterfacePort_DropDown);
+            this.cbxConnectionInterfacePort.SelectedIndexChanged += new System.EventHandler(this.cbxConnectionInterfacePort_SelectedIndexChanged);
             // 
             // btn_rfid_inventory
             // 
@@ -230,32 +253,6 @@ namespace ATST.Forms
             this.btn_rfid_clear.Name = "btn_rfid_clear";
             this.btn_rfid_clear.UseVisualStyleBackColor = true;
             this.btn_rfid_clear.Click += new System.EventHandler(this.btn_rfid_clear_Click);
-            // 
-            // listview_rfid_inventory_tag_data
-            // 
-            this.listview_rfid_inventory_tag_data.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.column_tag_value,
-            this.column_tag_rssi,
-            this.column_tag_port});
-            this.listview_rfid_inventory_tag_data.FullRowSelect = true;
-            this.listview_rfid_inventory_tag_data.GridLines = true;
-            this.listview_rfid_inventory_tag_data.HideSelection = false;
-            resources.ApplyResources(this.listview_rfid_inventory_tag_data, "listview_rfid_inventory_tag_data");
-            this.listview_rfid_inventory_tag_data.Name = "listview_rfid_inventory_tag_data";
-            this.listview_rfid_inventory_tag_data.UseCompatibleStateImageBehavior = false;
-            this.listview_rfid_inventory_tag_data.View = System.Windows.Forms.View.Details;
-            // 
-            // column_tag_value
-            // 
-            resources.ApplyResources(this.column_tag_value, "column_tag_value");
-            // 
-            // column_tag_rssi
-            // 
-            resources.ApplyResources(this.column_tag_rssi, "column_tag_rssi");
-            // 
-            // column_tag_port
-            // 
-            resources.ApplyResources(this.column_tag_port, "column_tag_port");
             // 
             // panel2
             // 
@@ -274,10 +271,24 @@ namespace ATST.Forms
             // panel3
             // 
             resources.ApplyResources(this.panel3, "panel3");
+            this.panel3.Controls.Add(this.label1);
+            this.panel3.Controls.Add(this.label3);
             this.panel3.Controls.Add(this.tbx_row_tbl_panel);
             this.panel3.Controls.Add(this.tbx_col_tbl_panel);
             this.panel3.Controls.Add(this.btn_tbl_panel);
             this.panel3.Name = "panel3";
+            // 
+            // label1
+            // 
+            resources.ApplyResources(this.label1, "label1");
+            this.label1.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.label1.Name = "label1";
+            // 
+            // label3
+            // 
+            resources.ApplyResources(this.label3, "label3");
+            this.label3.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.label3.Name = "label3";
             // 
             // tbx_row_tbl_panel
             // 
@@ -299,74 +310,42 @@ namespace ATST.Forms
             resources.ApplyResources(this.tablePanel1, "tablePanel1");
             this.tablePanel1.Name = "tablePanel1";
             // 
-            // button1
+            // io_data_listview
             // 
-            resources.ApplyResources(this.button1, "button1");
-            this.button1.Name = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            resources.ApplyResources(this.io_data_listview, "io_data_listview");
+            this.io_data_listview.BackColor = System.Drawing.Color.White;
+            this.io_data_listview.Name = "io_data_listview";
             // 
-            // button3
+            // label2
             // 
-            resources.ApplyResources(this.button3, "button3");
-            this.button3.Name = "button3";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            resources.ApplyResources(this.label2, "label2");
+            this.label2.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.label2.Name = "label2";
             // 
-            // button4
+            // txbAntCount1
             // 
-            resources.ApplyResources(this.button4, "button4");
-            this.button4.Name = "button4";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            resources.ApplyResources(this.txbAntCount1, "txbAntCount1");
+            this.txbAntCount1.Name = "txbAntCount1";
             // 
-            // btn_test
+            // btnAntCount
             // 
-            resources.ApplyResources(this.btn_test, "btn_test");
-            this.btn_test.Name = "btn_test";
-            // 
-            // textBox1
-            // 
-            resources.ApplyResources(this.textBox1, "textBox1");
-            this.textBox1.Name = "textBox1";
-            // 
-            // button2
-            // 
-            resources.ApplyResources(this.button2, "button2");
-            this.button2.Name = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // txbAntCount
-            // 
-            resources.ApplyResources(this.txbAntCount, "txbAntCount");
-            this.txbAntCount.Name = "txbAntCount";
-            // 
-            // btnSettingAntCount
-            // 
-            resources.ApplyResources(this.btnSettingAntCount, "btnSettingAntCount");
-            this.btnSettingAntCount.Name = "btnSettingAntCount";
-            this.btnSettingAntCount.UseVisualStyleBackColor = true;
-            this.btnSettingAntCount.Click += new System.EventHandler(this.btnSettingAntCount_Click);
+            resources.ApplyResources(this.btnAntCount, "btnAntCount");
+            this.btnAntCount.Name = "btnAntCount";
+            this.btnAntCount.UseVisualStyleBackColor = true;
+            this.btnAntCount.Click += new System.EventHandler(this.btnSettingAntCount_Click);
             // 
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.btnSettingAntCount);
-            this.Controls.Add(this.txbAntCount);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.btn_test);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.listview_rfid_inventory_tag_data);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnAntCount);
+            this.Controls.Add(this.txbAntCount1);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.io_data_listview);
             this.Controls.Add(this.tablePanel1);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.menuStrip);
             this.MainMenuStrip = this.menuStrip;
             this.Name = "MainForm";
@@ -393,7 +372,6 @@ namespace ATST.Forms
         private ControlIpAddressBox.IpAddressBox ipAddressBox;
         private System.Windows.Forms.Button btn_rfid_connect;
         private System.Windows.Forms.MenuStrip menuStrip;
-        private System.Windows.Forms.StatusStrip statusStrip;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ToolStripMenuItem menuToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem languageToolStripMenuItem;
@@ -406,10 +384,6 @@ namespace ATST.Forms
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.Button btn_rfid_inventory;
         private System.Windows.Forms.Button btn_rfid_clear;
-        private System.Windows.Forms.ListView listview_rfid_inventory_tag_data;
-        private System.Windows.Forms.ColumnHeader column_tag_value;
-        private System.Windows.Forms.ColumnHeader column_tag_rssi;
-        private System.Windows.Forms.ColumnHeader column_tag_port;
         private System.Windows.Forms.ToolStripMenuItem korToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem engToolStripMenuItem;
         private System.Windows.Forms.Panel panel2;
@@ -421,13 +395,15 @@ namespace ATST.Forms
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private CsControl.Control.TablePanel tablePanel1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.TextBox btn_test;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox txbAntCount;
-        private System.Windows.Forms.Button btnSettingAntCount;
+        private CsControl.Control.io_data_listview io_data_listview;
+        private System.Windows.Forms.Button btnComPortSearch;
+        private System.Windows.Forms.ComboBox cbxConnectionInterfacePort;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ToolStripMenuItem readerSettingToolStripMenuItem;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txbAntCount1;
+        private System.Windows.Forms.Button btnAntCount;
+        private System.Windows.Forms.ToolStripMenuItem selectMaskToolStripMenuItem;
     }
 }

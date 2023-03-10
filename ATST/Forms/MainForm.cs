@@ -1,4 +1,6 @@
 ﻿using Apulsetech.Event;
+using Apulsetech.Rfid.Type;
+using Apulsetech.Util;
 using ATST.Data;
 using ATST.Diagnotics;
 using ATST.Forms.Diagnotics;
@@ -7,10 +9,14 @@ using ATST.Properties;
 using ATST.Util;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Globalization;
+using System.IO.Ports;
 using System.Linq;
+using System.Management;
 using System.Threading;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 
 namespace ATST.Forms
 {
@@ -22,6 +28,9 @@ namespace ATST.Forms
 
         // Log창 닫혀있을때 로그 저장할 텍스트박스
         public TextBox txb = new TextBox();
+
+        // 바인딩 리스트를 사용하기 위한 리스트
+        private BindingList<object> BindingList = new BindingList<object>(); 
 
         public MainForm()
         {
@@ -39,12 +48,48 @@ namespace ATST.Forms
         private void Initialize()
         {
             // 이름 따로 설정안하면 ApplyResources에서 Name이 Null로 나옴
-            listview_rfid_inventory_tag_data.Columns[0].Name = "column_tag_value";
-            listview_rfid_inventory_tag_data.Columns[1].Name = "column_tag_rssi";
-            listview_rfid_inventory_tag_data.Columns[2].Name = "column_tag_port";
+            //listview_rfid_inventory_tag_data.Columns[0].Name = "column_tag_value";
+            //listview_rfid_inventory_tag_data.Columns[1].Name = "column_tag_rssi";
+            //listview_rfid_inventory_tag_data.Columns[2].Name = "column_tag_port";
 
             EnableControl(false);
             InitializeCreateConfig();
+            InitializePorts();
+
+            
+        }
+
+        private void InitializePorts()
+        {
+            cbxConnectionInterfacePort.Items.Clear();
+            cbxConnectionInterfacePort.DisplayMember = "Display";
+            cbxConnectionInterfacePort.ValueMember = "Value";
+
+            List<string> ComportList = new List<string>();
+
+            using (var searcher = new ManagementObjectSearcher("SELECT * FROM Win32_PnPEntity WHERE Caption like '%Com%'"))
+            {
+                var ComportNames = SerialPort.GetPortNames();
+                var ComPorts = searcher.Get().Cast<ManagementBaseObject>().ToList().Select(p => p["Caption"].ToString());
+                var ComPortList = ComportNames.Select(n => ComPorts.FirstOrDefault(s => s.Contains(n))).ToArray();
+
+                string comPort;
+                for (int i = 0; i < ComPortList.Length; i++)
+                {
+                    comPort = Convert.ToString(ComPortList[i]);
+                    if (!String.IsNullOrEmpty(comPort)) { ComportList.Add(comPort); }
+                }
+            }
+
+            string[] comPorts = ComportList.ToArray();
+            if (comPorts.Length > 0)
+            {
+                for (int i = 0; i < comPorts.Length; i++)
+                {
+                    cbxConnectionInterfacePort.Items.Add(new { Display = comPorts[i].Substring(comPorts[i].IndexOf("(") + 1, comPorts[i].IndexOf(")") - comPorts[i].IndexOf("(") - 1), Value = comPorts[i] });
+                }
+            }
+
         }
 
         private void InitializeCreateConfig()
@@ -55,13 +100,30 @@ namespace ATST.Forms
             tbx_row_tbl_panel.Text = Config.Panel_Row.ToString();
         }
 
+        // Config 정보 불러오기
+        private void LoadConfigInfo(int antCount)
+        {
+            if (SharedValues.Reader != null)
+            {
+                for (int i = 0; i < antCount; i++)
+                {
+                    SharedValues.Reader.SetAntennaPortState(i, Config.AntStates[i] ? RFID.ON : RFID.OFF);
+                    SharedValues.Reader.SetRadioPower(i, Config.AntPowerGains[i]);
+                    SharedValues.Reader.SetDwellTime(i, Config.AntDwellTimes[i]);
+                }
+            }
+        }
+
         // 컨트롤 사용가능 여부 체크
         private void EnableControl(bool enable)
         {
             btn_rfid_inventory.Enabled = enable;
             btn_rfid_clear.Enabled = enable;
-
             btn_rfid_connect.Enabled = btn_rfid_inventory.Enabled && btn_rfid_clear.Enabled ? enable : !enable;
+
+            deviceSettingToolStripMenuItem.Enabled = enable;
+            readerSettingToolStripMenuItem.Enabled = enable;
+            selectMaskToolStripMenuItem.Enabled = enable;
         }
 
         public void OutputLog(String msg)
@@ -103,7 +165,15 @@ namespace ATST.Forms
             {
                 //dlg.Owner = this;         
                 if (dlg.ShowDialog() == DialogResult.OK)
+                {
                     ipAddressBox.SetIpData(SharedValues.Ethernet);
+
+                    if (SharedValues.Ethernet != null)
+                    {
+                        rbx_ethernet.Checked = true;
+                        rbx_serial.Checked = false;
+                    }
+                }
             }
         }
 
@@ -361,40 +431,51 @@ namespace ATST.Forms
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void deviceSettingToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SharedValues.Reader.SetRadioPower(17);
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            SharedValues.Reader.SetRadioPower(30);
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            for (int i = 0; i < 4; i++)
+            using (AntennaSettingForm form = new AntennaSettingForm())
             {
-                var tag_cnt = SharedValues.mTagSaveDictionary.Where(x => x.Value.Port.Equals(i)).ToList();
-                tablePanel1.DataViewTagCntNum(i, tag_cnt.Count);
+                form.ResultEvent += new AntennaSettingForm.RfidAntennaRsultHandler(GetAntSettingInfo);
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+
+                }
             }
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void GetAntSettingInfo(bool[] satets, int[] powerGains, int[] dwellTime)
         {
-            SharedValues.Reader.SetDwellTime(Int32.Parse(textBox1.Text));
-            SharedValues.Reader.SetRadioPower(30);
+            Config.AntStates = satets;
+            Config.AntPowerGains = powerGains;
+            Config.AntDwellTimes = dwellTime;
         }
 
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
+        private int AntCount = 1;
+        private void btnSettingAntCount_Click(object sender, EventArgs e)
         {
-
+            AntCount = Convert.ToInt32(txbAntCount1.Text);
         }
 
-        private void deviceSettingToolStripMenuItem_Click(object sender, EventArgs e)
+        private void cbxConnectionInterfacePort_DropDown(object sender, EventArgs e)
         {
-            using (SettingForm form = new SettingForm())
+            cbxConnectionInterfacePort.DisplayMember = "Value";
+        }
+
+        private void cbxConnectionInterfacePort_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cbxConnectionInterfacePort.DisplayMember = "Display";
+            SharedValues.SelectedPort = (cbxConnectionInterfacePort.SelectedItem as dynamic).Display;
+            //string PortValue = (cbxConnectionInterfacePort.SelectedItem as dynamic).Value;
+        }
+
+        private void btnComPortSearch_Click(object sender, EventArgs e)
+        {
+            InitializePorts();
+        }
+
+        private void readerSettingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (ReaderSettingForm form = new ReaderSettingForm())
             {
                 if (form.ShowDialog() == DialogResult.OK)
                 {
@@ -403,10 +484,22 @@ namespace ATST.Forms
             }
         }
 
-        private int AntCount = 1;
-        private void btnSettingAntCount_Click(object sender, EventArgs e)
+        private void selectMaskToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AntCount = Convert.ToInt32(txbAntCount.Text);
+            using (SelectionMaskForm form = new SelectionMaskForm())
+            {
+                try
+                {
+                    if (form.ShowDialog() == DialogResult.OK)
+                    {
+
+                    }
+                }
+                catch
+                {
+
+                }
+            }
         }
     }
 }

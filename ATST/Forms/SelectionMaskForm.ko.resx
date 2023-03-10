@@ -117,94 +117,62 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="StringAction" xml:space="preserve">
-    <value>동작</value>
+  <data name="btnADD.Text" xml:space="preserve">
+    <value>추가</value>
   </data>
-  <data name="StringBank" xml:space="preserve">
-    <value>뱅크</value>
+  <data name="btnRemove.Text" xml:space="preserve">
+    <value>제거</value>
   </data>
-  <data name="StringDeviceAddress" xml:space="preserve">
-    <value>주소</value>
+  <data name="btnClear.Text" xml:space="preserve">
+    <value>전부 삭제</value>
   </data>
-  <data name="StringDeviceBarcode" xml:space="preserve">
-    <value>바코드</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="cbxUseSelectionMask.Size" type="System.Drawing.Size, System.Drawing">
+    <value>116, 16</value>
   </data>
-  <data name="StringDeviceConnect" xml:space="preserve">
-    <value>해제</value>
+  <data name="cbxUseSelectionMask.Text" xml:space="preserve">
+    <value>선택 마스크 사용</value>
   </data>
-  <data name="StringDeviceConnection" xml:space="preserve">
-    <value>연결</value>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>선택 설정</value>
   </data>
-  <data name="StringDeviceDisConnect" xml:space="preserve">
-    <value>연결</value>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>인벤토리 설정</value>
   </data>
-  <data name="StringDeviceName" xml:space="preserve">
-    <value>이름</value>
+  <data name="cbxSLFlag.Size" type="System.Drawing.Size, System.Drawing">
+    <value>262, 20</value>
   </data>
-  <data name="StringDeviceNoSearch" xml:space="preserve">
-    <value>검색</value>
+  <data name="cbxTaget.Size" type="System.Drawing.Size, System.Drawing">
+    <value>262, 20</value>
   </data>
-  <data name="StringDeviceRfid" xml:space="preserve">
-    <value>Rfid</value>
+  <data name="cbxSession.Size" type="System.Drawing.Size, System.Drawing">
+    <value>262, 20</value>
   </data>
-  <data name="StringDeviceSearch" xml:space="preserve">
-    <value>중지</value>
+  <data name="lbSLFlag.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 12</value>
   </data>
-  <data name="StringDeviceStatus" xml:space="preserve">
-    <value>상태</value>
+  <data name="lbSLFlag.Text" xml:space="preserve">
+    <value>SL 플래그</value>
   </data>
-  <data name="StringDeviceType" xml:space="preserve">
-    <value>타입</value>
+  <data name="lbTarget.Size" type="System.Drawing.Size, System.Drawing">
+    <value>29, 12</value>
   </data>
-  <data name="StringEntry" xml:space="preserve">
-    <value>엔트리</value>
-  </data>
-  <data name="StringExitError" xml:space="preserve">
-    <value>장비가 연결되어 있습니다.</value>
-  </data>
-  <data name="StringFailedStartInventory" xml:space="preserve">
-    <value>인벤토리 시작 실패</value>
-  </data>
-  <data name="StringFailedStopInventory" xml:space="preserve">
-    <value>인벤토리 종료 실패</value>
-  </data>
-  <data name="StringInvalidParameterRange" xml:space="preserve">
-    <value>유효하지 않은 파라미터 범위입니다!</value>
-  </data>
-  <data name="StringInvalidRfidInstance" xml:space="preserve">
-    <value>RFID 리더 인스턴스가 존재하지 않습니다!</value>
-  </data>
-  <data name="StringLength" xml:space="preserve">
-    <value>길이</value>
-  </data>
-  <data name="StringMask" xml:space="preserve">
-    <value>마스크</value>
-  </data>
-  <data name="StringName" xml:space="preserve">
-    <value>ATST </value>
-  </data>
-  <data name="StringOffset" xml:space="preserve">
-    <value>오프셋</value>
-  </data>
-  <data name="StringReaderSettingSuccess" xml:space="preserve">
-    <value>리더 설정값 저장에 성공하였습니다.</value>
-  </data>
-  <data name="StringSelectionFailedToSetSElectionMaskState" xml:space="preserve">
-    <value>선택 마스크 활성화 설정에 실패하였습니다!</value>
-  </data>
-  <data name="StringSelectionInvalidSelectionMask" xml:space="preserve">
-    <value>선택 마스크가 유효하지 않습니다!</value>
-  </data>
-  <data name="StringSelectionMaskParamIsNoValid" xml:space="preserve">
-    <value>선택 마스크의 파라미터 값이 유효하지 않습니다!</value>
-  </data>
-  <data name="StringStartInventory" xml:space="preserve">
-    <value>인벤토리 시작</value>
-  </data>
-  <data name="StringStopInventory" xml:space="preserve">
-    <value>인벤토리 종료</value>
-  </data>
-  <data name="StringTarget" xml:space="preserve">
+  <data name="lbTarget.Text" xml:space="preserve">
     <value>타겟</value>
+  </data>
+  <data name="lbSession.Size" type="System.Drawing.Size, System.Drawing">
+    <value>29, 12</value>
+  </data>
+  <data name="lbSession.Text" xml:space="preserve">
+    <value>세션</value>
+  </data>
+  <data name="btnCancel.Text" xml:space="preserve">
+    <value>취소</value>
+  </data>
+  <data name="btnSave.Text" xml:space="preserve">
+    <value>저장</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>선택 마스크 설정</value>
   </data>
 </root>

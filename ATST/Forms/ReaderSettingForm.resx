@@ -1,0 +1,852 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="cbxContinuousMode.Font" type="System.Drawing.Font, System.Drawing">
+    <value>굴림, 9pt</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="cbxContinuousMode.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cbxContinuousMode.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 15</value>
+  </data>
+  <data name="cbxContinuousMode.Size" type="System.Drawing.Size, System.Drawing">
+    <value>127, 24</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="cbxContinuousMode.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="cbxContinuousMode.Text" xml:space="preserve">
+    <value>Continuous Mode</value>
+  </data>
+  <data name="&gt;&gt;cbxContinuousMode.Name" xml:space="preserve">
+    <value>cbxContinuousMode</value>
+  </data>
+  <data name="&gt;&gt;cbxContinuousMode.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cbxContinuousMode.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;cbxContinuousMode.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="cbxFastID.Font" type="System.Drawing.Font, System.Drawing">
+    <value>굴림, 9pt</value>
+  </data>
+  <data name="cbxFastID.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cbxFastID.Location" type="System.Drawing.Point, System.Drawing">
+    <value>142, 179</value>
+  </data>
+  <data name="cbxFastID.Size" type="System.Drawing.Size, System.Drawing">
+    <value>104, 24</value>
+  </data>
+  <data name="cbxFastID.TabIndex" type="System.Int32, mscorlib">
+    <value>23</value>
+  </data>
+  <data name="cbxFastID.Text" xml:space="preserve">
+    <value>FastID</value>
+  </data>
+  <data name="&gt;&gt;cbxFastID.Name" xml:space="preserve">
+    <value>cbxFastID</value>
+  </data>
+  <data name="&gt;&gt;cbxFastID.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cbxFastID.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;cbxFastID.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="cbxToggle.Font" type="System.Drawing.Font, System.Drawing">
+    <value>굴림, 9pt</value>
+  </data>
+  <data name="cbxToggle.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cbxToggle.Location" type="System.Drawing.Point, System.Drawing">
+    <value>142, 15</value>
+  </data>
+  <data name="cbxToggle.Size" type="System.Drawing.Size, System.Drawing">
+    <value>104, 24</value>
+  </data>
+  <data name="cbxToggle.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="cbxToggle.Text" xml:space="preserve">
+    <value>Toggle</value>
+  </data>
+  <data name="&gt;&gt;cbxToggle.Name" xml:space="preserve">
+    <value>cbxToggle</value>
+  </data>
+  <data name="&gt;&gt;cbxToggle.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cbxToggle.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;cbxToggle.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="cbxChannel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>굴림, 9pt</value>
+  </data>
+  <data name="cbxChannel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cbxChannel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 179</value>
+  </data>
+  <data name="cbxChannel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>104, 24</value>
+  </data>
+  <data name="cbxChannel.TabIndex" type="System.Int32, mscorlib">
+    <value>22</value>
+  </data>
+  <data name="cbxChannel.Text" xml:space="preserve">
+    <value>Channel</value>
+  </data>
+  <data name="&gt;&gt;cbxChannel.Name" xml:space="preserve">
+    <value>cbxChannel</value>
+  </data>
+  <data name="&gt;&gt;cbxChannel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cbxChannel.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;cbxChannel.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="cbxSound.Font" type="System.Drawing.Font, System.Drawing">
+    <value>굴림, 9pt</value>
+  </data>
+  <data name="cbxSound.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cbxSound.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 113</value>
+  </data>
+  <data name="cbxSound.Size" type="System.Drawing.Size, System.Drawing">
+    <value>104, 24</value>
+  </data>
+  <data name="cbxSound.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="cbxSound.Text" xml:space="preserve">
+    <value>Sound</value>
+  </data>
+  <data name="&gt;&gt;cbxSound.Name" xml:space="preserve">
+    <value>cbxSound</value>
+  </data>
+  <data name="&gt;&gt;cbxSound.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cbxSound.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;cbxSound.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="cbxPhase.Font" type="System.Drawing.Font, System.Drawing">
+    <value>굴림, 9pt</value>
+  </data>
+  <data name="cbxPhase.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cbxPhase.Location" type="System.Drawing.Point, System.Drawing">
+    <value>142, 81</value>
+  </data>
+  <data name="cbxPhase.Size" type="System.Drawing.Size, System.Drawing">
+    <value>104, 24</value>
+  </data>
+  <data name="cbxPhase.TabIndex" type="System.Int32, mscorlib">
+    <value>21</value>
+  </data>
+  <data name="cbxPhase.Text" xml:space="preserve">
+    <value>Phase</value>
+  </data>
+  <data name="&gt;&gt;cbxPhase.Name" xml:space="preserve">
+    <value>cbxPhase</value>
+  </data>
+  <data name="&gt;&gt;cbxPhase.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cbxPhase.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;cbxPhase.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="cbxTrigger.Font" type="System.Drawing.Font, System.Drawing">
+    <value>굴림, 9pt</value>
+  </data>
+  <data name="cbxTrigger.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cbxTrigger.Location" type="System.Drawing.Point, System.Drawing">
+    <value>142, 113</value>
+  </data>
+  <data name="cbxTrigger.Size" type="System.Drawing.Size, System.Drawing">
+    <value>104, 24</value>
+  </data>
+  <data name="cbxTrigger.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="cbxTrigger.Text" xml:space="preserve">
+    <value>Trigger</value>
+  </data>
+  <data name="&gt;&gt;cbxTrigger.Name" xml:space="preserve">
+    <value>cbxTrigger</value>
+  </data>
+  <data name="&gt;&gt;cbxTrigger.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cbxTrigger.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;cbxTrigger.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="cbxRssi.Font" type="System.Drawing.Font, System.Drawing">
+    <value>굴림, 9pt</value>
+  </data>
+  <data name="cbxRssi.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cbxRssi.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 81</value>
+  </data>
+  <data name="cbxRssi.Size" type="System.Drawing.Size, System.Drawing">
+    <value>104, 24</value>
+  </data>
+  <data name="cbxRssi.TabIndex" type="System.Int32, mscorlib">
+    <value>20</value>
+  </data>
+  <data name="cbxRssi.Text" xml:space="preserve">
+    <value>RSSI</value>
+  </data>
+  <data name="&gt;&gt;cbxRssi.Name" xml:space="preserve">
+    <value>cbxRssi</value>
+  </data>
+  <data name="&gt;&gt;cbxRssi.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cbxRssi.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;cbxRssi.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="cbxBeepUniqueOnly.Font" type="System.Drawing.Font, System.Drawing">
+    <value>굴림, 9pt</value>
+  </data>
+  <data name="cbxBeepUniqueOnly.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cbxBeepUniqueOnly.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 46</value>
+  </data>
+  <data name="cbxBeepUniqueOnly.Size" type="System.Drawing.Size, System.Drawing">
+    <value>127, 24</value>
+  </data>
+  <data name="cbxBeepUniqueOnly.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="cbxBeepUniqueOnly.Text" xml:space="preserve">
+    <value>Beep Unique Only</value>
+  </data>
+  <data name="&gt;&gt;cbxBeepUniqueOnly.Name" xml:space="preserve">
+    <value>cbxBeepUniqueOnly</value>
+  </data>
+  <data name="&gt;&gt;cbxBeepUniqueOnly.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cbxBeepUniqueOnly.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;cbxBeepUniqueOnly.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="cbxPC.Font" type="System.Drawing.Font, System.Drawing">
+    <value>굴림, 9pt</value>
+  </data>
+  <data name="cbxPC.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cbxPC.Location" type="System.Drawing.Point, System.Drawing">
+    <value>142, 144</value>
+  </data>
+  <data name="cbxPC.Size" type="System.Drawing.Size, System.Drawing">
+    <value>104, 24</value>
+  </data>
+  <data name="cbxPC.TabIndex" type="System.Int32, mscorlib">
+    <value>19</value>
+  </data>
+  <data name="cbxPC.Text" xml:space="preserve">
+    <value>PC</value>
+  </data>
+  <data name="&gt;&gt;cbxPC.Name" xml:space="preserve">
+    <value>cbxPC</value>
+  </data>
+  <data name="&gt;&gt;cbxPC.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cbxPC.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;cbxPC.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="cbxRemoteFilter.Font" type="System.Drawing.Font, System.Drawing">
+    <value>굴림, 9pt</value>
+  </data>
+  <data name="cbxRemoteFilter.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cbxRemoteFilter.Location" type="System.Drawing.Point, System.Drawing">
+    <value>142, 46</value>
+  </data>
+  <data name="cbxRemoteFilter.Size" type="System.Drawing.Size, System.Drawing">
+    <value>101, 24</value>
+  </data>
+  <data name="cbxRemoteFilter.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="cbxRemoteFilter.Text" xml:space="preserve">
+    <value>Remote Filter</value>
+  </data>
+  <data name="&gt;&gt;cbxRemoteFilter.Name" xml:space="preserve">
+    <value>cbxRemoteFilter</value>
+  </data>
+  <data name="&gt;&gt;cbxRemoteFilter.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cbxRemoteFilter.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;cbxRemoteFilter.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="cbxFilter.Font" type="System.Drawing.Font, System.Drawing">
+    <value>굴림, 9pt</value>
+  </data>
+  <data name="cbxFilter.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cbxFilter.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 144</value>
+  </data>
+  <data name="cbxFilter.Size" type="System.Drawing.Size, System.Drawing">
+    <value>104, 24</value>
+  </data>
+  <data name="cbxFilter.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="cbxFilter.Text" xml:space="preserve">
+    <value>Filter</value>
+  </data>
+  <data name="&gt;&gt;cbxFilter.Name" xml:space="preserve">
+    <value>cbxFilter</value>
+  </data>
+  <data name="&gt;&gt;cbxFilter.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cbxFilter.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;cbxFilter.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="groupBox1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>굴림, 8.25pt, style=Bold</value>
+  </data>
+  <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 12</value>
+  </data>
+  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>254, 219</value>
+  </data>
+  <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>OPERATION SETTINGS</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="txbTimeout.Location" type="System.Drawing.Point, System.Drawing">
+    <value>96, 17</value>
+  </data>
+  <data name="txbTimeout.Size" type="System.Drawing.Size, System.Drawing">
+    <value>150, 20</value>
+  </data>
+  <data name="txbTimeout.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;txbTimeout.Name" xml:space="preserve">
+    <value>txbTimeout</value>
+  </data>
+  <data name="&gt;&gt;txbTimeout.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txbTimeout.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;txbTimeout.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="txbInterval.Location" type="System.Drawing.Point, System.Drawing">
+    <value>96, 43</value>
+  </data>
+  <data name="txbInterval.Size" type="System.Drawing.Size, System.Drawing">
+    <value>150, 20</value>
+  </data>
+  <data name="txbInterval.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;txbInterval.Name" xml:space="preserve">
+    <value>txbInterval</value>
+  </data>
+  <data name="&gt;&gt;txbInterval.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txbInterval.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;txbInterval.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="lbInterval.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lbInterval.Font" type="System.Drawing.Font, System.Drawing">
+    <value>굴림, 9pt</value>
+  </data>
+  <data name="lbInterval.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lbInterval.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 46</value>
+  </data>
+  <data name="lbInterval.Size" type="System.Drawing.Size, System.Drawing">
+    <value>45, 12</value>
+  </data>
+  <data name="lbInterval.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="lbInterval.Text" xml:space="preserve">
+    <value>Interval</value>
+  </data>
+  <data name="&gt;&gt;lbInterval.Name" xml:space="preserve">
+    <value>lbInterval</value>
+  </data>
+  <data name="&gt;&gt;lbInterval.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbInterval.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;lbInterval.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="lbTimeout.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lbTimeout.Font" type="System.Drawing.Font, System.Drawing">
+    <value>굴림, 9pt</value>
+  </data>
+  <data name="lbTimeout.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 16</value>
+  </data>
+  <data name="lbTimeout.Size" type="System.Drawing.Size, System.Drawing">
+    <value>51, 12</value>
+  </data>
+  <data name="lbTimeout.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="lbTimeout.Text" xml:space="preserve">
+    <value>Timeout</value>
+  </data>
+  <data name="&gt;&gt;lbTimeout.Name" xml:space="preserve">
+    <value>lbTimeout</value>
+  </data>
+  <data name="&gt;&gt;lbTimeout.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbTimeout.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;lbTimeout.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="groupBox2.Font" type="System.Drawing.Font, System.Drawing">
+    <value>굴림, 8.25pt, style=Bold</value>
+  </data>
+  <data name="groupBox2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 237</value>
+  </data>
+  <data name="groupBox2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>254, 69</value>
+  </data>
+  <data name="groupBox2.TabIndex" type="System.Int32, mscorlib">
+    <value>24</value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>ACCESS SETTINGS</value>
+  </data>
+  <data name="&gt;&gt;groupBox2.Name" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;groupBox2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox2.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;groupBox2.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="txbTxOffTime.Location" type="System.Drawing.Point, System.Drawing">
+    <value>96, 43</value>
+  </data>
+  <data name="txbTxOffTime.Size" type="System.Drawing.Size, System.Drawing">
+    <value>150, 20</value>
+  </data>
+  <data name="txbTxOffTime.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;txbTxOffTime.Name" xml:space="preserve">
+    <value>txbTxOffTime</value>
+  </data>
+  <data name="&gt;&gt;txbTxOffTime.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txbTxOffTime.Parent" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="&gt;&gt;txbTxOffTime.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="txbTxOnTime.Location" type="System.Drawing.Point, System.Drawing">
+    <value>96, 14</value>
+  </data>
+  <data name="txbTxOnTime.Size" type="System.Drawing.Size, System.Drawing">
+    <value>150, 20</value>
+  </data>
+  <data name="txbTxOnTime.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;txbTxOnTime.Name" xml:space="preserve">
+    <value>txbTxOnTime</value>
+  </data>
+  <data name="&gt;&gt;txbTxOnTime.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txbTxOnTime.Parent" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="&gt;&gt;txbTxOnTime.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="lbTxOffTime.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lbTxOffTime.Font" type="System.Drawing.Font, System.Drawing">
+    <value>굴림, 9pt</value>
+  </data>
+  <data name="lbTxOffTime.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lbTxOffTime.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 46</value>
+  </data>
+  <data name="lbTxOffTime.Size" type="System.Drawing.Size, System.Drawing">
+    <value>72, 12</value>
+  </data>
+  <data name="lbTxOffTime.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="lbTxOffTime.Text" xml:space="preserve">
+    <value>Tx Off Time</value>
+  </data>
+  <data name="&gt;&gt;lbTxOffTime.Name" xml:space="preserve">
+    <value>lbTxOffTime</value>
+  </data>
+  <data name="&gt;&gt;lbTxOffTime.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbTxOffTime.Parent" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="&gt;&gt;lbTxOffTime.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="lbTxOnTime.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lbTxOnTime.Font" type="System.Drawing.Font, System.Drawing">
+    <value>굴림, 9pt</value>
+  </data>
+  <data name="lbTxOnTime.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lbTxOnTime.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 16</value>
+  </data>
+  <data name="lbTxOnTime.Size" type="System.Drawing.Size, System.Drawing">
+    <value>73, 12</value>
+  </data>
+  <data name="lbTxOnTime.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="lbTxOnTime.Text" xml:space="preserve">
+    <value>Tx On Time</value>
+  </data>
+  <data name="&gt;&gt;lbTxOnTime.Name" xml:space="preserve">
+    <value>lbTxOnTime</value>
+  </data>
+  <data name="&gt;&gt;lbTxOnTime.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbTxOnTime.Parent" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="&gt;&gt;lbTxOnTime.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="groupBox3.Font" type="System.Drawing.Font, System.Drawing">
+    <value>굴림, 8.25pt, style=Bold</value>
+  </data>
+  <data name="groupBox3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 312</value>
+  </data>
+  <data name="groupBox3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>254, 69</value>
+  </data>
+  <data name="groupBox3.TabIndex" type="System.Int32, mscorlib">
+    <value>25</value>
+  </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>RF SETTINGS</value>
+  </data>
+  <data name="&gt;&gt;groupBox3.Name" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="&gt;&gt;groupBox3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox3.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;groupBox3.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="btnCancel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>굴림, 9pt, style=Bold</value>
+  </data>
+  <data name="btnCancel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>164, 387</value>
+  </data>
+  <data name="btnCancel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>102, 43</value>
+  </data>
+  <data name="btnCancel.TabIndex" type="System.Int32, mscorlib">
+    <value>26</value>
+  </data>
+  <data name="btnCancel.Text" xml:space="preserve">
+    <value>CANCEL</value>
+  </data>
+  <data name="&gt;&gt;btnCancel.Name" xml:space="preserve">
+    <value>btnCancel</value>
+  </data>
+  <data name="&gt;&gt;btnCancel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnCancel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;btnCancel.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="btnSave.Font" type="System.Drawing.Font, System.Drawing">
+    <value>굴림, 9pt, style=Bold</value>
+  </data>
+  <data name="btnSave.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnSave.Location" type="System.Drawing.Point, System.Drawing">
+    <value>56, 387</value>
+  </data>
+  <data name="btnSave.Size" type="System.Drawing.Size, System.Drawing">
+    <value>102, 43</value>
+  </data>
+  <data name="btnSave.TabIndex" type="System.Int32, mscorlib">
+    <value>27</value>
+  </data>
+  <data name="btnSave.Text" xml:space="preserve">
+    <value>SAVE</value>
+  </data>
+  <data name="&gt;&gt;btnSave.Name" xml:space="preserve">
+    <value>btnSave</value>
+  </data>
+  <data name="&gt;&gt;btnSave.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnSave.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;btnSave.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>7, 12</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>280, 439</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>ReaderSettingForm</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>ReaderSettingForm</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+</root>

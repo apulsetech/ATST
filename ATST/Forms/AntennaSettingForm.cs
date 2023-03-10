@@ -16,12 +16,12 @@ using System.Windows.Forms.VisualStyles;
 
 namespace ATST.Forms
 {
-    public partial class SettingForm : Form
+    public partial class AntennaSettingForm : Form
     {
 
         private bool[] mAntennaStates;
         private int[] mAntennaPowerGains;
-        private int[] mAntennaDwellTime;
+        private int[] mAntennaDwellTimes;
 
         private object mAntennaAllEnableCheckBox = new object();
         private object mAntennaAllPowerGainComboBox = new object();
@@ -36,7 +36,10 @@ namespace ATST.Forms
 
         private List<TextBox> SaveTextBoxList = new List<TextBox>(SharedValues.NumberOfAntennaPorts);
 
-        public SettingForm()
+        public delegate void RfidAntennaRsultHandler(bool[] Enables, int[] gains, int[] dwells);
+        public event RfidAntennaRsultHandler ResultEvent;
+
+        public AntennaSettingForm()
         {
             InitializeComponent();
 
@@ -239,7 +242,7 @@ namespace ATST.Forms
             {
                 mAntennaStates = new bool[SharedValues.NumberOfAntennaPorts];
                 mAntennaPowerGains = new int[SharedValues.NumberOfAntennaPorts];
-                mAntennaDwellTime = new int[SharedValues.NumberOfAntennaPorts];
+                mAntennaDwellTimes = new int[SharedValues.NumberOfAntennaPorts];
 
                 for (int i = 0; i < SharedValues.NumberOfAntennaPorts; i++)
                 {
@@ -247,7 +250,7 @@ namespace ATST.Forms
                     int powerGain = await SharedValues.Reader.GetRadioPowerAsync(i).ConfigureAwait(true);
                     mAntennaPowerGains[i] = (powerGain >= RFID.Power.MIN_POWER) &&
                                             (powerGain <= RFID.Power.MAX_POWER) ? powerGain : RFID.Power.MAX_POWER;
-                    mAntennaDwellTime[i] = await SharedValues.Reader.GetDwellTimeAsync(i).ConfigureAwait(true);
+                    mAntennaDwellTimes[i] = await SharedValues.Reader.GetDwellTimeAsync(i).ConfigureAwait(true);
                 }
             }
         }
@@ -276,7 +279,7 @@ namespace ATST.Forms
                 }
 
                 ((TextBox)mAntennaDwellTimeTextBoxes[i]).Text = string.Format(CultureInfo.CurrentCulture,
-                                                                    "{0} ms", mAntennaDwellTime[groupIndex * 16 + i]);
+                                                                    "{0} ms", mAntennaDwellTimes[groupIndex * 16 + i]);
 
             }
         } 
@@ -289,13 +292,16 @@ namespace ATST.Forms
                 {
                     SharedValues.Reader.SetAntennaPortState(i, mAntennaStates[i] ? RFID.ON : RFID.OFF);
                     SharedValues.Reader.SetRadioPower(i, mAntennaPowerGains[i]);
-                    SharedValues.Reader.SetDwellTime(i, mAntennaDwellTime[i]);
+                    SharedValues.Reader.SetDwellTime(i, mAntennaDwellTimes[i]);
                 }
             }
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            // 안테나 설정 정보 내보내기
+            ResultEvent(mAntennaStates, mAntennaPowerGains, mAntennaDwellTimes);
+            // 안테나 설정
             SaveAntennaSettings();
         }
 
@@ -352,7 +358,7 @@ namespace ATST.Forms
                 {
                     for (int i = 0; i < SharedValues.NumberOfAntennaPorts; i++)
                     {
-                        mAntennaDwellTime[i] = dwellTime;
+                        mAntennaDwellTimes[i] = dwellTime;
                     }
                 }
                 else
@@ -1003,7 +1009,7 @@ namespace ATST.Forms
                 int dwellTime = Convert.ToInt32(textBoxAntenna0DwellTime.Text, CultureInfo.CurrentCulture);
                 if (dwellTime >= RFID.Dwell.MIN_DWELL)
                 {
-                    mAntennaDwellTime[tabAntennaPorts.SelectedIndex * 16] = dwellTime;
+                    mAntennaDwellTimes[tabAntennaPorts.SelectedIndex * 16] = dwellTime;
                 }
             }
             else
@@ -1021,7 +1027,7 @@ namespace ATST.Forms
                 int dwellTime = Convert.ToInt32(textBoxAntenna1DwellTime.Text, CultureInfo.CurrentCulture);
                 if (dwellTime >= RFID.Dwell.MIN_DWELL)
                 {
-                    mAntennaDwellTime[tabAntennaPorts.SelectedIndex * 16 + 1] = dwellTime;
+                    mAntennaDwellTimes[tabAntennaPorts.SelectedIndex * 16 + 1] = dwellTime;
                 }
             }
             else
@@ -1039,7 +1045,7 @@ namespace ATST.Forms
                 int dwellTime = Convert.ToInt32(textBoxAntenna2DwellTime.Text, CultureInfo.CurrentCulture);
                 if (dwellTime >= RFID.Dwell.MIN_DWELL)
                 {
-                    mAntennaDwellTime[tabAntennaPorts.SelectedIndex * 16 + 2] = dwellTime;
+                    mAntennaDwellTimes[tabAntennaPorts.SelectedIndex * 16 + 2] = dwellTime;
                 }
             }
             else
@@ -1057,7 +1063,7 @@ namespace ATST.Forms
                 int dwellTime = Convert.ToInt32(textBoxAntenna3DwellTime.Text, CultureInfo.CurrentCulture);
                 if (dwellTime >= RFID.Dwell.MIN_DWELL)
                 {
-                    mAntennaDwellTime[tabAntennaPorts.SelectedIndex * 16 + 3] = dwellTime;
+                    mAntennaDwellTimes[tabAntennaPorts.SelectedIndex * 16 + 3] = dwellTime;
                 }
             }
             else
@@ -1075,7 +1081,7 @@ namespace ATST.Forms
                 int dwellTime = Convert.ToInt32(textBoxAntenna4DwellTime.Text, CultureInfo.CurrentCulture);
                 if (dwellTime >= RFID.Dwell.MIN_DWELL)
                 {
-                    mAntennaDwellTime[tabAntennaPorts.SelectedIndex * 16 + 4] = dwellTime;
+                    mAntennaDwellTimes[tabAntennaPorts.SelectedIndex * 16 + 4] = dwellTime;
                 }
             }
             else
@@ -1093,7 +1099,7 @@ namespace ATST.Forms
                 int dwellTime = Convert.ToInt32(textBoxAntenna5DwellTime.Text, CultureInfo.CurrentCulture);
                 if (dwellTime >= RFID.Dwell.MIN_DWELL)
                 {
-                    mAntennaDwellTime[tabAntennaPorts.SelectedIndex * 16 + 5] = dwellTime;
+                    mAntennaDwellTimes[tabAntennaPorts.SelectedIndex * 16 + 5] = dwellTime;
                 }
             }
             else
@@ -1111,7 +1117,7 @@ namespace ATST.Forms
                 int dwellTime = Convert.ToInt32(textBoxAntenna6DwellTime.Text, CultureInfo.CurrentCulture);
                 if (dwellTime >= RFID.Dwell.MIN_DWELL)
                 {
-                    mAntennaDwellTime[tabAntennaPorts.SelectedIndex * 16 + 6] = dwellTime;
+                    mAntennaDwellTimes[tabAntennaPorts.SelectedIndex * 16 + 6] = dwellTime;
                 }
             }
             else
@@ -1129,7 +1135,7 @@ namespace ATST.Forms
                 int dwellTime = Convert.ToInt32(textBoxAntenna7DwellTime.Text, CultureInfo.CurrentCulture);
                 if (dwellTime >= RFID.Dwell.MIN_DWELL)
                 {
-                    mAntennaDwellTime[tabAntennaPorts.SelectedIndex * 16 + 7] = dwellTime;
+                    mAntennaDwellTimes[tabAntennaPorts.SelectedIndex * 16 + 7] = dwellTime;
                 }
             }
             else
@@ -1147,7 +1153,7 @@ namespace ATST.Forms
                 int dwellTime = Convert.ToInt32(textBoxAntenna8DwellTime.Text, CultureInfo.CurrentCulture);
                 if (dwellTime >= RFID.Dwell.MIN_DWELL)
                 {
-                    mAntennaDwellTime[tabAntennaPorts.SelectedIndex * 16 + 8] = dwellTime;
+                    mAntennaDwellTimes[tabAntennaPorts.SelectedIndex * 16 + 8] = dwellTime;
                 }
             }
             else
@@ -1165,7 +1171,7 @@ namespace ATST.Forms
                 int dwellTime = Convert.ToInt32(textBoxAntenna9DwellTime.Text, CultureInfo.CurrentCulture);
                 if (dwellTime >= RFID.Dwell.MIN_DWELL)
                 {
-                    mAntennaDwellTime[tabAntennaPorts.SelectedIndex * 16 + 9] = dwellTime;
+                    mAntennaDwellTimes[tabAntennaPorts.SelectedIndex * 16 + 9] = dwellTime;
                 }
             }
             else
@@ -1183,7 +1189,7 @@ namespace ATST.Forms
                 int dwellTime = Convert.ToInt32(textBoxAntenna10DwellTime.Text, CultureInfo.CurrentCulture);
                 if (dwellTime >= RFID.Dwell.MIN_DWELL)
                 {
-                    mAntennaDwellTime[tabAntennaPorts.SelectedIndex * 16 + 10] = dwellTime;
+                    mAntennaDwellTimes[tabAntennaPorts.SelectedIndex * 16 + 10] = dwellTime;
                 }
             }
             else
@@ -1201,7 +1207,7 @@ namespace ATST.Forms
                 int dwellTime = Convert.ToInt32(textBoxAntenna11DwellTime.Text, CultureInfo.CurrentCulture);
                 if (dwellTime >= RFID.Dwell.MIN_DWELL)
                 {
-                    mAntennaDwellTime[tabAntennaPorts.SelectedIndex * 16 + 11] = dwellTime;
+                    mAntennaDwellTimes[tabAntennaPorts.SelectedIndex * 16 + 11] = dwellTime;
                 }
             }
             else
@@ -1219,7 +1225,7 @@ namespace ATST.Forms
                 int dwellTime = Convert.ToInt32(textBoxAntenna12DwellTime.Text, CultureInfo.CurrentCulture);
                 if (dwellTime >= RFID.Dwell.MIN_DWELL)
                 {
-                    mAntennaDwellTime[tabAntennaPorts.SelectedIndex * 16 + 12] = dwellTime;
+                    mAntennaDwellTimes[tabAntennaPorts.SelectedIndex * 16 + 12] = dwellTime;
                 }
             }
             else
@@ -1237,7 +1243,7 @@ namespace ATST.Forms
                 int dwellTime = Convert.ToInt32(textBoxAntenna13DwellTime.Text, CultureInfo.CurrentCulture);
                 if (dwellTime >= RFID.Dwell.MIN_DWELL)
                 {
-                    mAntennaDwellTime[tabAntennaPorts.SelectedIndex * 16 + 13] = dwellTime;
+                    mAntennaDwellTimes[tabAntennaPorts.SelectedIndex * 16 + 13] = dwellTime;
                 }
             }
             else
@@ -1255,7 +1261,7 @@ namespace ATST.Forms
                 int dwellTime = Convert.ToInt32(textBoxAntenna14DwellTime.Text, CultureInfo.CurrentCulture);
                 if (dwellTime >= RFID.Dwell.MIN_DWELL)
                 {
-                    mAntennaDwellTime[tabAntennaPorts.SelectedIndex * 16 + 14] = dwellTime;
+                    mAntennaDwellTimes[tabAntennaPorts.SelectedIndex * 16 + 14] = dwellTime;
                 }
             }
             else
@@ -1273,7 +1279,7 @@ namespace ATST.Forms
                 int dwellTime = Convert.ToInt32(textBoxAntenna15DwellTime.Text, CultureInfo.CurrentCulture);
                 if (dwellTime >= RFID.Dwell.MIN_DWELL)
                 {
-                    mAntennaDwellTime[tabAntennaPorts.SelectedIndex * 16 + 15] = dwellTime;
+                    mAntennaDwellTimes[tabAntennaPorts.SelectedIndex * 16 + 15] = dwellTime;
                 }
             }
             else

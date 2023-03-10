@@ -142,11 +142,13 @@ namespace ATST.Forms
 
         private async Task one_port_proccess()
         {
+            int delay_time = SharedValues.Reader.GetDwellTime(0);
+
             if (mRfidInventoryStarted)
             {
-                await Task.Delay(1000);
+                await Task.Delay(delay_time);
 
-               one_out_proccess(currentPort);
+                one_output_proccess(currentPort);
 
                 await one_port_proccess();
             }
@@ -170,7 +172,7 @@ namespace ATST.Forms
             {
                 if (SharedValues.ConnectionType == SharedValues.InterfaceType.SERIAL)
                 {
-                    SharedValues.Reader = await Reader.GetReaderAsync(btn_test.Text, 115200, AntCount).ConfigureAwait(true);
+                    SharedValues.Reader = await Reader.GetReaderAsync(SharedValues.SelectedPort, 115200, AntCount).ConfigureAwait(true);
                     Log.WriteLine("INFO. Reader Setting ConnectionType({0}).", SharedValues.ConnectionType);
 
                 }
@@ -199,6 +201,8 @@ namespace ATST.Forms
 
                         btn_rfid_connect.Text = Properties.Resources.StringDeviceConnect;
                         EnableControl(true);
+
+                        LoadConfigInfo(SharedValues.NumberOfAntennaPorts);
                     }
                     else // error - Connection failed
                     {
