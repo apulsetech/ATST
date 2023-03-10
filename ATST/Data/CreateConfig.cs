@@ -29,10 +29,17 @@ namespace ATST.Util
                 panel_row = 0,
             };
 
+            var uri = new Uri
+            {
+                ApiServerUri = new List<string>(),
+                GatheringServerUri = new List<string>()
+            };
+
             var setting = new Setting
             {
                 data = data,
-                design = design
+                design = design,
+                uri = uri
             };
 
             var Configuration = new Configuration()
@@ -74,21 +81,26 @@ namespace ATST.Util
     {
         public Data data { get; set; }
         public Design design { get; set; }
-        public Test test { get; set; }
+        public Uri uri { get; set; }
 
         public Setting()
         {
             data = new Data();
             design = new Design();
-            test = new Test();
+            uri = new Uri();
         }
+    }
+
+    public class Uri
+    {
+        public List<string> ApiServerUri { get; set; }
+        public List<string> GatheringServerUri { get; set; }
     }
 
     public class Design
     {
         public int panel_row { get; set; }
         public int panel_column { get; set; }
-        public int asdfasdf { get; set;  }
     }
 
     public class Data
@@ -100,11 +112,6 @@ namespace ATST.Util
         public int[] PowerGains { get; set; }
 
         public int[] DwellTiems { get; set; }
-    }
-
-    public class Test
-    {
-        public string TestInfo { get; set; }
     }
 
 }

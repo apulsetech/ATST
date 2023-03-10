@@ -43,6 +43,9 @@
       <HintPath>..\..\..\..\..\a211_ATST\Src\develop\yeonmin\a211_ATST\a211_ATST\Library\ControlIpAddressBox.dll</HintPath>
     </Reference>
     <Reference Include="CsControl, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Management" />
@@ -58,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\Config.cs" />
+    <Compile Include="Data\DataFormat.cs" />
     <Compile Include="Data\ReadInfo.cs" />
     <Compile Include="Data\SharedValues.cs" />
     <Compile Include="Data\TagInfo.cs" />
@@ -68,6 +72,12 @@
     </Compile>
     <Compile Include="Forms\Diagnotics\LogDialog.Designer.cs">
       <DependentUpon>LogDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\WebInterLockForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\WebInterLockForm.Designer.cs">
+      <DependentUpon>WebInterLockForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\MainForm.Common.cs">
       <SubType>Form</SubType>
@@ -128,6 +138,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Diagnotics\LogDialog.resx">
       <DependentUpon>LogDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\WebInterLockForm.resx">
+      <DependentUpon>WebInterLockForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainForm.hu.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -193,6 +206,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="app.config" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

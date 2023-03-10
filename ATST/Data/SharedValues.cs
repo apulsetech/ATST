@@ -22,7 +22,11 @@ namespace ATST.Data
         private static SensorReader mSensorReader = null;
         private static bool mReaderConnected = false;
         private static int mNumberOfAntennaPorts = 1;
-        private static string mSelectedPort = string.Empty; 
+        private static string mSelectedPort = string.Empty;
+        private static string mApiServerUri = string.Empty;
+        private static string mGatheringServerUri = string.Empty;
+        private static string mDeviceId = string.Empty;
+        private static string mWorkerId = "anonymous";
         public static Dictionary<string, TagInfo> mTagSaveDictionary = new Dictionary<string, TagInfo>();
         public static Dictionary<string, ReadInfo> mTagStateDictionary = new Dictionary<string, ReadInfo>();
 
@@ -101,7 +105,28 @@ namespace ATST.Data
             }
         }
 
-        
+        public static string ApiServerUri
+        {
+            get => mApiServerUri;
+            set => mApiServerUri = value;
+        }
 
+        public static string GatheringServerUri
+        {
+            get => mGatheringServerUri;
+            set => mGatheringServerUri = value;
+        }
+
+        public static string DeviceId
+        {
+            get => mDeviceId;
+            set => mDeviceId = value;
+        }
+
+        public static string WorkerId
+        {
+            get => mWorkerId;
+            set => mWorkerId = value;
+        }
     }
 }

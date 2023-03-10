@@ -18,7 +18,6 @@ namespace ATST.Data
             Epc = epc;
             Port = port;
             Rssi = rssi;
-            Check = check;
         }
     }
 }

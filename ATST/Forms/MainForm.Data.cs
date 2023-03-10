@@ -125,10 +125,13 @@ namespace ATST.Forms
                     {
                         int num = SharedValues.mTagSaveDictionary[epc].Port;
                         SharedValues.mTagSaveDictionary[epc].Port = int.Parse(port);
+                        /*
                         var save_port_cnt = SharedValues.mTagSaveDictionary.Where(
                             x => x.Value.Port.Equals(num)).ToList();
                         tablePanel1.DataViewTagCntNum(num, save_port_cnt.Count);
                         io_data_listview.add_listview_items("o", DateTime.Now, epc, "정보 없음");
+                        DataFormat.AlerInputEvent(SharedValues.DeviceId, SharedValues.WorkerId,
+                            SharedValues.mTagSaveDictionary[epc].Port, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), SharedValues.mTagSaveDictionary[epc].Epc, save_port_cnt.Count, 0, 0);*/
                     }
                     SharedValues.mTagSaveDictionary[epc].Rssi = Convert.ToDouble(rssi);
                     SharedValues.mTagSaveDictionary[epc].Check = true;
@@ -139,6 +142,9 @@ namespace ATST.Forms
                     x => x.Value.Port.Equals(Int32.Parse(port))).ToList();
                 tablePanel1.DataViewTagCntNum(Int32.Parse(port), tag_cnt.Count);
                 io_data_listview.add_listview_items("i", DateTime.Now, epc, "정보 없음");
+                DataFormat.AlerInputEvent(SharedValues.DeviceId, SharedValues.WorkerId,
+                            SharedValues.mTagSaveDictionary[epc].Port, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), SharedValues.mTagSaveDictionary[epc].Epc, tag_cnt.Count, 0, 0);
+                        
             }
             catch
             {
@@ -231,12 +237,17 @@ namespace ATST.Forms
                     Debug.WriteLine("mTagStateDictionary Remove Key : {0}", Key_List[i]);
                     if (SharedValues.mTagSaveDictionary.ContainsKey(Key_List[i]))
                     {
+                        int RemovePort = SharedValues.mTagSaveDictionary[Key_List[i]].Port;
+                        string RemoveEpc = SharedValues.mTagSaveDictionary[Key_List[i]].Epc;
+
                         io_data_listview.add_listview_items("o", DateTime.Now, SharedValues.mTagSaveDictionary[Key_List[i]].Epc, "정보 없음");
                         SharedValues.mTagSaveDictionary.Remove(Key_List[i]);
                         var tag_cnt = SharedValues.mTagSaveDictionary.Where(
                         x => x.Value.Port.Equals(port)).ToList();
                         tablePanel1.DataViewTagCntNum(port, tag_cnt.Count);
-                        Debug.WriteLine("mTagSaveDictionary Remove Key : {0}", Key_List[i]);
+                        DataFormat.AlertOutputEvent(SharedValues.DeviceId, SharedValues.WorkerId,
+                            RemovePort, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), RemoveEpc, tag_cnt.Count, 0, 0);
+                        Debug.WriteLine("mTagSaveDictionary Remove Key : {0}",Key_List[i]);
                     };
                 }
                 /*

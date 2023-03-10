@@ -389,6 +389,7 @@ namespace ATST.Forms
                 Config.Panel_Column = Convert.ToInt32(tbx_col_tbl_panel.Text);
             }
 
+            DataFormat.UpdateColRowNum(SharedValues.DeviceId, Config.Panel_Column, Config.Panel_Row);
             //SharedValues.Reader.
         }
 
@@ -496,6 +497,17 @@ namespace ATST.Forms
                     }
                 }
                 catch
+                {
+
+                }
+            }
+        }
+
+        private void webLinkageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (WebInterLockForm form = new WebInterLockForm())
+            {
+                if (form.ShowDialog() == DialogResult.OK)
                 {
 
                 }

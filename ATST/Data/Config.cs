@@ -18,6 +18,9 @@ namespace ATST.Data
         public static int[] AntPowerGains { get; set; }
         public static int[] AntDwellTimes { get; set; }
 
+        public static List<string> APiServerUri = new List<string>();
+        public static List<string> GatheringServerUri = new List<string>();
+
         public static void Load()
         { Load(Assembly.GetExecutingAssembly()); }
         public static void Load(Assembly assembly)
@@ -36,7 +39,22 @@ namespace ATST.Data
             AntDwellTimes = config.setting.data.DwellTiems;
             Panel_Row = config.setting.design.panel_row;
             Panel_Column = config.setting.design.panel_column;
-            
+
+            if (config.setting.uri.ApiServerUri != null)
+            {
+                foreach (var u in config.setting.uri.ApiServerUri)
+                {
+                    APiServerUri.Add(u);
+                }
+            }
+
+            if (config.setting.uri.GatheringServerUri != null)
+            {
+                foreach (var u in config.setting.uri.GatheringServerUri)
+                {
+                    GatheringServerUri.Add(u);
+                }
+            }
         }
 
         public static void Save()
@@ -53,6 +71,8 @@ namespace ATST.Data
             config.setting.data.States = AntStates;
             config.setting.data.PowerGains = AntPowerGains;
             config.setting.data.DwellTiems = AntDwellTimes;
+            config.setting.uri.ApiServerUri = APiServerUri;
+            config.setting.uri.GatheringServerUri = GatheringServerUri;
 
             XmlConfigManager.Save(filePath, config);
             

@@ -43,7 +43,6 @@ namespace ATST.Forms
             this.engToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.logToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deviceSearchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -70,6 +69,9 @@ namespace ATST.Forms
             this.label2 = new System.Windows.Forms.Label();
             this.txbAntCount1 = new System.Windows.Forms.TextBox();
             this.btnAntCount = new System.Windows.Forms.Button();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.webLinkageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.menuStrip.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -121,7 +123,9 @@ namespace ATST.Forms
             this.toolStripMenuItem2,
             this.logToolStripMenuItem,
             this.toolStripSeparator1,
-            this.exitToolStripMenuItem});
+            this.exitToolStripMenuItem,
+            this.toolStripSeparator2,
+            this.webLinkageToolStripMenuItem});
             this.menuToolStripMenuItem.Name = "menuToolStripMenuItem";
             resources.ApplyResources(this.menuToolStripMenuItem, "menuToolStripMenuItem");
             this.menuToolStripMenuItem.Click += new System.EventHandler(this.menuToolStripMenuItem_Click);
@@ -156,11 +160,6 @@ namespace ATST.Forms
             this.logToolStripMenuItem.Name = "logToolStripMenuItem";
             resources.ApplyResources(this.logToolStripMenuItem, "logToolStripMenuItem");
             this.logToolStripMenuItem.Click += new System.EventHandler(this.logToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            resources.ApplyResources(this.toolStripSeparator1, "toolStripSeparator1");
             // 
             // exitToolStripMenuItem
             // 
@@ -334,6 +333,22 @@ namespace ATST.Forms
             this.btnAntCount.UseVisualStyleBackColor = true;
             this.btnAntCount.Click += new System.EventHandler(this.btnSettingAntCount_Click);
             // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            resources.ApplyResources(this.toolStripSeparator2, "toolStripSeparator2");
+            // 
+            // webLinkageToolStripMenuItem
+            // 
+            this.webLinkageToolStripMenuItem.Name = "webLinkageToolStripMenuItem";
+            resources.ApplyResources(this.webLinkageToolStripMenuItem, "webLinkageToolStripMenuItem");
+            this.webLinkageToolStripMenuItem.Click += new System.EventHandler(this.webLinkageToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            resources.ApplyResources(this.toolStripSeparator1, "toolStripSeparator1");
+            // 
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
@@ -392,7 +407,6 @@ namespace ATST.Forms
         private System.Windows.Forms.TextBox tbx_row_tbl_panel;
         private System.Windows.Forms.TextBox tbx_col_tbl_panel;
         private System.Windows.Forms.ToolStripMenuItem logToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private CsControl.Control.TablePanel tablePanel1;
         private CsControl.Control.io_data_listview io_data_listview;
@@ -405,5 +419,8 @@ namespace ATST.Forms
         private System.Windows.Forms.TextBox txbAntCount1;
         private System.Windows.Forms.Button btnAntCount;
         private System.Windows.Forms.ToolStripMenuItem selectMaskToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem webLinkageToolStripMenuItem;
     }
 }
