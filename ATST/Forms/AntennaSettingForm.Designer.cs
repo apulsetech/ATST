@@ -703,7 +703,7 @@
             this.btnCancle.UseVisualStyleBackColor = true;
             this.btnCancle.Click += new System.EventHandler(this.btnCancle_Click);
             // 
-            // SettingForm
+            // AntennaSettingForm
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -784,7 +784,8 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tabAntennaPorts);
-            this.Name = "SettingForm";
+            this.Name = "AntennaSettingForm";
+            this.Load += new System.EventHandler(this.AntennaSettingForm_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SettingForm_KeyDown);
             this.tabAntennaPorts.ResumeLayout(false);
             this.ResumeLayout(false);

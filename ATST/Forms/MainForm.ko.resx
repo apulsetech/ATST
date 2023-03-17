@@ -142,9 +142,6 @@
   <data name="menuToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;메뉴</value>
   </data>
-  <data name="languageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>110, 22</value>
-  </data>
   <data name="languageToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;언어</value>
   </data>
@@ -160,23 +157,17 @@
   <data name="engToolStripMenuItem.Text" xml:space="preserve">
     <value>영어</value>
   </data>
-  <data name="toolStripMenuItem2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>107, 6</value>
-  </data>
-  <data name="logToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>110, 22</value>
-  </data>
   <data name="logToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;로그</value>
   </data>
-  <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>107, 6</value>
-  </data>
-  <data name="exitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>110, 22</value>
-  </data>
   <data name="exitToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;끝내기</value>
+  </data>
+  <data name="webLinkageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>180, 22</value>
+  </data>
+  <data name="webLinkageToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;웹연동</value>
   </data>
   <data name="settingToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>43, 20</value>
@@ -184,14 +175,29 @@
   <data name="settingToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;설정</value>
   </data>
+  <data name="deviceSearchToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>138, 22</value>
+  </data>
   <data name="deviceSearchToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;장비 검색</value>
+  </data>
+  <data name="toolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>135, 6</value>
+  </data>
+  <data name="deviceSettingToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>138, 22</value>
   </data>
   <data name="deviceSettingToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;장비 설정</value>
   </data>
+  <data name="readerSettingToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>138, 22</value>
+  </data>
   <data name="readerSettingToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;리더 설정</value>
+  </data>
+  <data name="selectMaskToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>138, 22</value>
   </data>
   <data name="selectMaskToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;선택 마스크</value>
@@ -220,29 +226,36 @@
   <data name="btn_tbl_panel.Text" xml:space="preserve">
     <value>불러오기</value>
   </data>
-  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="lb1.Size" type="System.Drawing.Size, System.Drawing">
     <value>25, 12</value>
   </data>
-  <data name="label1.Text" xml:space="preserve">
+  <data name="lb1.Text" xml:space="preserve">
     <value>열 :</value>
   </data>
-  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="lb2.Size" type="System.Drawing.Size, System.Drawing">
     <value>25, 12</value>
   </data>
-  <data name="label3.Text" xml:space="preserve">
+  <data name="lb2.Text" xml:space="preserve">
     <value>행 :</value>
   </data>
   <data name="tablePanel1.Size" type="System.Drawing.Size, System.Drawing">
     <value>490, 306</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="label2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+  <data name="lb3.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
   </data>
-  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="lb3.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lb3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lb3.Size" type="System.Drawing.Size, System.Drawing">
     <value>77, 12</value>
   </data>
-  <data name="label2.Text" xml:space="preserve">
+  <data name="lb3.Text" xml:space="preserve">
     <value>안테나 개수 :</value>
   </data>
   <data name="btnAntCount.Text" xml:space="preserve">

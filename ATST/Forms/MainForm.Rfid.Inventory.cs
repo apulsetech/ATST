@@ -17,7 +17,6 @@ namespace ATST.Forms
     public partial class MainForm
     {
         private bool mRfidInventoryStarted = false;
-        CancellationTokenSource tokenSource;
 
         private async void btn_rfid_inventory_Click(object sender, EventArgs e)
         {

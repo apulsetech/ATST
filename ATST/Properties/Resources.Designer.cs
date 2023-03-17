@@ -79,6 +79,51 @@ namespace ATST.Properties {
         }
         
         /// <summary>
+        ///   Antenna과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string StringColAntenna {
+            get {
+                return ResourceManager.GetString("StringColAntenna", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Date과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string StringColDate {
+            get {
+                return ResourceManager.GetString("StringColDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   DeviceId과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string StringColDeviceName {
+            get {
+                return ResourceManager.GetString("StringColDeviceName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   EPC과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string StringColEpc {
+            get {
+                return ResourceManager.GetString("StringColEpc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Product과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string StringColTagIdentification {
+            get {
+                return ResourceManager.GetString("StringColTagIdentification", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Address과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
         internal static string StringDeviceAddress {
@@ -210,6 +255,24 @@ namespace ATST.Properties {
         internal static string StringFailedStopInventory {
             get {
                 return ResourceManager.GetString("StringFailedStopInventory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Invalid ApiServer Uri.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string StringInvalidApiServerUri {
+            get {
+                return ResourceManager.GetString("StringInvalidApiServerUri", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Invalid GatheringServer Uri.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string StringInvalidGatheringServerUri {
+            get {
+                return ResourceManager.GetString("StringInvalidGatheringServerUri", resourceCulture);
             }
         }
         

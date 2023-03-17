@@ -14,9 +14,14 @@ namespace ATST.Data
         public static string CultureName { get; set; }
         public static int Panel_Row { get; set; }
         public static int Panel_Column { get; set; }
-        public static bool[] AntStates { get; set; }
-        public static int[] AntPowerGains { get; set; }
-        public static int[] AntDwellTimes { get; set; }
+
+        public static bool[] AntStates = new bool[128];
+        public static int[] AntPowerGains = new int[128];
+        public static int[] AntDwellTimes = new int[128];
+
+        public static int mAntCount = 1;
+        public static int mApiServerPort = 0;
+        public static int mGatheringServerPort = 0;
 
         public static List<string> APiServerUri = new List<string>();
         public static List<string> GatheringServerUri = new List<string>();
@@ -39,6 +44,9 @@ namespace ATST.Data
             AntDwellTimes = config.setting.data.DwellTiems;
             Panel_Row = config.setting.design.panel_row;
             Panel_Column = config.setting.design.panel_column;
+            mAntCount = config.setting.data.AntCount;
+            mApiServerPort = config.setting.uri.ApiServerPort;
+            mGatheringServerPort = config.setting.uri.GatheringServerPort;
 
             if (config.setting.uri.ApiServerUri != null)
             {
@@ -47,7 +55,6 @@ namespace ATST.Data
                     APiServerUri.Add(u);
                 }
             }
-
             if (config.setting.uri.GatheringServerUri != null)
             {
                 foreach (var u in config.setting.uri.GatheringServerUri)
@@ -71,11 +78,13 @@ namespace ATST.Data
             config.setting.data.States = AntStates;
             config.setting.data.PowerGains = AntPowerGains;
             config.setting.data.DwellTiems = AntDwellTimes;
+            config.setting.uri.ApiServerPort = mApiServerPort;
+            config.setting.uri.GatheringServerPort = mGatheringServerPort;
             config.setting.uri.ApiServerUri = APiServerUri;
             config.setting.uri.GatheringServerUri = GatheringServerUri;
+            config.setting.data.AntCount = mAntCount;
 
             XmlConfigManager.Save(filePath, config);
-            
         }
 
         private static string GetFilePath(Assembly assembly)

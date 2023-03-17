@@ -123,6 +123,21 @@
   <data name="StringBank" xml:space="preserve">
     <value>뱅크</value>
   </data>
+  <data name="StringColAntenna" xml:space="preserve">
+    <value>안테나</value>
+  </data>
+  <data name="StringColDate" xml:space="preserve">
+    <value>날짜</value>
+  </data>
+  <data name="StringColDeviceName" xml:space="preserve">
+    <value>장비명</value>
+  </data>
+  <data name="StringColEpc" xml:space="preserve">
+    <value>EPC</value>
+  </data>
+  <data name="StringColTagIdentification" xml:space="preserve">
+    <value>상품명</value>
+  </data>
   <data name="StringDeviceAddress" xml:space="preserve">
     <value>주소</value>
   </data>

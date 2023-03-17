@@ -1463,5 +1463,10 @@ namespace ATST.Forms
             if (textBoxAntenna15DwellTime.Text.Length > 0)
                 SaveTextBoxList[15].Text = textBoxAntenna15DwellTime.Text;
         }
+
+        private void AntennaSettingForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

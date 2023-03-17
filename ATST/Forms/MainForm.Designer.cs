@@ -43,6 +43,9 @@ namespace ATST.Forms
             this.engToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.logToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.webLinkageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deviceSearchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -59,23 +62,25 @@ namespace ATST.Forms
             this.panel2 = new System.Windows.Forms.Panel();
             this.btn_tbl_panel = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lb1 = new System.Windows.Forms.Label();
+            this.lb2 = new System.Windows.Forms.Label();
             this.tbx_row_tbl_panel = new System.Windows.Forms.TextBox();
             this.tbx_col_tbl_panel = new System.Windows.Forms.TextBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tablePanel1 = new CsControl.Control.TablePanel();
-            this.io_data_listview = new CsControl.Control.io_data_listview();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txbAntCount1 = new System.Windows.Forms.TextBox();
+            this.lb3 = new System.Windows.Forms.Label();
+            this.txbAntCount = new System.Windows.Forms.TextBox();
             this.btnAntCount = new System.Windows.Forms.Button();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.webLinkageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.rbtnServerConnect = new System.Windows.Forms.RadioButton();
+            this.rbtnLocal = new System.Windows.Forms.RadioButton();
+            this.virtualListViewOutput = new UserControls.Controls.VirtualListView();
+            this.virtualListViewInput = new UserControls.Controls.VirtualListView();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.menuStrip.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // rbx_serial
@@ -123,9 +128,9 @@ namespace ATST.Forms
             this.toolStripMenuItem2,
             this.logToolStripMenuItem,
             this.toolStripSeparator1,
-            this.exitToolStripMenuItem,
+            this.webLinkageToolStripMenuItem,
             this.toolStripSeparator2,
-            this.webLinkageToolStripMenuItem});
+            this.exitToolStripMenuItem});
             this.menuToolStripMenuItem.Name = "menuToolStripMenuItem";
             resources.ApplyResources(this.menuToolStripMenuItem, "menuToolStripMenuItem");
             this.menuToolStripMenuItem.Click += new System.EventHandler(this.menuToolStripMenuItem_Click);
@@ -160,6 +165,22 @@ namespace ATST.Forms
             this.logToolStripMenuItem.Name = "logToolStripMenuItem";
             resources.ApplyResources(this.logToolStripMenuItem, "logToolStripMenuItem");
             this.logToolStripMenuItem.Click += new System.EventHandler(this.logToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            resources.ApplyResources(this.toolStripSeparator1, "toolStripSeparator1");
+            // 
+            // webLinkageToolStripMenuItem
+            // 
+            this.webLinkageToolStripMenuItem.Name = "webLinkageToolStripMenuItem";
+            resources.ApplyResources(this.webLinkageToolStripMenuItem, "webLinkageToolStripMenuItem");
+            this.webLinkageToolStripMenuItem.Click += new System.EventHandler(this.webLinkageToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            resources.ApplyResources(this.toolStripSeparator2, "toolStripSeparator2");
             // 
             // exitToolStripMenuItem
             // 
@@ -270,24 +291,24 @@ namespace ATST.Forms
             // panel3
             // 
             resources.ApplyResources(this.panel3, "panel3");
-            this.panel3.Controls.Add(this.label1);
-            this.panel3.Controls.Add(this.label3);
+            this.panel3.Controls.Add(this.lb1);
+            this.panel3.Controls.Add(this.lb2);
             this.panel3.Controls.Add(this.tbx_row_tbl_panel);
             this.panel3.Controls.Add(this.tbx_col_tbl_panel);
             this.panel3.Controls.Add(this.btn_tbl_panel);
             this.panel3.Name = "panel3";
             // 
-            // label1
+            // lb1
             // 
-            resources.ApplyResources(this.label1, "label1");
-            this.label1.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.label1.Name = "label1";
+            resources.ApplyResources(this.lb1, "lb1");
+            this.lb1.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.lb1.Name = "lb1";
             // 
-            // label3
+            // lb2
             // 
-            resources.ApplyResources(this.label3, "label3");
-            this.label3.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.label3.Name = "label3";
+            resources.ApplyResources(this.lb2, "lb2");
+            this.lb2.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.lb2.Name = "lb2";
             // 
             // tbx_row_tbl_panel
             // 
@@ -309,22 +330,16 @@ namespace ATST.Forms
             resources.ApplyResources(this.tablePanel1, "tablePanel1");
             this.tablePanel1.Name = "tablePanel1";
             // 
-            // io_data_listview
+            // lb3
             // 
-            resources.ApplyResources(this.io_data_listview, "io_data_listview");
-            this.io_data_listview.BackColor = System.Drawing.Color.White;
-            this.io_data_listview.Name = "io_data_listview";
+            this.lb3.Cursor = System.Windows.Forms.Cursors.IBeam;
+            resources.ApplyResources(this.lb3, "lb3");
+            this.lb3.Name = "lb3";
             // 
-            // label2
+            // txbAntCount
             // 
-            resources.ApplyResources(this.label2, "label2");
-            this.label2.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.label2.Name = "label2";
-            // 
-            // txbAntCount1
-            // 
-            resources.ApplyResources(this.txbAntCount1, "txbAntCount1");
-            this.txbAntCount1.Name = "txbAntCount1";
+            resources.ApplyResources(this.txbAntCount, "txbAntCount");
+            this.txbAntCount.Name = "txbAntCount";
             // 
             // btnAntCount
             // 
@@ -333,30 +348,51 @@ namespace ATST.Forms
             this.btnAntCount.UseVisualStyleBackColor = true;
             this.btnAntCount.Click += new System.EventHandler(this.btnSettingAntCount_Click);
             // 
-            // toolStripSeparator2
+            // rbtnServerConnect
             // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            resources.ApplyResources(this.toolStripSeparator2, "toolStripSeparator2");
+            resources.ApplyResources(this.rbtnServerConnect, "rbtnServerConnect");
+            this.rbtnServerConnect.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.rbtnServerConnect.Name = "rbtnServerConnect";
+            this.rbtnServerConnect.TabStop = true;
+            this.rbtnServerConnect.UseVisualStyleBackColor = false;
+            this.rbtnServerConnect.CheckedChanged += new System.EventHandler(this.rbtnServerConnect_CheckedChanged);
             // 
-            // webLinkageToolStripMenuItem
+            // rbtnLocal
             // 
-            this.webLinkageToolStripMenuItem.Name = "webLinkageToolStripMenuItem";
-            resources.ApplyResources(this.webLinkageToolStripMenuItem, "webLinkageToolStripMenuItem");
-            this.webLinkageToolStripMenuItem.Click += new System.EventHandler(this.webLinkageToolStripMenuItem_Click);
+            resources.ApplyResources(this.rbtnLocal, "rbtnLocal");
+            this.rbtnLocal.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.rbtnLocal.Name = "rbtnLocal";
+            this.rbtnLocal.TabStop = true;
+            this.rbtnLocal.UseVisualStyleBackColor = false;
+            this.rbtnLocal.CheckedChanged += new System.EventHandler(this.rbtnLocal_CheckedChanged);
             // 
-            // toolStripSeparator1
+            // virtualListViewOutput
             // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            resources.ApplyResources(this.toolStripSeparator1, "toolStripSeparator1");
+            resources.ApplyResources(this.virtualListViewOutput, "virtualListViewOutput");
+            this.virtualListViewOutput.Name = "virtualListViewOutput";
+            // 
+            // virtualListViewInput
+            // 
+            resources.ApplyResources(this.virtualListViewInput, "virtualListViewInput");
+            this.virtualListViewInput.Name = "virtualListViewInput";
+            // 
+            // tableLayoutPanel1
+            // 
+            resources.ApplyResources(this.tableLayoutPanel1, "tableLayoutPanel1");
+            this.tableLayoutPanel1.Controls.Add(this.virtualListViewInput, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.virtualListViewOutput, 1, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             // 
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.tableLayoutPanel1);
+            this.Controls.Add(this.rbtnLocal);
+            this.Controls.Add(this.rbtnServerConnect);
             this.Controls.Add(this.btnAntCount);
-            this.Controls.Add(this.txbAntCount1);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.io_data_listview);
+            this.Controls.Add(this.txbAntCount);
+            this.Controls.Add(this.lb3);
             this.Controls.Add(this.tablePanel1);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
@@ -376,6 +412,7 @@ namespace ATST.Forms
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -409,18 +446,22 @@ namespace ATST.Forms
         private System.Windows.Forms.ToolStripMenuItem logToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private CsControl.Control.TablePanel tablePanel1;
-        private CsControl.Control.io_data_listview io_data_listview;
         private System.Windows.Forms.Button btnComPortSearch;
         private System.Windows.Forms.ComboBox cbxConnectionInterfacePort;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ToolStripMenuItem readerSettingToolStripMenuItem;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txbAntCount1;
+        private System.Windows.Forms.Label lb3;
+        private System.Windows.Forms.TextBox txbAntCount;
         private System.Windows.Forms.Button btnAntCount;
         private System.Windows.Forms.ToolStripMenuItem selectMaskToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem webLinkageToolStripMenuItem;
+        private System.Windows.Forms.RadioButton rbtnServerConnect;
+        private System.Windows.Forms.RadioButton rbtnLocal;
+        private System.Windows.Forms.Label lb1;
+        private System.Windows.Forms.Label lb2;
+        private UserControls.Controls.VirtualListView virtualListViewOutput;
+        private UserControls.Controls.VirtualListView virtualListViewInput;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
     }
 }

@@ -3,27 +3,20 @@ using Apulsetech.Rfid.Type;
 using Apulsetech.Rfid;
 using ATST.Data;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Runtime.Remoting.Channels;
-using System.Security.Cryptography;
-using System.Globalization;
 using ATST.Diagnotics;
-using Apulsetech.Rfid.Vendor.Chip.Impinj;
+using System.Threading;
 using System.Diagnostics;
-using static Apulsetech.Rfid.Type.RFID.Untraceable;
-using ATST.Util;
+using System.Windows.Forms;
 
 namespace ATST.Forms
 {
     public partial class MainForm
     {
+        private const int HARTBIT_INTERVAL = 1000;
+        private int delay_time = HARTBIT_INTERVAL;
 
         public virtual void OnReaderDeviceStateChanged(Reader reader, DeviceEvent state)
         {
@@ -69,9 +62,6 @@ namespace ATST.Forms
                     break;
             }
         }
-
-
-
         public virtual void OnReaderRemoteKeyEvent(Reader reader, int action, int keyCode)
         {
 
@@ -108,7 +98,7 @@ namespace ATST.Forms
                 }
             }
 
-            Invoke(new Action(delegate()
+            Invoke(new Action(delegate ()
             {
                 AddTagItem(epc, rssi, port);
             }));
@@ -158,6 +148,20 @@ namespace ATST.Forms
             }
         }
 
+        
+        private async Task request_hartbit()
+        {
+            if (SharedValues.tokenSource.IsCancellationRequested)
+            {
+                return;
+            }
+            await Task.Delay(delay_time, SharedValues.tokenSource.Token).ContinueWith(task => { });
+
+            await DataFormat.RequestHartBit(SharedValues.DeviceId, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+
+            await request_hartbit();
+        }
+
         private void output_to_list(string port)
         {
             var datacount = SharedValues.mTagSaveDictionary.Where(x => x.Value.Port.Equals(Int32.Parse(port))).ToList();
@@ -165,20 +169,20 @@ namespace ATST.Forms
         }
 
         private async void btn_rfid_connect_Click(object sender, EventArgs e)
-        { 
+        {
             btn_rfid_connect.Enabled = false;
 
             if (SharedValues.Reader == null)
             {
                 if (SharedValues.ConnectionType == SharedValues.InterfaceType.SERIAL)
                 {
-                    SharedValues.Reader = await Reader.GetReaderAsync(SharedValues.SelectedPort, 115200, AntCount).ConfigureAwait(true);
+                    SharedValues.Reader = await Reader.GetReaderAsync(SharedValues.SelectedPort, 115200, Config.mAntCount).ConfigureAwait(true);
                     Log.WriteLine("INFO. Reader Setting ConnectionType({0}).", SharedValues.ConnectionType);
 
                 }
                 else if (SharedValues.ConnectionType == SharedValues.InterfaceType.TCP)
                 {
-                    SharedValues.Reader = await Reader.GetReaderAsync(ipAddressBox.GetIpData(), 5000, false, AntCount).ConfigureAwait(true);
+                    SharedValues.Reader = await Reader.GetReaderAsync(ipAddressBox.GetIpData(), 5000, false, Config.mAntCount).ConfigureAwait(true);
                     Log.WriteLine("INFO. Reader Setting ConnectionType({0}).", SharedValues.ConnectionType);
                 }
                 else // ConnectionType != SERIAL && ConnectionType != TCP
@@ -203,6 +207,10 @@ namespace ATST.Forms
                         EnableControl(true);
 
                         LoadConfigInfo(SharedValues.NumberOfAntennaPorts);
+
+                        SharedValues.tokenSource = new CancellationTokenSource();
+                        if (SharedValues.WebInterLockCheck)
+                            await request_hartbit();
                     }
                     else // error - Connection failed
                     {
@@ -220,6 +228,12 @@ namespace ATST.Forms
                 {
                     await SharedValues.Reader.DestroyAsync().ConfigureAwait(true);
                     Log.WriteLine("INFO. Sucessed Device DisConnect.");
+
+                    if (SharedValues.tokenSource != null)
+                    {
+                        SharedValues.tokenSource.Cancel();
+                        SharedValues.tokenSource.Dispose();
+                    }
                 }
 
                 Log.WriteLine("INFO. RemoveEventListener().");

@@ -14,7 +14,9 @@ using System.Globalization;
 using System.IO.Ports;
 using System.Linq;
 using System.Management;
+using System.Net.Sockets;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 
@@ -30,7 +32,7 @@ namespace ATST.Forms
         public TextBox txb = new TextBox();
 
         // 바인딩 리스트를 사용하기 위한 리스트
-        private BindingList<object> BindingList = new BindingList<object>(); 
+        private BindingList<object> BindingList = new BindingList<object>();
 
         public MainForm()
         {
@@ -55,8 +57,24 @@ namespace ATST.Forms
             EnableControl(false);
             InitializeCreateConfig();
             InitializePorts();
+            InitVertualListview();
 
-            
+            rbtnLocal.Checked = true;
+        }
+
+        private void InitVertualListview()
+        {
+            virtualListViewInput.AddListColumn(Properties.Resources.StringColDate, 50);
+            virtualListViewInput.AddListColumn(Properties.Resources.StringColDeviceName, 50);
+            virtualListViewInput.AddListColumn(Properties.Resources.StringColAntenna, 50);
+            virtualListViewInput.AddListColumn(Properties.Resources.StringColEpc, 50);
+            virtualListViewInput.AddListColumn(Properties.Resources.StringColTagIdentification, 50);
+
+            virtualListViewOutput.AddListColumn(Properties.Resources.StringColDate, 50);
+            virtualListViewOutput.AddListColumn(Properties.Resources.StringColDeviceName, 50);
+            virtualListViewOutput.AddListColumn(Properties.Resources.StringColAntenna, 50);
+            virtualListViewOutput.AddListColumn(Properties.Resources.StringColEpc, 50);
+            virtualListViewOutput.AddListColumn(Properties.Resources.StringColTagIdentification, 50);
         }
 
         private void InitializePorts()
@@ -98,6 +116,7 @@ namespace ATST.Forms
 
             tbx_col_tbl_panel.Text = Config.Panel_Column.ToString();
             tbx_row_tbl_panel.Text = Config.Panel_Row.ToString();
+            txbAntCount.Text = Config.mAntCount.ToString();
         }
 
         // Config 정보 불러오기
@@ -124,6 +143,9 @@ namespace ATST.Forms
             deviceSettingToolStripMenuItem.Enabled = enable;
             readerSettingToolStripMenuItem.Enabled = enable;
             selectMaskToolStripMenuItem.Enabled = enable;
+
+            rbtnLocal.Enabled = !enable;
+            rbtnServerConnect.Enabled = !enable;
         }
 
         public void OutputLog(String msg)
@@ -227,6 +249,18 @@ namespace ATST.Forms
             }
             if (mCurrentLangMenu != null)
                 mCurrentLangMenu.Checked = true;
+
+            virtualListViewInput.UpdateListColumn(Properties.Resources.StringColDate, 0);
+            virtualListViewInput.UpdateListColumn(Properties.Resources.StringColDeviceName, 1);
+            virtualListViewInput.UpdateListColumn(Properties.Resources.StringColAntenna, 2);
+            virtualListViewInput.UpdateListColumn(Properties.Resources.StringColEpc, 3);
+            virtualListViewInput.UpdateListColumn(Properties.Resources.StringColTagIdentification, 4);
+
+            virtualListViewOutput.UpdateListColumn(Properties.Resources.StringColDate, 0);
+            virtualListViewOutput.UpdateListColumn(Properties.Resources.StringColDeviceName, 1);
+            virtualListViewOutput.UpdateListColumn(Properties.Resources.StringColAntenna, 2);
+            virtualListViewOutput.UpdateListColumn(Properties.Resources.StringColEpc, 3);
+            virtualListViewOutput.UpdateListColumn(Properties.Resources.StringColTagIdentification, 4);
         }
 
         private void btn_rfid_clear_Click(object sender, EventArgs e)
@@ -337,7 +371,7 @@ namespace ATST.Forms
                     }
                     break;
             }
-
+            //comboBox1.Text = "";
             base.WndProc(ref m);
         }
 
@@ -389,8 +423,8 @@ namespace ATST.Forms
                 Config.Panel_Column = Convert.ToInt32(tbx_col_tbl_panel.Text);
             }
 
-            DataFormat.UpdateColRowNum(SharedValues.DeviceId, Config.Panel_Column, Config.Panel_Row);
-            //SharedValues.Reader.
+            // DataFormat.UpdateColRowNum(SharedValues.DeviceId, Config.Panel_Column, Config.Panel_Row);
+
         }
 
         private void tablePanel1_Load(object sender, EventArgs e)
@@ -446,15 +480,24 @@ namespace ATST.Forms
 
         private void GetAntSettingInfo(bool[] satets, int[] powerGains, int[] dwellTime)
         {
-            Config.AntStates = satets;
-            Config.AntPowerGains = powerGains;
-            Config.AntDwellTimes = dwellTime;
+            for (int i = 0; i < SharedValues.NumberOfAntennaPorts; i++)
+            {
+                Config.AntStates[i] = satets[i];
+                Config.AntPowerGains[i] = powerGains[i];
+                Config.AntDwellTimes[i] = dwellTime[i];
+            }
+
+            for (int i = SharedValues.NumberOfAntennaPorts + 1; i < 128; i++)
+            {
+                Config.AntStates[i] = false;
+                Config.AntPowerGains[i] = 1;
+                Config.AntDwellTimes[i] = 50;
+            }
         }
 
-        private int AntCount = 1;
         private void btnSettingAntCount_Click(object sender, EventArgs e)
         {
-            AntCount = Convert.ToInt32(txbAntCount1.Text);
+            Config.mAntCount = Convert.ToInt32(txbAntCount.Text);
         }
 
         private void cbxConnectionInterfacePort_DropDown(object sender, EventArgs e)
@@ -511,6 +554,24 @@ namespace ATST.Forms
                 {
 
                 }
+            }
+        }
+
+        private void rbtnServerConnect_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbtnServerConnect.Checked)
+            {
+                SharedValues.WebInterLockCheck = true;
+                rbtnLocal.Checked = false;
+            }
+        }
+
+        private void rbtnLocal_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbtnLocal.Checked)
+            {
+                SharedValues.WebInterLockCheck = false;
+                rbtnServerConnect.Checked = false;
             }
         }
     }

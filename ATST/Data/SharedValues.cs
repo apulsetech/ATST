@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json.Schema;
+using System.Threading;
 
 namespace ATST.Data
 {
@@ -27,6 +29,8 @@ namespace ATST.Data
         private static string mGatheringServerUri = string.Empty;
         private static string mDeviceId = string.Empty;
         private static string mWorkerId = "anonymous";
+        private static bool mWebInterLockCheck = false;
+        public static CancellationTokenSource tokenSource;
         public static Dictionary<string, TagInfo> mTagSaveDictionary = new Dictionary<string, TagInfo>();
         public static Dictionary<string, ReadInfo> mTagStateDictionary = new Dictionary<string, ReadInfo>();
 
@@ -127,6 +131,12 @@ namespace ATST.Data
         {
             get => mWorkerId;
             set => mWorkerId = value;
+        }
+
+        public static bool WebInterLockCheck
+        {
+            get => mWebInterLockCheck;
+            set => mWebInterLockCheck = value;
         }
     }
 }
