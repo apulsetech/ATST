@@ -1,4 +1,6 @@
-﻿using ATST.Util;
+﻿using ATST.Diagnotics;
+using ATST.Forms.Diagnotics;
+using ATST.Util;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -9,9 +11,13 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Reflection;
+using System.Runtime.CompilerServices;
+using System.Runtime.Remoting.Channels;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using Uri = System.Uri;
 
 namespace ATST.Data
@@ -20,7 +26,9 @@ namespace ATST.Data
     {
         private static string jsonData = String.Empty;
 
-        public static async Task GetDeviceList()
+        private static AsyncLock s_lock = new AsyncLock();
+
+        public static async Task GetDeviceList(WebInterLockForm form)
         {
             try
             {
@@ -46,9 +54,14 @@ namespace ATST.Data
                         int statusCode = (int)jObj["code"];
                         string message = (string)jObj["message"];
 
+                        Log.WriteLine("INFO. GetDeviceList - Successed to Stream Read.");
                         Debug.WriteLine(statusCode.ToString() + " | " + message);
+                        RESULT_STREAM.Flush();
+                        RESULT_STREAM.Close();
+                        RESULT_READER.Close();
                     }
                 });
+                t.Dispose();
 
                 DataList mResponsData = new DataList();
                 mResponsData = JsonConvert.DeserializeObject<DataList>(jsonData);
@@ -58,9 +71,27 @@ namespace ATST.Data
                     Debug.WriteLine(v.DEVICE_ID + " | " + v.DEVICE_NAME);
                 }
 
-                SharedValues.DeviceId = mResponsData.datalist[0].DEVICE_ID;
+                await Task.Run(() =>
+                {
+                    ListViewItem item;
+                    if (form.listViewDeviceList.InvokeRequired)
+                    {
+                        form.Invoke(new MethodInvoker(delegate ()
+                        {
+                            form.listViewDeviceList.Items.Clear();
+                            for (int i = 0; i < mResponsData.datalist.Count; i++)
+                            {
+                                item = new ListViewItem(mResponsData.datalist[i].DEVICE_ID);
+                                item.SubItems.Add(mResponsData.datalist[i].DEVICE_NAME);
+                                form.listViewDeviceList.Items.Add(item);
+                            }
+                        }));
+                    }
+                });
 
                 SharedValues.WebInterLockCheck = true;
+
+                GC.Collect();
             }
             catch (WebException e)
             {
@@ -71,7 +102,7 @@ namespace ATST.Data
             }
             catch (Exception ex)
             {
-                Popup.Show("Error");
+                Popup.Show(ex.Message);
             }
         }
 
@@ -88,22 +119,31 @@ namespace ATST.Data
             wReq.Method = "POST";
             wReq.ContentType = "application/json";
 
+            string str = JsonData.ToString();
+            byte[] bytes = Encoding.UTF8.GetBytes(str);
+            wReq.ContentLength = bytes.Length;
+
             Task<Stream> requestStream = Task.Factory.FromAsync<Stream>(wReq.BeginGetRequestStream, wReq.EndGetRequestStream, wReq);
-            ThreadPool.RegisterWaitForSingleObject((requestStream as IAsyncResult).AsyncWaitHandle, TimeoutCallback, wReq, 1000, true);
+            ThreadPool.RegisterWaitForSingleObject((requestStream as IAsyncResult).AsyncWaitHandle, TimeoutCallback, wReq, 3000, true);
             await requestStream.ContinueWith(task =>
             {
                 try
                 {
+
                     using (StreamWriter streamwriter = new StreamWriter(task.Result))
                     {
                         streamwriter.Write(JsonData.ToString());
+                        streamwriter.Flush();
                     }
+                    Log.WriteLine("INFO. UpdateColRowNum - Successed to Stream Read.");
                 }
                 catch (Exception ex)
                 {
                     Popup.Show(ex.Message);
+                    Log.WriteLine("ERROR. UpdateColRowNum - Failed to Stream Read.");
                 }
             });
+            requestStream.Dispose();
 
 
             Task<WebResponse> t = Task.Factory.FromAsync<WebResponse>(wReq.BeginGetResponse, wReq.EndGetResponse, wReq);
@@ -125,6 +165,9 @@ namespace ATST.Data
                         string message = (string)jObj["message"];
 
                         Debug.WriteLine(statusCode.ToString() + " | " + message);
+                        RESULT_STREAM.Flush();
+                        RESULT_STREAM.Close();
+                        RESULT_READER.Close();
                     }
                 }
                 catch (Exception ex)
@@ -132,196 +175,183 @@ namespace ATST.Data
                     Popup.Show(ex.Message);
                 }
             });
-
-
-
-            /*
-            using (StreamWriter streamwriter = new StreamWriter(wReq.GetRequestStream()))
-            {
-                streamwriter.Write(JsonData.ToString());
-            }
-
-            wResp = (HttpWebResponse)wReq.GetResponse();
-            using (StreamReader streamreader = new StreamReader(wResp.GetResponseStream()))
-            {
-                jsonData = streamreader.ReadToEnd();
-
-                // DeSerialize Jsonstring to Object
-                JObject jObj = JObject.Parse(jsonData);
-
-                int statusCode = (int)jObj["code"];
-                string message = (string)jObj["message"];
-
-                Debug.WriteLine(statusCode.ToString() + " | " + message);
-            }
-            */
+            t.Dispose();
         }
 
         public static async void AlerInputEvent(string deviceId, string workerId, int location, string date, string epc, int count, int stock_count, int input_count)
         {
-            JObject JsonData = new JObject();
-            JsonData.Add("DEVICE_ID", deviceId);
-            JsonData.Add("WORKER_ID", workerId);
-            JsonData.Add("LOCATION", location);
-            JsonData.Add("DATE_TIME", date);
-            JsonData.Add("EPC", epc);
-            JsonData.Add("COUNT", count);
-            JsonData.Add("STOCK_COUNT", stock_count);
-            JsonData.Add("INPUT_COUNT", input_count);
-
-            HttpWebRequest wReq;
-            Uri uri = new Uri(SharedValues.GatheringServerUri + "/alertInputEvent");
-            wReq = (HttpWebRequest)WebRequest.Create(uri);
-            wReq.Method = "POST";
-            wReq.ContentType = "application/json";
-
-            Task<Stream> requestStream = Task.Factory.FromAsync<Stream>(wReq.BeginGetRequestStream, wReq.EndGetRequestStream, wReq);
-            ThreadPool.RegisterWaitForSingleObject((requestStream as IAsyncResult).AsyncWaitHandle, TimeoutCallback, wReq, 1000, true);
-            await requestStream.ContinueWith(task =>
+            try
             {
-                try
+                JObject JsonData = new JObject();
+                JsonData.Add("DEVICE_ID", deviceId);
+                JsonData.Add("WORKER_ID", workerId);
+                JsonData.Add("LOCATION", location);
+                JsonData.Add("DATE_TIME", date);
+                JsonData.Add("EPC", epc);
+                JsonData.Add("COUNT", count);
+                JsonData.Add("STOCK_COUNT", stock_count);
+                JsonData.Add("INPUT_COUNT", input_count);
+
+                HttpWebRequest wReq;
+                Uri uri = new Uri(SharedValues.GatheringServerUri + "/alertInputEvent");
+                wReq = (HttpWebRequest)WebRequest.Create(uri);
+                wReq.Method = "POST";
+                wReq.ContentType = "application/json";
+
+                string items = JsonData.ToString();
+                byte[] bytes = Encoding.UTF8.GetBytes(items);
+                wReq.ContentLength = (long)bytes.Length;
+
+                using (await s_lock.LockAsync())
                 {
-                    using (StreamWriter streamwriter = new StreamWriter(task.Result))
+                    Task<Stream> requestStream = Task.Factory.FromAsync<Stream>(wReq.BeginGetRequestStream, wReq.EndGetRequestStream, wReq);
+                    ThreadPool.RegisterWaitForSingleObject((requestStream as IAsyncResult).AsyncWaitHandle, TimeoutCallback, wReq, 3000, true);
+                    await requestStream.ContinueWith(task =>
                     {
-                        streamwriter.Write(JsonData.ToString());
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Popup.Show(ex.Message);
-                }
-            });
+                        try
+                        {
+                            Stream stream = task.Result;
 
-            Task<WebResponse> t = Task.Factory.FromAsync<WebResponse>(wReq.BeginGetResponse, wReq.EndGetResponse, wReq);
-            ThreadPool.RegisterWaitForSingleObject((t as IAsyncResult).AsyncWaitHandle, TimeoutCallback, wReq, 3000, true);
-            await t.ContinueWith(task =>
-            {
-                try
-                {
-                    HttpWebResponse wResp = (HttpWebResponse)task.Result;
-                    if (wResp.StatusCode == HttpStatusCode.OK)
+                            using (StreamWriter streamwriter = new StreamWriter(task.Result))
+                            {
+                                streamwriter.Write(JsonData.ToString());
+                                streamwriter.Flush();
+                            }
+
+                        }
+                        catch (Exception ex)
+                        {
+                            Popup.Show(ex.Message);
+                            Log.WriteLine("ERROR. AlerInputEvent - Failed to Stream Write.");
+                        }
+                    });
+                    requestStream.Dispose();
+
+                    Task<WebResponse> t = Task.Factory.FromAsync<WebResponse>(wReq.BeginGetResponse, wReq.EndGetResponse, wReq);
+                    ThreadPool.RegisterWaitForSingleObject((t as IAsyncResult).AsyncWaitHandle, TimeoutCallback, wReq, 3000, true);
+                    await t.ContinueWith(task =>
                     {
-                        Stream RESULT_STREAM = wResp.GetResponseStream();
-                        StreamReader RESULT_READER = new StreamReader(RESULT_STREAM);
-                        jsonData = RESULT_READER.ReadToEnd();
+                        try
+                        {
+                            HttpWebResponse wResp = (HttpWebResponse)task.Result;
+                            if (wResp.StatusCode == HttpStatusCode.OK)
+                            {
+                                Stream RESULT_STREAM = wResp.GetResponseStream();
+                                StreamReader RESULT_READER = new StreamReader(RESULT_STREAM);
+                                jsonData = RESULT_READER.ReadToEnd();
 
+                                JObject jObj = JObject.Parse(jsonData);
+                                int statusCode = (int)jObj["STATUS_CODE"];
+                                string message = (string)jObj["MESSAGE"];
 
-                        JObject jObj = JObject.Parse(jsonData);
-                        int statusCode = (int)jObj["code"];
-                        string message = (string)jObj["message"];
+                                Debug.WriteLine("INPUT : " + statusCode.ToString() + "|" + message);
+                                RESULT_STREAM.Flush();
+                                RESULT_STREAM.Close();
+                                RESULT_READER.Close();
 
-                        Debug.WriteLine("INPUT : " + statusCode.ToString() + "|" + message);
-                    }
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            Popup.Show(ex.Message);
+                            Log.WriteLine("ERROR. AlerInputEvent - Failed to Stream Read.");
+                        }
+                    });
+                    t.Dispose();
+
                 }
-                catch (Exception ex)
-                {
-                    Popup.Show(ex.Message);
-                }
-            });
-
-            /*
-            using (StreamWriter streamwriter = new StreamWriter(wReq.GetRequestStream()))
+            }
+            catch (TargetInvocationException ex)
             {
-                streamwriter.Write(JsonData.ToString());
+                Log.WriteLine(ex.Message);
             }
 
-            wResp = (HttpWebResponse)wReq.GetResponse();
-
-            using (StreamReader streamreader = new StreamReader(wResp.GetResponseStream()))
-            {
-                jsonData = streamreader.ReadToEnd();
-            }
-
-            JObject jObj = JObject.Parse(jsonData);
-
-            int statusCode = (int)jObj["STATUS_CODE"];
-            string message = (string)jObj["MESSAGE"];
-
-            Debug.WriteLine("INPUT : " + statusCode.ToString()+ "|" + message);
-            */
         }
 
         public async static void AlertOutputEvent(string deviceId, string workerId, int location, string date, string epc, int count, int stock_count, int output_count)
         {
-            JObject JsonData = new JObject();
-            JsonData.Add("DEVICE_ID", deviceId);
-            JsonData.Add("WORKER_ID", workerId);
-            JsonData.Add("LOCATION", location);
-            JsonData.Add("DATE_TIME", date);
-            JsonData.Add("EPC", epc);
-            JsonData.Add("COUNT", count);
-            JsonData.Add("STOCK_COUNT", stock_count);
-            JsonData.Add("OUTPUT_COUNT", output_count);
-
-            HttpWebRequest wReq;
-            Uri uri = new Uri(SharedValues.GatheringServerUri + "/alertOutputEvent");
-            wReq = (HttpWebRequest)WebRequest.Create(uri);
-            wReq.Method = "POST";
-            wReq.ContentType = "application/json";
-
-            Task<Stream> requestStream = Task.Factory.FromAsync<Stream>(wReq.BeginGetRequestStream, wReq.EndGetRequestStream, wReq);
-            ThreadPool.RegisterWaitForSingleObject((requestStream as IAsyncResult).AsyncWaitHandle, TimeoutCallback, wReq, 1000, true);
-            await requestStream.ContinueWith(task =>
+            try
             {
-                try
+                JObject JsonData = new JObject();
+                JsonData.Add("DEVICE_ID", deviceId);
+                JsonData.Add("WORKER_ID", workerId);
+                JsonData.Add("LOCATION", location);
+                JsonData.Add("DATE_TIME", date);
+                JsonData.Add("EPC", epc);
+                JsonData.Add("COUNT", count);
+                JsonData.Add("STOCK_COUNT", stock_count);
+                JsonData.Add("OUTPUT_COUNT", output_count);
+
+                HttpWebRequest wReq;
+                Uri uri = new Uri(SharedValues.GatheringServerUri + "/alertOutputEvent");
+                wReq = (HttpWebRequest)WebRequest.Create(uri);
+                wReq.Method = "POST";
+                wReq.ContentType = "application/json";
+
+                string items = JsonData.ToString();
+                byte[] bytes = Encoding.UTF8.GetBytes(items);
+                wReq.ContentLength = (long)bytes.Length;
+
+                using (await s_lock.LockAsync())
                 {
-                    using (StreamWriter streamwriter = new StreamWriter(task.Result))
+                    Task<Stream> requestStream = Task.Factory.FromAsync<Stream>(wReq.BeginGetRequestStream, wReq.EndGetRequestStream, wReq);
+                    ThreadPool.RegisterWaitForSingleObject((requestStream as IAsyncResult).AsyncWaitHandle, TimeoutCallback, wReq, 3000, true);
+                    await requestStream.ContinueWith(task =>
                     {
-                        streamwriter.Write(JsonData.ToString());
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Popup.Show(ex.Message);
-                }
-            });
+                        try
+                        {
 
-            Task<WebResponse> t = Task.Factory.FromAsync<WebResponse>(wReq.BeginGetResponse, wReq.EndGetResponse, wReq);
-            ThreadPool.RegisterWaitForSingleObject((t as IAsyncResult).AsyncWaitHandle, TimeoutCallback, wReq, 3000, true);
-            await t.ContinueWith(task =>
-            {
-                try
-                {
-                    HttpWebResponse wResp = (HttpWebResponse)task.Result;
-                    if (wResp.StatusCode == HttpStatusCode.OK)
+                            using (StreamWriter streamwriter = new StreamWriter(task.Result))
+                            {
+                                streamwriter.Write(JsonData.ToString());
+                                streamwriter.Flush();
+                            }
+
+                        }
+                        catch (Exception ex)
+                        {
+                            Popup.Show(ex.Message);
+                            Log.WriteLine("ERROR. AlertOutputEvent - Failed to Stream Write.");
+                        }
+                    });
+                    requestStream.Dispose();
+
+                    Task<WebResponse> t = Task.Factory.FromAsync<WebResponse>(wReq.BeginGetResponse, wReq.EndGetResponse, wReq);
+                    ThreadPool.RegisterWaitForSingleObject((t as IAsyncResult).AsyncWaitHandle, TimeoutCallback, wReq, 3000, true);
+                    await t.ContinueWith(task =>
                     {
-                        Stream RESULT_STREAM = wResp.GetResponseStream();
-                        StreamReader RESULT_READER = new StreamReader(RESULT_STREAM);
-                        jsonData = RESULT_READER.ReadToEnd();
+                        try
+                        {
+                            HttpWebResponse wResp = (HttpWebResponse)task.Result;
+                            if (wResp.StatusCode == HttpStatusCode.OK)
+                            {
+                                Stream RESULT_STREAM = wResp.GetResponseStream();
+                                StreamReader RESULT_READER = new StreamReader(RESULT_STREAM);
+                                jsonData = RESULT_READER.ReadToEnd();
 
-                        JObject jObj = JObject.Parse(jsonData);
-                        int statusCode = (int)jObj["code"];
-                        string message = (string)jObj["message"];
+                                JObject jObj = JObject.Parse(jsonData);
+                                int statusCode = (int)jObj["STATUS_CODE"];
+                                string message = (string)jObj["MESSAGE"];
 
-                        Debug.WriteLine("OUTPUT : " + statusCode.ToString() + "|" + message);
-                    }
+                                Debug.WriteLine("OUTPUT : " + statusCode.ToString() + "|" + message);
+                                RESULT_STREAM.Flush();
+                                RESULT_STREAM.Close();
+                                RESULT_READER.Close();
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            Popup.Show(ex.Message);
+                            Log.WriteLine("ERROR. AlertOutputEvent - Failed to Stream Read.");
+                        }
+                    });
+                    t.Dispose();
                 }
-                catch (Exception ex)
-                {
-                    Popup.Show(ex.Message);
-                }
-            });
-
-            /*
-            using (StreamWriter streamwriter = new StreamWriter(wReq.GetRequestStream()))
-            {
-                streamwriter.Write(JsonData.ToString());
             }
-
-            wResp = (HttpWebResponse)wReq.GetResponse();
-
-            using (StreamReader streamreader = new StreamReader(wResp.GetResponseStream()))
+            catch (TargetInvocationException ex)
             {
-                jsonData = streamreader.ReadToEnd();
+                Log.WriteLine(ex.Message);
             }
-
-            JObject jObj = JObject.Parse(jsonData);
-
-            int statusCode = (int)jObj["STATUS_CODE"];
-            string message = (string)jObj["MESSAGE"];
-
-            Debug.WriteLine("OUTPUT : " + statusCode.ToString() + "|" + message);
-            */
         }
 
         public async static Task RequestHartBit(string DeviceId, string DateTime)
@@ -342,10 +372,13 @@ namespace ATST.Data
                 wReq = (HttpWebRequest)WebRequest.Create(uri);
                 wReq.Method = "POST";
                 wReq.ContentType = "application/json";
-                wReq.ContentLength = JsonData.ToString().Length;
+
+                string items = JsonData.ToString();
+                byte[] bytes = Encoding.UTF8.GetBytes(items);
+                wReq.ContentLength = (long)bytes.Length;
 
                 Task<Stream> requestStream = Task.Factory.FromAsync<Stream>(wReq.BeginGetRequestStream, wReq.EndGetRequestStream, wReq);
-                ThreadPool.RegisterWaitForSingleObject((requestStream as IAsyncResult).AsyncWaitHandle, TimeoutCallback, wReq, 1000, true);
+                ThreadPool.RegisterWaitForSingleObject((requestStream as IAsyncResult).AsyncWaitHandle, TimeoutCallback, wReq, 3000, true);
                 await requestStream.ContinueWith(task =>
                 {
                     try
@@ -353,13 +386,18 @@ namespace ATST.Data
                         using (StreamWriter streamwriter = new StreamWriter(task.Result))
                         {
                             streamwriter.Write(JsonData.ToString());
+                            streamwriter.Flush();
                         }
+
                     }
                     catch (Exception ex)
                     {
-                        Popup.Show(ex.Message);
+                        //Popup.Show(ex.Message);
+                        Log.WriteLine("ERROR. RequestHartBit - Failed to Stream Write.");
                     }
                 });
+                requestStream.Dispose();
+
 
                 Task<WebResponse> t = Task.Factory.FromAsync<WebResponse>(wReq.BeginGetResponse, wReq.EndGetResponse, wReq);
                 ThreadPool.RegisterWaitForSingleObject((t as IAsyncResult).AsyncWaitHandle, TimeoutCallback, wReq, 3000, true);
@@ -379,26 +417,81 @@ namespace ATST.Data
                             string message = (string)jObj["MESSAGE"];
 
                             Debug.WriteLine("HartBit : " + statusCode.ToString() + " | " + message);
+                            RESULT_STREAM.Flush();
+                            RESULT_STREAM.Close();
+                            RESULT_READER.Close();
                         }
                     }
                     catch (Exception ex)
                     {
-                        Popup.Show(ex.Message);
+                        //Popup.Show(ex.Message);
+                        Log.WriteLine("ERROR. RequestHartBit - Failed to Stream Read.");
                     }
                 });
+                t.Dispose();
+            }
+            catch
+            {
+
+            }
+
+        }
+
+        public async static Task<int> alterDeviceStartEvent()
+        {
+            int statusCode = 201;
+            string message = String.Empty;
+
+            try
+            {
+                HttpWebRequest wReq;
+                Uri uri = new Uri(SharedValues.GatheringServerUri + "/alertDeviceStartEvent/" + SharedValues.DeviceId);
+                wReq = (HttpWebRequest)WebRequest.Create(uri);
+                wReq.Method = "GET";
+
+
+                Task<WebResponse> t = Task.Factory.FromAsync<WebResponse>(wReq.BeginGetResponse, wReq.EndGetResponse, null);
+                ThreadPool.RegisterWaitForSingleObject((t as IAsyncResult).AsyncWaitHandle, TimeoutCallback, wReq, 3000, true);
+                await t.ContinueWith(task =>
+                {
+                    HttpWebResponse wResp = (HttpWebResponse)task.Result;
+                    if (wResp.StatusCode == HttpStatusCode.OK)
+                    {
+                        Stream RESULT_STREAM = wResp.GetResponseStream();
+                        StreamReader RESULT_READER = new StreamReader(RESULT_STREAM);
+                        jsonData = RESULT_READER.ReadToEnd();
+
+                        JObject jObj = JObject.Parse(jsonData);
+                        statusCode = (int)jObj["STATUS_CODE"];
+                        message = (string)jObj["MESSAGE"];
+
+                        Log.WriteLine("INFO. alterDeviceStartEvent - Successed to Stream Read.");
+                        Debug.WriteLine(statusCode.ToString() + " | " + message);
+                        RESULT_STREAM.Flush();
+                        RESULT_STREAM.Close();
+                        RESULT_READER.Close();
+
+                    }
+                });
+                t.Dispose();
             }
             catch (Exception ex)
             {
                 Popup.Show(ex.Message);
+                Log.WriteLine("ERROR. alterDeviceStartEvent - Failed to Stream Read.");
             }
+
+            return statusCode;
         }
 
         private static void TimeoutCallback(object state, bool timedOut)
         {
             if (timedOut)
             {
-                Popup.Show("TimeOut");
+                //Popup.Show("TimeOut");
                 HttpWebRequest request = state as HttpWebRequest;
+                Uri uri = request.RequestUri;
+                //Popup.Show(uri.ToString());
                 if (request != null)
                 {
                     request.Abort();

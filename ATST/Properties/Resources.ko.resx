@@ -159,11 +159,17 @@
   <data name="StringDeviceNoSearch" xml:space="preserve">
     <value>검색</value>
   </data>
+  <data name="StringDeviceNotRegistered" xml:space="preserve">
+    <value>등록되어 있는 장비가 아닙니다.</value>
+  </data>
   <data name="StringDeviceRfid" xml:space="preserve">
     <value>Rfid</value>
   </data>
   <data name="StringDeviceSearch" xml:space="preserve">
     <value>중지</value>
+  </data>
+  <data name="StringDeviceSelect" xml:space="preserve">
+    <value>장비 등록 성공.</value>
   </data>
   <data name="StringDeviceStatus" xml:space="preserve">
     <value>상태</value>
@@ -197,6 +203,9 @@
   </data>
   <data name="StringName" xml:space="preserve">
     <value>ATST </value>
+  </data>
+  <data name="StringNetworkConnectionFail" xml:space="preserve">
+    <value>네트워크에 연결되어 있지 않습니다.</value>
   </data>
   <data name="StringOffset" xml:space="preserve">
     <value>오프셋</value>

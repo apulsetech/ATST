@@ -1,6 +1,7 @@
 ﻿using Apulsetech.Rfid.Type;
 using ATST.Data;
 using ATST.Diagnotics;
+using ATST.Util;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

@@ -122,19 +122,19 @@ namespace ATST.Forms
                 {
                     if (SharedValues.mTagSaveDictionary[epc].Port != int.Parse(port))
                     {
-                        int num = SharedValues.mTagSaveDictionary[epc].Port;
+                        int SavePort = SharedValues.mTagSaveDictionary[epc].Port;
                         SharedValues.mTagSaveDictionary[epc].Port = int.Parse(port);
                         var save_port_cnt = SharedValues.mTagSaveDictionary.Where(
-                            x => x.Value.Port.Equals(num)).ToList();
-                        tablePanel1.DataViewTagCntNum(num, save_port_cnt.Count);
-                        //io_data_listview.add_listview_items("o", DateTime.Now, epc, "정보 없음");
-                        virtualListViewOutput.AddListViewItem(DateTime.Now, null, num, epc, "null");
-                        virtualListViewOutput.UpdateListViewItem();
+                            x => x.Value.Port.Equals(SavePort)).ToList();
+                        tablePanel1.DataViewTagCntNum(SavePort, save_port_cnt.Count);
                         if (SharedValues.WebInterLockCheck)
                         {
-                            DataFormat.AlerInputEvent(SharedValues.DeviceId, SharedValues.WorkerId,
-                                SharedValues.mTagSaveDictionary[epc].Port, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), SharedValues.mTagSaveDictionary[epc].Epc, save_port_cnt.Count, 0, 0);
+                             DataFormat.AlertOutputEvent(SharedValues.DeviceId, SharedValues.WorkerId,
+                                SavePort + 1, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), SharedValues.mTagSaveDictionary[epc].Epc, save_port_cnt.Count, 0, 0);
                         }
+                        //virtualListViewOutput.AddListViewItem(DateTime.Now, null, num, epc, "null");
+                        //virtualListViewOutput.UpdateListViewItem();
+                        virtualListViewIO1.AddListViewItem(DateTime.Now, null, SavePort, epc, "null",1);
                     }
                     SharedValues.mTagSaveDictionary[epc].Rssi = Convert.ToDouble(rssi);
                     SharedValues.mTagSaveDictionary[epc].Check = true;
@@ -144,16 +144,16 @@ namespace ATST.Forms
                 var tag_cnt = SharedValues.mTagSaveDictionary.Where(
                     x => x.Value.Port.Equals(Int32.Parse(port))).ToList();
                 tablePanel1.DataViewTagCntNum(Int32.Parse(port), tag_cnt.Count);
-                //io_data_listview.add_listview_items("i", DateTime.Now, epc, "정보 없음");
-                virtualListViewInput.AddListViewItem(DateTime.Now, null,Int32.Parse(port), epc, "null");
-                virtualListViewInput.UpdateListViewItem();
                 if (SharedValues.WebInterLockCheck)
                 {
                     DataFormat.AlerInputEvent(SharedValues.DeviceId, SharedValues.WorkerId,
-                                SharedValues.mTagSaveDictionary[epc].Port, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), SharedValues.mTagSaveDictionary[epc].Epc, tag_cnt.Count, 0, 0);
+                                SharedValues.mTagSaveDictionary[epc].Port + 1, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), SharedValues.mTagSaveDictionary[epc].Epc, tag_cnt.Count, 0, 0);
                 }
+                //virtualListViewInput.AddListViewItem(DateTime.Now, null,Int32.Parse(port), epc, "null");
+                //virtualListViewInput.UpdateListViewItem();
 
-                GC.Collect();
+                virtualListViewIO1.AddListViewItem(DateTime.Now, null, Int32.Parse(port), epc, "null", 0);
+
             }
             catch
             {
@@ -239,9 +239,9 @@ namespace ATST.Forms
                         int RemovePort = SharedValues.mTagSaveDictionary[Key_List[i]].Port;
                         string RemoveEpc = SharedValues.mTagSaveDictionary[Key_List[i]].Epc;
 
-                        //io_data_listview.add_listview_items("o", DateTime.Now, SharedValues.mTagSaveDictionary[Key_List[i]].Epc, "정보 없음");
-                        virtualListViewOutput.AddListViewItem(DateTime.Now, null, RemovePort, RemoveEpc, "null");
-                        virtualListViewOutput.UpdateListViewItem();
+                        //virtualListViewOutput.AddListViewItem(DateTime.Now, null, RemovePort, RemoveEpc, "null");
+                        //virtualListViewOutput.UpdateListViewItem();
+                        virtualListViewIO1.AddListViewItem(DateTime.Now, null, RemovePort, RemoveEpc, "null", 1);
                         SharedValues.mTagSaveDictionary.Remove(Key_List[i]);
                         var tag_cnt = SharedValues.mTagSaveDictionary.Where(
                         x => x.Value.Port.Equals(port)).ToList();
@@ -249,7 +249,7 @@ namespace ATST.Forms
                         if (SharedValues.WebInterLockCheck)
                         {
                             DataFormat.AlertOutputEvent(SharedValues.DeviceId, SharedValues.WorkerId,
-                                RemovePort, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), RemoveEpc, tag_cnt.Count, 0, 0);
+                                RemovePort + 1, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), RemoveEpc, tag_cnt.Count, 0, 0);
                         }
                         Debug.WriteLine("mTagSaveDictionary Remove Key : {0}",Key_List[i]);
                     };

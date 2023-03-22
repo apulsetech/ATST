@@ -1,4 +1,5 @@
 ﻿using ATST.Data;
+using ATST.Diagnotics;
 using ATST.Util;
 using System;
 using System.Collections.Generic;
@@ -34,6 +35,8 @@ namespace ATST.Forms.Diagnotics
                 if (c == 0x0D)
                     this.ActiveControl = cbxGatheringServer.maskedTextBox;
             });
+
+            
         }
 
         private void XmlApiInfoSave()
@@ -153,9 +156,18 @@ namespace ATST.Forms.Diagnotics
             SharedValues.ApiServerUri = "http://" + apiUri + ":" + txbApiServerPort.Text;
             SharedValues.GatheringServerUri = "http://" + gatheringUri + ":" + txbGatheringServerPort.Text;
 
-            btnSave.Enabled = false;
-            await DataFormat.GetDeviceList().ConfigureAwait(true);
-            btnSave.Enabled = true;
+            bool result = InternetConnectedCheck.IsInternetConnected();
+            if (result)
+            {
+                btnSave.Enabled = false;
+                await DataFormat.GetDeviceList(this).ConfigureAwait(true);
+                btnSave.Enabled = true;
+            }
+            else
+            {
+                Popup.Show(Properties.Resources.StringNetworkConnectionFail);
+                Log.WriteLine(Properties.Resources.StringNetworkConnectionFail);
+            }
         }
 
         private void cbxAPIServer_SelectedIndexChanged(object sender, EventArgs e)
@@ -218,6 +230,30 @@ namespace ATST.Forms.Diagnotics
             {
                 e.Handled = true;
             }
+        }
+        private async void listViewDeviceList_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (listViewDeviceList.SelectedItems.Count == 1)
+            {
+                SharedValues.DeviceId = listViewDeviceList.SelectedItems[0].SubItems[0].Text;
+                int statuscode = await DataFormat.alterDeviceStartEvent().ConfigureAwait(true);
+                if (statuscode == 200) {
+                    MessageBox.Show(Properties.Resources.StringDeviceSelect);
+                    Log.WriteLine("INFO. Seleted as {0} device.", SharedValues.DeviceId);
+                    this.Dispose();
+                    //this.Close();
+                }
+                else
+                {
+                    Popup.Show(Properties.Resources.StringDeviceNotRegistered);
+                    Log.WriteLine("ERROR. Device selection failed.");
+                }
+            }
+        }
+
+        private void WebInterLockForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 

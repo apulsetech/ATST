@@ -232,46 +232,46 @@
     <value>7, 5</value>
   </metadata>
   <data name="korToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>94, 22</value>
   </data>
   <data name="korToolStripMenuItem.Text" xml:space="preserve">
     <value>Kor</value>
   </data>
   <data name="engToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>94, 22</value>
   </data>
   <data name="engToolStripMenuItem.Text" xml:space="preserve">
     <value>Eng</value>
   </data>
   <data name="languageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>143, 22</value>
   </data>
   <data name="languageToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Language</value>
   </data>
   <data name="toolStripMenuItem2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 6</value>
+    <value>140, 6</value>
   </data>
   <data name="logToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>143, 22</value>
   </data>
   <data name="logToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Log</value>
   </data>
   <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 6</value>
+    <value>140, 6</value>
   </data>
   <data name="webLinkageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>143, 22</value>
   </data>
   <data name="webLinkageToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Web Linkage</value>
   </data>
   <data name="toolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 6</value>
+    <value>140, 6</value>
   </data>
   <data name="exitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>143, 22</value>
   </data>
   <data name="exitToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Exit</value>
@@ -343,10 +343,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;menuStrip.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>12</value>
   </data>
   <data name="panel1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
+  </data>
+  <data name="btnComPortSearch.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="btnComPortSearch.Location" type="System.Drawing.Point, System.Drawing">
     <value>234, 23</value>
@@ -412,7 +415,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;panel1.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>11</value>
   </data>
   <data name="btn_rfid_inventory.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -493,7 +496,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;panel2.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="btn_tbl_panel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -646,7 +649,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;panel3.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <metadata name="contextMenuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>233, 5</value>
@@ -664,7 +667,7 @@
     <value>Top, Bottom, Left, Right</value>
   </data>
   <data name="tablePanel1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 27</value>
+    <value>0, 30</value>
   </data>
   <data name="tablePanel1.Size" type="System.Drawing.Size, System.Drawing">
     <value>485, 285</value>
@@ -682,7 +685,10 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;tablePanel1.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
+  </data>
+  <data name="lb3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="lb3.Location" type="System.Drawing.Point, System.Drawing">
     <value>491, 123</value>
@@ -706,7 +712,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lb3.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="txbAntCount.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -730,10 +736,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;txbAntCount.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="btnAntCount.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
+  </data>
+  <data name="btnAntCount.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="btnAntCount.Location" type="System.Drawing.Point, System.Drawing">
     <value>722, 119</value>
@@ -757,13 +766,16 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnAntCount.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="rbtnServerConnect.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
   </data>
   <data name="rbtnServerConnect.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="rbtnServerConnect.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="rbtnServerConnect.Location" type="System.Drawing.Point, System.Drawing">
     <value>631, 8</value>
@@ -787,7 +799,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;rbtnServerConnect.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="rbtnLocal.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -820,88 +832,178 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;rbtnLocal.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
-  <data name="virtualListViewOutput.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
+  <data name="groupBoxTagList.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Right</value>
   </data>
-  <data name="virtualListViewOutput.Location" type="System.Drawing.Point, System.Drawing">
-    <value>244, 3</value>
+  <data name="btnSearchPort.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
-  <data name="virtualListViewOutput.Size" type="System.Drawing.Size, System.Drawing">
-    <value>235, 94</value>
+  <data name="btnSearchPort.Location" type="System.Drawing.Point, System.Drawing">
+    <value>153, 20</value>
   </data>
-  <data name="virtualListViewOutput.TabIndex" type="System.Int32, mscorlib">
-    <value>35</value>
+  <data name="btnSearchPort.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
   </data>
-  <data name="&gt;&gt;virtualListViewOutput.Name" xml:space="preserve">
-    <value>virtualListViewOutput</value>
+  <data name="btnSearchPort.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
   </data>
-  <data name="&gt;&gt;virtualListViewOutput.Type" xml:space="preserve">
-    <value>UserControls.Controls.VirtualListView, UserControls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  <data name="btnSearchPort.Text" xml:space="preserve">
+    <value>Search</value>
   </data>
-  <data name="&gt;&gt;virtualListViewOutput.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
+  <data name="&gt;&gt;btnSearchPort.Name" xml:space="preserve">
+    <value>btnSearchPort</value>
   </data>
-  <data name="&gt;&gt;virtualListViewOutput.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <data name="&gt;&gt;btnSearchPort.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="virtualListViewInput.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
+  <data name="&gt;&gt;btnSearchPort.Parent" xml:space="preserve">
+    <value>groupBoxTagList</value>
   </data>
-  <data name="virtualListViewInput.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 3</value>
-  </data>
-  <data name="virtualListViewInput.Size" type="System.Drawing.Size, System.Drawing">
-    <value>235, 94</value>
-  </data>
-  <data name="virtualListViewInput.TabIndex" type="System.Int32, mscorlib">
-    <value>36</value>
-  </data>
-  <data name="&gt;&gt;virtualListViewInput.Name" xml:space="preserve">
-    <value>virtualListViewInput</value>
-  </data>
-  <data name="&gt;&gt;virtualListViewInput.Type" xml:space="preserve">
-    <value>UserControls.Controls.VirtualListView, UserControls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;virtualListViewInput.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;virtualListViewInput.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;btnSearchPort.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="tableLayoutPanel1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Left, Right</value>
+  <data name="tbxInputPortNum.Location" type="System.Drawing.Point, System.Drawing">
+    <value>47, 20</value>
   </data>
-  <data name="tableLayoutPanel1.ColumnCount" type="System.Int32, mscorlib">
+  <data name="tbxInputPortNum.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 21</value>
+  </data>
+  <data name="tbxInputPortNum.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
-  <data name="tableLayoutPanel1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 347</value>
+  <data name="&gt;&gt;tbxInputPortNum.Name" xml:space="preserve">
+    <value>tbxInputPortNum</value>
   </data>
-  <data name="tableLayoutPanel1.RowCount" type="System.Int32, mscorlib">
+  <data name="&gt;&gt;tbxInputPortNum.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tbxInputPortNum.Parent" xml:space="preserve">
+    <value>groupBoxTagList</value>
+  </data>
+  <data name="&gt;&gt;tbxInputPortNum.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="tableLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>482, 100</value>
+  <data name="lbPort.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="tableLayoutPanel1.TabIndex" type="System.Int32, mscorlib">
-    <value>37</value>
+  <data name="lbPort.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
-  <data name="&gt;&gt;tableLayoutPanel1.Name" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
+  <data name="lbPort.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 23</value>
   </data>
-  <data name="&gt;&gt;tableLayoutPanel1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="lbPort.Size" type="System.Drawing.Size, System.Drawing">
+    <value>35, 12</value>
   </data>
-  <data name="&gt;&gt;tableLayoutPanel1.Parent" xml:space="preserve">
+  <data name="lbPort.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="lbPort.Text" xml:space="preserve">
+    <value>Port :</value>
+  </data>
+  <data name="&gt;&gt;lbPort.Name" xml:space="preserve">
+    <value>lbPort</value>
+  </data>
+  <data name="&gt;&gt;lbPort.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbPort.Parent" xml:space="preserve">
+    <value>groupBoxTagList</value>
+  </data>
+  <data name="&gt;&gt;lbPort.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="listviewTagList.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Right</value>
+  </data>
+  <data name="columnHeaderPort.Text" xml:space="preserve">
+    <value>Port</value>
+  </data>
+  <data name="columnHeaderTag.Text" xml:space="preserve">
+    <value>Epc</value>
+  </data>
+  <data name="columnHeaderTag.Width" type="System.Int32, mscorlib">
+    <value>140</value>
+  </data>
+  <data name="columnHeaderRssi.Text" xml:space="preserve">
+    <value>Rssi</value>
+  </data>
+  <data name="listviewTagList.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 46</value>
+  </data>
+  <data name="listviewTagList.Size" type="System.Drawing.Size, System.Drawing">
+    <value>300, 183</value>
+  </data>
+  <data name="listviewTagList.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;listviewTagList.Name" xml:space="preserve">
+    <value>listviewTagList</value>
+  </data>
+  <data name="&gt;&gt;listviewTagList.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;listviewTagList.Parent" xml:space="preserve">
+    <value>groupBoxTagList</value>
+  </data>
+  <data name="&gt;&gt;listviewTagList.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="groupBoxTagList.Location" type="System.Drawing.Point, System.Drawing">
+    <value>488, 212</value>
+  </data>
+  <data name="groupBoxTagList.Size" type="System.Drawing.Size, System.Drawing">
+    <value>312, 235</value>
+  </data>
+  <data name="groupBoxTagList.TabIndex" type="System.Int32, mscorlib">
+    <value>39</value>
+  </data>
+  <data name="groupBoxTagList.Text" xml:space="preserve">
+    <value>TagList</value>
+  </data>
+  <data name="&gt;&gt;groupBoxTagList.Name" xml:space="preserve">
+    <value>groupBoxTagList</value>
+  </data>
+  <data name="&gt;&gt;groupBoxTagList.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBoxTagList.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;tableLayoutPanel1.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;groupBoxTagList.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="tableLayoutPanel1.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="virtualListViewInput" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="virtualListViewOutput" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,50,Percent,50" /&gt;&lt;Rows Styles="Percent,50" /&gt;&lt;/TableLayoutSettings&gt;</value>
+  <data name="virtualListViewIO1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left, Right</value>
+  </data>
+  <data name="virtualListViewIO1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>맑은 고딕, 9.75pt</value>
+  </data>
+  <data name="virtualListViewIO1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 322</value>
+  </data>
+  <data name="virtualListViewIO1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 4, 3, 4</value>
+  </data>
+  <data name="virtualListViewIO1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>482, 125</value>
+  </data>
+  <data name="virtualListViewIO1.TabIndex" type="System.Int32, mscorlib">
+    <value>38</value>
+  </data>
+  <data name="&gt;&gt;virtualListViewIO1.Name" xml:space="preserve">
+    <value>virtualListViewIO1</value>
+  </data>
+  <data name="&gt;&gt;virtualListViewIO1.Type" xml:space="preserve">
+    <value>UserControls.Controls.VirtualListViewIO, UserControls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;virtualListViewIO1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;virtualListViewIO1.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -1309,6 +1411,24 @@
   </data>
   <data name="&gt;&gt;helpToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;columnHeaderPort.Name" xml:space="preserve">
+    <value>columnHeaderPort</value>
+  </data>
+  <data name="&gt;&gt;columnHeaderPort.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;columnHeaderTag.Name" xml:space="preserve">
+    <value>columnHeaderTag</value>
+  </data>
+  <data name="&gt;&gt;columnHeaderTag.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;columnHeaderRssi.Name" xml:space="preserve">
+    <value>columnHeaderRssi</value>
+  </data>
+  <data name="&gt;&gt;columnHeaderRssi.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>MainForm</value>

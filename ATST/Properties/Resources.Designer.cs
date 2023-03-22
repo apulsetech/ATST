@@ -61,6 +61,15 @@ namespace ATST.Properties {
         }
         
         /// <summary>
+        ///   과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string String1 {
+            get {
+                return ResourceManager.GetString("String1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Action과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
         internal static string StringAction {
@@ -187,6 +196,15 @@ namespace ATST.Properties {
         }
         
         /// <summary>
+        ///   It is not a registered device.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string StringDeviceNotRegistered {
+            get {
+                return ResourceManager.GetString("StringDeviceNotRegistered", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Rfid과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
         internal static string StringDeviceRfid {
@@ -201,6 +219,15 @@ namespace ATST.Properties {
         internal static string StringDeviceSearch {
             get {
                 return ResourceManager.GetString("StringDeviceSearch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Device registration successful.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string StringDeviceSelect {
+            get {
+                return ResourceManager.GetString("StringDeviceSelect", resourceCulture);
             }
         }
         
@@ -318,6 +345,15 @@ namespace ATST.Properties {
         internal static string StringName {
             get {
                 return ResourceManager.GetString("StringName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   There is no network connection.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string StringNetworkConnectionFail {
+            get {
+                return ResourceManager.GetString("StringNetworkConnectionFail", resourceCulture);
             }
         }
         

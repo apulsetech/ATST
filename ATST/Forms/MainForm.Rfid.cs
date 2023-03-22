@@ -15,7 +15,7 @@ namespace ATST.Forms
 {
     public partial class MainForm
     {
-        private const int HARTBIT_INTERVAL = 1000;
+        private const int HARTBIT_INTERVAL = 10000;
         private int delay_time = HARTBIT_INTERVAL;
 
         public virtual void OnReaderDeviceStateChanged(Reader reader, DeviceEvent state)
@@ -240,6 +240,7 @@ namespace ATST.Forms
                 SharedValues.Reader.RemoveEventListener(this);
                 SharedValues.Reader = null;
 
+                SharedValues.WebInterLockCheck = false;
                 btn_rfid_connect.Text = Properties.Resources.StringDeviceDisConnect;
                 EnableControl(false);
             }

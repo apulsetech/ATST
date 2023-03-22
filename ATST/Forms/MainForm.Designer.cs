@@ -67,20 +67,26 @@ namespace ATST.Forms
             this.tbx_row_tbl_panel = new System.Windows.Forms.TextBox();
             this.tbx_col_tbl_panel = new System.Windows.Forms.TextBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.tablePanel1 = new CsControl.Control.TablePanel();
+            this.tablePanel1 = new UserControls.Controls.TablePanel();
             this.lb3 = new System.Windows.Forms.Label();
             this.txbAntCount = new System.Windows.Forms.TextBox();
             this.btnAntCount = new System.Windows.Forms.Button();
             this.rbtnServerConnect = new System.Windows.Forms.RadioButton();
             this.rbtnLocal = new System.Windows.Forms.RadioButton();
-            this.virtualListViewOutput = new UserControls.Controls.VirtualListView();
-            this.virtualListViewInput = new UserControls.Controls.VirtualListView();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.groupBoxTagList = new System.Windows.Forms.GroupBox();
+            this.btnSearchPort = new System.Windows.Forms.Button();
+            this.tbxInputPortNum = new System.Windows.Forms.TextBox();
+            this.lbPort = new System.Windows.Forms.Label();
+            this.listviewTagList = new System.Windows.Forms.ListView();
+            this.columnHeaderPort = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderTag = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderRssi = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.virtualListViewIO1 = new UserControls.Controls.VirtualListViewIO();
             this.menuStrip.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
+            this.groupBoxTagList.SuspendLayout();
             this.SuspendLayout();
             // 
             // rbx_serial
@@ -329,6 +335,7 @@ namespace ATST.Forms
             // 
             resources.ApplyResources(this.tablePanel1, "tablePanel1");
             this.tablePanel1.Name = "tablePanel1";
+            this.tablePanel1.Load += new System.EventHandler(this.tablePanel1_Load_1);
             // 
             // lb3
             // 
@@ -366,28 +373,69 @@ namespace ATST.Forms
             this.rbtnLocal.UseVisualStyleBackColor = false;
             this.rbtnLocal.CheckedChanged += new System.EventHandler(this.rbtnLocal_CheckedChanged);
             // 
-            // virtualListViewOutput
+            // groupBoxTagList
             // 
-            resources.ApplyResources(this.virtualListViewOutput, "virtualListViewOutput");
-            this.virtualListViewOutput.Name = "virtualListViewOutput";
+            resources.ApplyResources(this.groupBoxTagList, "groupBoxTagList");
+            this.groupBoxTagList.Controls.Add(this.btnSearchPort);
+            this.groupBoxTagList.Controls.Add(this.tbxInputPortNum);
+            this.groupBoxTagList.Controls.Add(this.lbPort);
+            this.groupBoxTagList.Controls.Add(this.listviewTagList);
+            this.groupBoxTagList.Name = "groupBoxTagList";
+            this.groupBoxTagList.TabStop = false;
             // 
-            // virtualListViewInput
+            // btnSearchPort
             // 
-            resources.ApplyResources(this.virtualListViewInput, "virtualListViewInput");
-            this.virtualListViewInput.Name = "virtualListViewInput";
+            resources.ApplyResources(this.btnSearchPort, "btnSearchPort");
+            this.btnSearchPort.Name = "btnSearchPort";
+            this.btnSearchPort.UseVisualStyleBackColor = true;
+            this.btnSearchPort.Click += new System.EventHandler(this.btnSearchPort_Click);
             // 
-            // tableLayoutPanel1
+            // tbxInputPortNum
             // 
-            resources.ApplyResources(this.tableLayoutPanel1, "tableLayoutPanel1");
-            this.tableLayoutPanel1.Controls.Add(this.virtualListViewInput, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.virtualListViewOutput, 1, 0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            resources.ApplyResources(this.tbxInputPortNum, "tbxInputPortNum");
+            this.tbxInputPortNum.Name = "tbxInputPortNum";
+            // 
+            // lbPort
+            // 
+            resources.ApplyResources(this.lbPort, "lbPort");
+            this.lbPort.Name = "lbPort";
+            // 
+            // listviewTagList
+            // 
+            resources.ApplyResources(this.listviewTagList, "listviewTagList");
+            this.listviewTagList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeaderPort,
+            this.columnHeaderTag,
+            this.columnHeaderRssi});
+            this.listviewTagList.GridLines = true;
+            this.listviewTagList.HideSelection = false;
+            this.listviewTagList.Name = "listviewTagList";
+            this.listviewTagList.UseCompatibleStateImageBehavior = false;
+            this.listviewTagList.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeaderPort
+            // 
+            resources.ApplyResources(this.columnHeaderPort, "columnHeaderPort");
+            // 
+            // columnHeaderTag
+            // 
+            resources.ApplyResources(this.columnHeaderTag, "columnHeaderTag");
+            // 
+            // columnHeaderRssi
+            // 
+            resources.ApplyResources(this.columnHeaderRssi, "columnHeaderRssi");
+            // 
+            // virtualListViewIO1
+            // 
+            resources.ApplyResources(this.virtualListViewIO1, "virtualListViewIO1");
+            this.virtualListViewIO1.Name = "virtualListViewIO1";
             // 
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.tableLayoutPanel1);
+            this.Controls.Add(this.groupBoxTagList);
+            this.Controls.Add(this.virtualListViewIO1);
             this.Controls.Add(this.rbtnLocal);
             this.Controls.Add(this.rbtnServerConnect);
             this.Controls.Add(this.btnAntCount);
@@ -412,7 +460,8 @@ namespace ATST.Forms
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
-            this.tableLayoutPanel1.ResumeLayout(false);
+            this.groupBoxTagList.ResumeLayout(false);
+            this.groupBoxTagList.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -445,7 +494,7 @@ namespace ATST.Forms
         private System.Windows.Forms.TextBox tbx_col_tbl_panel;
         private System.Windows.Forms.ToolStripMenuItem logToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private CsControl.Control.TablePanel tablePanel1;
+        private UserControls.Controls.TablePanel tablePanel1;
         private System.Windows.Forms.Button btnComPortSearch;
         private System.Windows.Forms.ComboBox cbxConnectionInterfacePort;
         private System.Windows.Forms.ToolStripMenuItem readerSettingToolStripMenuItem;
@@ -460,8 +509,14 @@ namespace ATST.Forms
         private System.Windows.Forms.RadioButton rbtnLocal;
         private System.Windows.Forms.Label lb1;
         private System.Windows.Forms.Label lb2;
-        private UserControls.Controls.VirtualListView virtualListViewOutput;
-        private UserControls.Controls.VirtualListView virtualListViewInput;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private UserControls.Controls.VirtualListViewIO virtualListViewIO1;
+        private System.Windows.Forms.GroupBox groupBoxTagList;
+        private System.Windows.Forms.ListView listviewTagList;
+        private System.Windows.Forms.ColumnHeader columnHeaderPort;
+        private System.Windows.Forms.ColumnHeader columnHeaderTag;
+        private System.Windows.Forms.ColumnHeader columnHeaderRssi;
+        private System.Windows.Forms.TextBox tbxInputPortNum;
+        private System.Windows.Forms.Label lbPort;
+        private System.Windows.Forms.Button btnSearchPort;
     }
 }

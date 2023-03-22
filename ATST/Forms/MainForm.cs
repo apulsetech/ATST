@@ -19,6 +19,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
+using UserControls.Controls;
+using static System.Windows.Forms.AxHost;
 
 namespace ATST.Forms
 {
@@ -45,6 +47,8 @@ namespace ATST.Forms
 
             SearchForm.OpenFormEvent += new SearchForm.OpenFormReturn(ReturnForm);  // 활성화된 장비검색폼 객체를 리턴한다.
             this.KeyPreview = true; // 폼이 모든 키 이벤트를 받게함. -> ESC 키를 눌렀을때 폼이 이벤트 핸들러가 발생될 수 있게하기 위함.
+
+            
         }
 
         private void Initialize()
@@ -57,24 +61,10 @@ namespace ATST.Forms
             EnableControl(false);
             InitializeCreateConfig();
             InitializePorts();
-            InitVertualListview();
 
             rbtnLocal.Checked = true;
-        }
 
-        private void InitVertualListview()
-        {
-            virtualListViewInput.AddListColumn(Properties.Resources.StringColDate, 50);
-            virtualListViewInput.AddListColumn(Properties.Resources.StringColDeviceName, 50);
-            virtualListViewInput.AddListColumn(Properties.Resources.StringColAntenna, 50);
-            virtualListViewInput.AddListColumn(Properties.Resources.StringColEpc, 50);
-            virtualListViewInput.AddListColumn(Properties.Resources.StringColTagIdentification, 50);
-
-            virtualListViewOutput.AddListColumn(Properties.Resources.StringColDate, 50);
-            virtualListViewOutput.AddListColumn(Properties.Resources.StringColDeviceName, 50);
-            virtualListViewOutput.AddListColumn(Properties.Resources.StringColAntenna, 50);
-            virtualListViewOutput.AddListColumn(Properties.Resources.StringColEpc, 50);
-            virtualListViewOutput.AddListColumn(Properties.Resources.StringColTagIdentification, 50);
+            
         }
 
         private void InitializePorts()
@@ -249,18 +239,6 @@ namespace ATST.Forms
             }
             if (mCurrentLangMenu != null)
                 mCurrentLangMenu.Checked = true;
-
-            virtualListViewInput.UpdateListColumn(Properties.Resources.StringColDate, 0);
-            virtualListViewInput.UpdateListColumn(Properties.Resources.StringColDeviceName, 1);
-            virtualListViewInput.UpdateListColumn(Properties.Resources.StringColAntenna, 2);
-            virtualListViewInput.UpdateListColumn(Properties.Resources.StringColEpc, 3);
-            virtualListViewInput.UpdateListColumn(Properties.Resources.StringColTagIdentification, 4);
-
-            virtualListViewOutput.UpdateListColumn(Properties.Resources.StringColDate, 0);
-            virtualListViewOutput.UpdateListColumn(Properties.Resources.StringColDeviceName, 1);
-            virtualListViewOutput.UpdateListColumn(Properties.Resources.StringColAntenna, 2);
-            virtualListViewOutput.UpdateListColumn(Properties.Resources.StringColEpc, 3);
-            virtualListViewOutput.UpdateListColumn(Properties.Resources.StringColTagIdentification, 4);
         }
 
         private void btn_rfid_clear_Click(object sender, EventArgs e)
@@ -423,9 +401,58 @@ namespace ATST.Forms
                 Config.Panel_Column = Convert.ToInt32(tbx_col_tbl_panel.Text);
             }
 
-            // DataFormat.UpdateColRowNum(SharedValues.DeviceId, Config.Panel_Column, Config.Panel_Row);
+            if (SharedValues.WebInterLockCheck)
+                DataFormat.UpdateColRowNum(SharedValues.DeviceId, Config.Panel_Column, Config.Panel_Row);
+            
+            for (int i = 0; i < tablePanel1.TagDataViews.Length; i++)
+            {
+                tablePanel1.TagDataViews[i].lbl_ant_tag_cnt.Click += new System.EventHandler(this.test);
 
+            }
+            
+            //AddEvent();
         }
+
+        private void test(object sender, EventArgs e)
+        {
+            //string asd = (sender as Label).Name;
+            //int Number = Convert.ToInt32(tablePanel1.TagDataViews[i].lbl_ant_num.Text);
+            int number = Int32.Parse((((sender as Label).Parent) as TagDataView).lbl_ant_num.Text) - 1;
+            var keyList = SharedValues.mTagSaveDictionary.Where(x => x.Value.Port == number).Select(x => x.Key).ToList();
+            listviewTagList.Items.Clear();
+            foreach (var key in keyList)
+            {
+                ListViewItem items = new ListViewItem(SharedValues.mTagSaveDictionary[key].Port.ToString());
+                items.SubItems.Add(SharedValues.mTagSaveDictionary[key].Epc);
+                items.SubItems.Add(SharedValues.mTagSaveDictionary[key].Rssi.ToString());
+
+                listviewTagList.Items.Add(items);
+            }
+        }
+
+        private void AddEvent()
+        {
+
+            for (int i = 0; i < tablePanel1.TagDataViews.Length; i++)
+            {
+                tablePanel1.TagDataViews[i].lbl_ant_tag_cnt.Click += (EventHandler)((sender, e) =>
+                {
+                    int Number = Int32.Parse((((sender as Label).Parent) as TagDataView).lbl_ant_num.Text) - 1;
+                    var keyList = SharedValues.mTagSaveDictionary.Where(x => x.Value.Port == Number).Select(x => x.Key).ToList();
+                    listviewTagList.Items.Clear();
+                    foreach (var key in keyList)
+                    {
+                        ListViewItem items = new ListViewItem((SharedValues.mTagSaveDictionary[key].Port + 1).ToString());
+                        items.SubItems.Add(SharedValues.mTagSaveDictionary[key].Epc);
+                        items.SubItems.Add(SharedValues.mTagSaveDictionary[key].Rssi.ToString());
+
+                        listviewTagList.Items.Add(items);
+                    }
+
+                });
+            }
+        }
+
 
         private void tablePanel1_Load(object sender, EventArgs e)
         {
@@ -563,6 +590,17 @@ namespace ATST.Forms
             {
                 SharedValues.WebInterLockCheck = true;
                 rbtnLocal.Checked = false;
+                using (WebInterLockForm form = new WebInterLockForm())
+                {
+                    if (form.ShowDialog() == DialogResult.Cancel)
+                    {
+                        if (SharedValues.DeviceId != string.Empty)
+                        {
+                            rbtnLocal.Enabled = false;
+                        }
+                    }
+
+                }
             }
         }
 
@@ -573,6 +611,28 @@ namespace ATST.Forms
                 SharedValues.WebInterLockCheck = false;
                 rbtnServerConnect.Checked = false;
             }
+        }
+
+        private void btnSearchPort_Click(object sender, EventArgs e)
+        {
+            int selectedPort = Convert.ToInt32(tbxInputPortNum.Text) - 1;
+
+            var SearchPort = SharedValues.mTagSaveDictionary.Where( x=> x.Value.Port == selectedPort ).Select(x => x.Key).ToList();
+
+            listviewTagList.Items.Clear();
+            foreach (var Key in SearchPort)
+            {
+                ListViewItem item = new ListViewItem(SharedValues.mTagSaveDictionary[Key].Port.ToString());
+                item.SubItems.Add(SharedValues.mTagSaveDictionary[Key].Epc);
+                item.SubItems.Add(SharedValues.mTagSaveDictionary[Key].Rssi.ToString());
+
+                listviewTagList.Items.Add(item);
+            }
+        }
+
+        private void tablePanel1_Load_1(object sender, EventArgs e)
+        {
+
         }
     }
 }
