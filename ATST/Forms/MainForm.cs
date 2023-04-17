@@ -48,7 +48,8 @@ namespace ATST.Forms
             SearchForm.OpenFormEvent += new SearchForm.OpenFormReturn(ReturnForm);  // 활성화된 장비검색폼 객체를 리턴한다.
             this.KeyPreview = true; // 폼이 모든 키 이벤트를 받게함. -> ESC 키를 눌렀을때 폼이 이벤트 핸들러가 발생될 수 있게하기 위함.
 
-            
+            tablePanel1.set_TagDataView_Size(100, 80, 640, 560);
+            tablePanel1.set_TagDataView_Font(12, 30);
         }
 
         private void Initialize()
@@ -391,8 +392,13 @@ namespace ATST.Forms
             }
         }
 
+        
         private void btn_tbl_panel_Click(object sender, EventArgs e)
         {
+            for (int i = 0; i < 128; i++)
+            {
+                tablePanel1.DataViewFontSize(i);
+            }
             if (tablePanel1.set_panel(
                 Int32.Parse(tbx_col_tbl_panel.Text),
                 Int32.Parse(tbx_row_tbl_panel.Text)))
@@ -403,16 +409,11 @@ namespace ATST.Forms
 
             if (SharedValues.WebInterLockCheck)
                 DataFormat.UpdateColRowNum(SharedValues.DeviceId, Config.Panel_Column, Config.Panel_Row);
-            
-            for (int i = 0; i < tablePanel1.TagDataViews.Length; i++)
-            {
-                tablePanel1.TagDataViews[i].lbl_ant_tag_cnt.Click += new System.EventHandler(this.test);
 
-            }
-            
-            //AddEvent();
+            AddEvent();
         }
-
+        
+        /*
         private void test(object sender, EventArgs e)
         {
             //string asd = (sender as Label).Name;
@@ -429,6 +430,7 @@ namespace ATST.Forms
                 listviewTagList.Items.Add(items);
             }
         }
+        */
 
         private void AddEvent()
         {
@@ -438,6 +440,7 @@ namespace ATST.Forms
                 tablePanel1.TagDataViews[i].lbl_ant_tag_cnt.Click += (EventHandler)((sender, e) =>
                 {
                     int Number = Int32.Parse((((sender as Label).Parent) as TagDataView).lbl_ant_num.Text) - 1;
+                    lbSelectedPort.Text = Number.ToString();
                     var keyList = SharedValues.mTagSaveDictionary.Where(x => x.Value.Port == Number).Select(x => x.Key).ToList();
                     listviewTagList.Items.Clear();
                     foreach (var key in keyList)
@@ -613,24 +616,14 @@ namespace ATST.Forms
             }
         }
 
-        private void btnSearchPort_Click(object sender, EventArgs e)
-        {
-            int selectedPort = Convert.ToInt32(tbxInputPortNum.Text) - 1;
 
-            var SearchPort = SharedValues.mTagSaveDictionary.Where( x=> x.Value.Port == selectedPort ).Select(x => x.Key).ToList();
-
-            listviewTagList.Items.Clear();
-            foreach (var Key in SearchPort)
-            {
-                ListViewItem item = new ListViewItem(SharedValues.mTagSaveDictionary[Key].Port.ToString());
-                item.SubItems.Add(SharedValues.mTagSaveDictionary[Key].Epc);
-                item.SubItems.Add(SharedValues.mTagSaveDictionary[Key].Rssi.ToString());
-
-                listviewTagList.Items.Add(item);
-            }
-        }
 
         private void tablePanel1_Load_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBoxTagList_Enter(object sender, EventArgs e)
         {
 
         }

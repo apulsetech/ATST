@@ -178,7 +178,7 @@ namespace ATST.Data
             t.Dispose();
         }
 
-        public static async void AlerInputEvent(string deviceId, string workerId, int location, string date, string epc, int count, int stock_count, int input_count)
+        public static async void AlerInputEvent(string deviceId, string workerId, int location, string date, string epc)
         {
             try
             {
@@ -188,9 +188,6 @@ namespace ATST.Data
                 JsonData.Add("LOCATION", location);
                 JsonData.Add("DATE_TIME", date);
                 JsonData.Add("EPC", epc);
-                JsonData.Add("COUNT", count);
-                JsonData.Add("STOCK_COUNT", stock_count);
-                JsonData.Add("INPUT_COUNT", input_count);
 
                 HttpWebRequest wReq;
                 Uri uri = new Uri(SharedValues.GatheringServerUri + "/alertInputEvent");
@@ -204,60 +201,112 @@ namespace ATST.Data
 
                 using (await s_lock.LockAsync())
                 {
-                    Task<Stream> requestStream = Task.Factory.FromAsync<Stream>(wReq.BeginGetRequestStream, wReq.EndGetRequestStream, wReq);
-                    ThreadPool.RegisterWaitForSingleObject((requestStream as IAsyncResult).AsyncWaitHandle, TimeoutCallback, wReq, 3000, true);
-                    await requestStream.ContinueWith(task =>
+                    try
                     {
-                        try
+                        using (Task<Stream> requestStream = Task.Factory.FromAsync<Stream>(wReq.BeginGetRequestStream, wReq.EndGetRequestStream, wReq))
                         {
-                            Stream stream = task.Result;
-
-                            using (StreamWriter streamwriter = new StreamWriter(task.Result))
+                            ThreadPool.RegisterWaitForSingleObject((requestStream as IAsyncResult).AsyncWaitHandle, TimeoutCallback, wReq, 3000, true);
+                            await requestStream.ContinueWith(task =>
                             {
-                                streamwriter.Write(JsonData.ToString());
-                                streamwriter.Flush();
-                            }
+                                try
+                                {
+                                    Stream stream = task.Result;
 
+                                    using (StreamWriter streamwriter = new StreamWriter(task.Result))
+                                    {
+                                        streamwriter.Write(JsonData.ToString());
+                                        streamwriter.Flush();
+                                    }
+
+                                }
+                                catch (ObjectDisposedException ex)
+                                {
+                                    //Popup.Show(ex.Message);
+                                    //Log.WriteLine(ex.ToString());
+                                    Log.WriteLine("ERROR. AlerInputEvent[ObjectDisposedException] - Failed to Stream Write.");
+                                }
+                                catch (NotSupportedException ex)
+                                {
+                                    //Log.WriteLine(ex.ToString());
+                                    Log.WriteLine("ERROR. AlerInputEvent[NotSupportedException] - Failed to Stream Write.");
+                                }
+                                catch (IOException ex)
+                                {
+                                    //Log.WriteLine(ex.ToString());
+                                    Log.WriteLine("ERROR. AlerInputEvent[IOException] - Failed to Stream Write.");
+                                }
+                                catch (EncoderFallbackException ex)
+                                {
+                                    //Log.WriteLine(ex.ToString());
+                                    Log.WriteLine("ERROR. AlerInputEvent[EncoderFallbackException] - Failed to Stream Write.");
+                                }
+                                catch (Exception ex)
+                                {
+                                    Log.WriteLine(ex.ToString());
+                                    //Popup.Show(ex.ToString());
+                                    Log.WriteLine("ERROR. AlerInputEvent - Failed to Stream Write.");
+                                }
+                            });
                         }
-                        catch (Exception ex)
+
+                        using (Task<WebResponse> t = Task.Factory.FromAsync<WebResponse>(wReq.BeginGetResponse, wReq.EndGetResponse, wReq))
                         {
-                            Popup.Show(ex.Message);
-                            Log.WriteLine("ERROR. AlerInputEvent - Failed to Stream Write.");
-                        }
-                    });
-                    requestStream.Dispose();
+                            ThreadPool.RegisterWaitForSingleObject((t as IAsyncResult).AsyncWaitHandle, TimeoutCallback, wReq, 3000, true);
+                            await t.ContinueWith(task =>
+                            {
+                                try
+                                {
+                                    HttpWebResponse wResp = (HttpWebResponse)task.Result;
+                                    if (wResp.StatusCode == HttpStatusCode.OK)
+                                    {
+                                        Stream RESULT_STREAM = wResp.GetResponseStream();
+                                        StreamReader RESULT_READER = new StreamReader(RESULT_STREAM);
+                                        jsonData = RESULT_READER.ReadToEnd();
 
-                    Task<WebResponse> t = Task.Factory.FromAsync<WebResponse>(wReq.BeginGetResponse, wReq.EndGetResponse, wReq);
-                    ThreadPool.RegisterWaitForSingleObject((t as IAsyncResult).AsyncWaitHandle, TimeoutCallback, wReq, 3000, true);
-                    await t.ContinueWith(task =>
+                                        JObject jObj = JObject.Parse(jsonData);
+                                        int statusCode = (int)jObj["STATUS_CODE"];
+                                        string message = (string)jObj["MESSAGE"];
+
+                                        Debug.WriteLine("INPUT : " + statusCode.ToString() + "|" + message);
+                                        RESULT_STREAM.Flush();
+                                        RESULT_STREAM.Close();
+                                        RESULT_READER.Close();
+
+                                    }
+                                }
+                                catch (ObjectDisposedException ex)
+                                {
+                                    //Popup.Show(ex.Message);
+                                    //Log.WriteLine(ex.ToString());
+                                    Log.WriteLine("ERROR. AlerInputEvent[ObjectDisposedException] - Failed to Stream Read.");
+                                }
+                                catch (NotSupportedException ex)
+                                {
+                                    //Log.WriteLine(ex.ToString());
+                                    Log.WriteLine("ERROR. AlerInputEvent[NotSupportedException] - Failed to Stream Read.");
+                                }
+                                catch (IOException ex)
+                                {
+                                    //Log.WriteLine(ex.ToString());
+                                    Log.WriteLine("ERROR. AlerInputEvent[IOException] - Failed to Stream Read.");
+                                }
+                                catch (EncoderFallbackException ex)
+                                {
+                                    //Log.WriteLine(ex.ToString());
+                                    Log.WriteLine("ERROR. AlerInputEvent[EncoderFallbackException] - Failed to Stream Read.");
+                                }
+                                catch (Exception ex)
+                                {
+                                    //Popup.Show(ex.Message);
+                                    Log.WriteLine("ERROR. AlerInputEvent - Failed to Stream Read.");
+                                }
+                            });
+                        }
+                    }
+                    catch
                     {
-                        try
-                        {
-                            HttpWebResponse wResp = (HttpWebResponse)task.Result;
-                            if (wResp.StatusCode == HttpStatusCode.OK)
-                            {
-                                Stream RESULT_STREAM = wResp.GetResponseStream();
-                                StreamReader RESULT_READER = new StreamReader(RESULT_STREAM);
-                                jsonData = RESULT_READER.ReadToEnd();
 
-                                JObject jObj = JObject.Parse(jsonData);
-                                int statusCode = (int)jObj["STATUS_CODE"];
-                                string message = (string)jObj["MESSAGE"];
-
-                                Debug.WriteLine("INPUT : " + statusCode.ToString() + "|" + message);
-                                RESULT_STREAM.Flush();
-                                RESULT_STREAM.Close();
-                                RESULT_READER.Close();
-
-                            }
-                        }
-                        catch (Exception ex)
-                        {
-                            Popup.Show(ex.Message);
-                            Log.WriteLine("ERROR. AlerInputEvent - Failed to Stream Read.");
-                        }
-                    });
-                    t.Dispose();
+                    }
 
                 }
             }
@@ -268,7 +317,7 @@ namespace ATST.Data
 
         }
 
-        public async static void AlertOutputEvent(string deviceId, string workerId, int location, string date, string epc, int count, int stock_count, int output_count)
+        public async static void AlertOutputEvent(string deviceId, string workerId, int location, string date, string epc)
         {
             try
             {
@@ -278,9 +327,6 @@ namespace ATST.Data
                 JsonData.Add("LOCATION", location);
                 JsonData.Add("DATE_TIME", date);
                 JsonData.Add("EPC", epc);
-                JsonData.Add("COUNT", count);
-                JsonData.Add("STOCK_COUNT", stock_count);
-                JsonData.Add("OUTPUT_COUNT", output_count);
 
                 HttpWebRequest wReq;
                 Uri uri = new Uri(SharedValues.GatheringServerUri + "/alertOutputEvent");
@@ -294,58 +340,108 @@ namespace ATST.Data
 
                 using (await s_lock.LockAsync())
                 {
-                    Task<Stream> requestStream = Task.Factory.FromAsync<Stream>(wReq.BeginGetRequestStream, wReq.EndGetRequestStream, wReq);
-                    ThreadPool.RegisterWaitForSingleObject((requestStream as IAsyncResult).AsyncWaitHandle, TimeoutCallback, wReq, 3000, true);
-                    await requestStream.ContinueWith(task =>
+                    try
                     {
-                        try
+                        using (Task<Stream> requestStream = Task.Factory.FromAsync<Stream>(wReq.BeginGetRequestStream, wReq.EndGetRequestStream, wReq))
                         {
-
-                            using (StreamWriter streamwriter = new StreamWriter(task.Result))
+                            ThreadPool.RegisterWaitForSingleObject((requestStream as IAsyncResult).AsyncWaitHandle, TimeoutCallback, wReq, 3000, true);
+                            await requestStream.ContinueWith(task =>
                             {
-                                streamwriter.Write(JsonData.ToString());
-                                streamwriter.Flush();
-                            }
+                                try
+                                {
 
+                                    using (StreamWriter streamwriter = new StreamWriter(task.Result))
+                                    {
+                                        streamwriter.Write(JsonData.ToString());
+                                        streamwriter.Flush();
+                                    }
+
+                                }
+                                catch (ObjectDisposedException ex)
+                                {
+                                    //Popup.Show(ex.Message);
+                                    //Log.WriteLine(ex.ToString());
+                                    Log.WriteLine("ERROR. AlertOutputEvent[ObjectDisposedException] - Failesd to Stream Write.");
+                                }
+                                catch (NotSupportedException ex)
+                                {
+                                    //Log.WriteLine(ex.ToString());
+                                    Log.WriteLine("ERROR. AlertOutputEvent[NotSupportedException] - Failesd to Stream Write.");
+                                }
+                                catch (IOException ex)
+                                {
+                                    //Log.WriteLine(ex.ToString());
+                                    Log.WriteLine("ERROR. AlertOutputEvent[IOException] - Failesd to Stream Write.");
+                                }
+                                catch (EncoderFallbackException ex)
+                                {
+                                    //Log.WriteLine(ex.ToString());
+                                    Log.WriteLine("ERROR. AlertOutputEvent[EncoderFallbackException] - Failesd to Stream Write.");
+                                }
+                                catch (Exception ex)
+                                {
+                                    Log.WriteLine("ERROR. AlertOutputEvent - Failesd to Stream Write.");
+                                }
+                            });
                         }
-                        catch (Exception ex)
+
+                        using (Task<WebResponse> t = Task.Factory.FromAsync<WebResponse>(wReq.BeginGetResponse, wReq.EndGetResponse, wReq))
                         {
-                            Popup.Show(ex.Message);
-                            Log.WriteLine("ERROR. AlertOutputEvent - Failed to Stream Write.");
-                        }
-                    });
-                    requestStream.Dispose();
+                            ThreadPool.RegisterWaitForSingleObject((t as IAsyncResult).AsyncWaitHandle, TimeoutCallback, wReq, 3000, true);
+                            await t.ContinueWith(task =>
+                            {
+                                try
+                                {
+                                    HttpWebResponse wResp = (HttpWebResponse)task.Result;
+                                    if (wResp.StatusCode == HttpStatusCode.OK)
+                                    {
+                                        Stream RESULT_STREAM = wResp.GetResponseStream();
+                                        StreamReader RESULT_READER = new StreamReader(RESULT_STREAM);
+                                        jsonData = RESULT_READER.ReadToEnd();
 
-                    Task<WebResponse> t = Task.Factory.FromAsync<WebResponse>(wReq.BeginGetResponse, wReq.EndGetResponse, wReq);
-                    ThreadPool.RegisterWaitForSingleObject((t as IAsyncResult).AsyncWaitHandle, TimeoutCallback, wReq, 3000, true);
-                    await t.ContinueWith(task =>
+                                        JObject jObj = JObject.Parse(jsonData);
+                                        int statusCode = (int)jObj["STATUS_CODE"];
+                                        string message = (string)jObj["MESSAGE"];
+
+                                        Debug.WriteLine("OUTPUT : " + statusCode.ToString() + "|" + message);
+                                        RESULT_STREAM.Flush();
+                                        RESULT_STREAM.Close();
+                                        RESULT_READER.Close();
+                                    }
+                                }
+                                catch (ObjectDisposedException ex)
+                                {
+                                    //Popup.Show(ex.Message);
+                                    //Log.WriteLine(ex.ToString());
+                                    Log.WriteLine("ERROR. AlertOutputEvent[ObjectDisposedException] - Failed to Stream Read.");
+                                }
+                                catch (NotSupportedException ex)
+                                {
+                                    //Log.WriteLine(ex.ToString());
+                                    Log.WriteLine("ERROR. AlertOutputEvent[NotSupportedException] - Failed to Stream Read.");
+                                }
+                                catch (IOException ex)
+                                {
+                                    //Log.WriteLine(ex.ToString());
+                                    Log.WriteLine("ERROR. AlertOutputEvent[IOException] - Failed to Stream Read.");
+                                }
+                                catch (EncoderFallbackException ex)
+                                {
+                                    //Log.WriteLine(ex.ToString());
+                                    Log.WriteLine("ERROR. AlertOutputEvent[EncoderFallbackException] - Failed to Stream Read.");
+                                }
+                                catch (Exception ex)
+                                {
+                                    //Popup.Show(ex.Message);
+                                    Log.WriteLine("ERROR. AlertOutputEvent - Failed to Stream Read.");
+                                }
+                            });
+                        }
+                    }
+                    catch
                     {
-                        try
-                        {
-                            HttpWebResponse wResp = (HttpWebResponse)task.Result;
-                            if (wResp.StatusCode == HttpStatusCode.OK)
-                            {
-                                Stream RESULT_STREAM = wResp.GetResponseStream();
-                                StreamReader RESULT_READER = new StreamReader(RESULT_STREAM);
-                                jsonData = RESULT_READER.ReadToEnd();
 
-                                JObject jObj = JObject.Parse(jsonData);
-                                int statusCode = (int)jObj["STATUS_CODE"];
-                                string message = (string)jObj["MESSAGE"];
-
-                                Debug.WriteLine("OUTPUT : " + statusCode.ToString() + "|" + message);
-                                RESULT_STREAM.Flush();
-                                RESULT_STREAM.Close();
-                                RESULT_READER.Close();
-                            }
-                        }
-                        catch (Exception ex)
-                        {
-                            Popup.Show(ex.Message);
-                            Log.WriteLine("ERROR. AlertOutputEvent - Failed to Stream Read.");
-                        }
-                    });
-                    t.Dispose();
+                    }
                 }
             }
             catch (TargetInvocationException ex)
@@ -363,72 +459,64 @@ namespace ATST.Data
 
             try
             {
-                JObject JsonData = new JObject();
-                JsonData.Add("DEVICE_ID", DeviceId);
-                JsonData.Add("DATE_TIME", DateTime);
-
                 HttpWebRequest wReq;
-                Uri uri = new Uri(SharedValues.GatheringServerUri + "/alertDeviceConnected");
+                Uri uri = new Uri(SharedValues.GatheringServerUri + "/alertHeartBeatEvent/" + SharedValues.DeviceId);
                 wReq = (HttpWebRequest)WebRequest.Create(uri);
-                wReq.Method = "POST";
+                wReq.Method = "GET";
                 wReq.ContentType = "application/json";
 
-                string items = JsonData.ToString();
-                byte[] bytes = Encoding.UTF8.GetBytes(items);
-                wReq.ContentLength = (long)bytes.Length;
-
-                Task<Stream> requestStream = Task.Factory.FromAsync<Stream>(wReq.BeginGetRequestStream, wReq.EndGetRequestStream, wReq);
-                ThreadPool.RegisterWaitForSingleObject((requestStream as IAsyncResult).AsyncWaitHandle, TimeoutCallback, wReq, 3000, true);
-                await requestStream.ContinueWith(task =>
+                using (Task<WebResponse> t = Task.Factory.FromAsync<WebResponse>(wReq.BeginGetResponse, wReq.EndGetResponse, wReq))
                 {
-                    try
+                    ThreadPool.RegisterWaitForSingleObject((t as IAsyncResult).AsyncWaitHandle, TimeoutCallback, wReq, 3000, true);
+                    await t.ContinueWith(task =>
                     {
-                        using (StreamWriter streamwriter = new StreamWriter(task.Result))
+                        try
                         {
-                            streamwriter.Write(JsonData.ToString());
-                            streamwriter.Flush();
+                            HttpWebResponse wResp = (HttpWebResponse)task.Result;
+                            if (wResp.StatusCode == HttpStatusCode.OK)
+                            {
+                                Stream RESULT_STREAM = wResp.GetResponseStream();
+                                StreamReader RESULT_READER = new StreamReader(RESULT_STREAM);
+                                jsonData = RESULT_READER.ReadToEnd();
+
+                                JObject jObj = JObject.Parse(jsonData);
+                                int statusCode = (int)jObj["STATUS_CODE"];
+                                string message = (string)jObj["MESSAGE"];
+
+                                Debug.WriteLine("HartBit : " + statusCode.ToString() + " | " + message);
+                                RESULT_STREAM.Flush();
+                                RESULT_STREAM.Close();
+                                RESULT_READER.Close();
+                            }
                         }
-
-                    }
-                    catch (Exception ex)
-                    {
-                        //Popup.Show(ex.Message);
-                        Log.WriteLine("ERROR. RequestHartBit - Failed to Stream Write.");
-                    }
-                });
-                requestStream.Dispose();
-
-
-                Task<WebResponse> t = Task.Factory.FromAsync<WebResponse>(wReq.BeginGetResponse, wReq.EndGetResponse, wReq);
-                ThreadPool.RegisterWaitForSingleObject((t as IAsyncResult).AsyncWaitHandle, TimeoutCallback, wReq, 3000, true);
-                await t.ContinueWith(task =>
-                {
-                    try
-                    {
-                        HttpWebResponse wResp = (HttpWebResponse)task.Result;
-                        if (wResp.StatusCode == HttpStatusCode.OK)
+                        catch (ObjectDisposedException ex)
                         {
-                            Stream RESULT_STREAM = wResp.GetResponseStream();
-                            StreamReader RESULT_READER = new StreamReader(RESULT_STREAM);
-                            jsonData = RESULT_READER.ReadToEnd();
-
-                            JObject jObj = JObject.Parse(jsonData);
-                            int statusCode = (int)jObj["STATUS_CODE"];
-                            string message = (string)jObj["MESSAGE"];
-
-                            Debug.WriteLine("HartBit : " + statusCode.ToString() + " | " + message);
-                            RESULT_STREAM.Flush();
-                            RESULT_STREAM.Close();
-                            RESULT_READER.Close();
+                            //Popup.Show(ex.Message);
+                            //Log.WriteLine(ex.ToString());
+                            Log.WriteLine("ERROR. RequestHartBit[ObjectDisposedException] - Failed to Stream Read.");
                         }
-                    }
-                    catch (Exception ex)
-                    {
-                        //Popup.Show(ex.Message);
-                        Log.WriteLine("ERROR. RequestHartBit - Failed to Stream Read.");
-                    }
-                });
-                t.Dispose();
+                        catch (NotSupportedException ex)
+                        {
+                            //Log.WriteLine(ex.ToString());
+                            Log.WriteLine("ERROR. RequestHartBit[NotSupportedException] - Failed to Stream Read.");
+                        }
+                        catch (IOException ex)
+                        {
+                            //Log.WriteLine(ex.ToString());
+                            Log.WriteLine("ERROR. RequestHartBit[IOException] - Failed to Stream Read.");
+                        }
+                        catch (EncoderFallbackException ex)
+                        {
+                            //Log.WriteLine(ex.ToString());
+                            Log.WriteLine("ERROR. RequestHartBit[EncoderFallbackException] - Failed to Stream Read.");
+                        }
+                        catch (Exception ex)
+                        {
+                            //Popup.Show(ex.Message);
+                            Log.WriteLine("ERROR. RequestHartBit - Failed to Stream Read.");
+                        }
+                    });
+                }
             }
             catch
             {

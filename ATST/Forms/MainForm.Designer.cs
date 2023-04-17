@@ -43,8 +43,6 @@ namespace ATST.Forms
             this.engToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.logToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.webLinkageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -74,19 +72,20 @@ namespace ATST.Forms
             this.rbtnServerConnect = new System.Windows.Forms.RadioButton();
             this.rbtnLocal = new System.Windows.Forms.RadioButton();
             this.groupBoxTagList = new System.Windows.Forms.GroupBox();
-            this.btnSearchPort = new System.Windows.Forms.Button();
-            this.tbxInputPortNum = new System.Windows.Forms.TextBox();
-            this.lbPort = new System.Windows.Forms.Label();
+            this.lbSelectedPort = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.listviewTagList = new System.Windows.Forms.ListView();
             this.columnHeaderPort = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderTag = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderRssi = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.virtualListViewIO1 = new UserControls.Controls.VirtualListViewIO();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.menuStrip.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.groupBoxTagList.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // rbx_serial
@@ -133,8 +132,6 @@ namespace ATST.Forms
             this.languageToolStripMenuItem,
             this.toolStripMenuItem2,
             this.logToolStripMenuItem,
-            this.toolStripSeparator1,
-            this.webLinkageToolStripMenuItem,
             this.toolStripSeparator2,
             this.exitToolStripMenuItem});
             this.menuToolStripMenuItem.Name = "menuToolStripMenuItem";
@@ -171,17 +168,6 @@ namespace ATST.Forms
             this.logToolStripMenuItem.Name = "logToolStripMenuItem";
             resources.ApplyResources(this.logToolStripMenuItem, "logToolStripMenuItem");
             this.logToolStripMenuItem.Click += new System.EventHandler(this.logToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            resources.ApplyResources(this.toolStripSeparator1, "toolStripSeparator1");
-            // 
-            // webLinkageToolStripMenuItem
-            // 
-            this.webLinkageToolStripMenuItem.Name = "webLinkageToolStripMenuItem";
-            resources.ApplyResources(this.webLinkageToolStripMenuItem, "webLinkageToolStripMenuItem");
-            this.webLinkageToolStripMenuItem.Click += new System.EventHandler(this.webLinkageToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
@@ -376,29 +362,22 @@ namespace ATST.Forms
             // groupBoxTagList
             // 
             resources.ApplyResources(this.groupBoxTagList, "groupBoxTagList");
-            this.groupBoxTagList.Controls.Add(this.btnSearchPort);
-            this.groupBoxTagList.Controls.Add(this.tbxInputPortNum);
-            this.groupBoxTagList.Controls.Add(this.lbPort);
+            this.groupBoxTagList.Controls.Add(this.lbSelectedPort);
+            this.groupBoxTagList.Controls.Add(this.label1);
             this.groupBoxTagList.Controls.Add(this.listviewTagList);
             this.groupBoxTagList.Name = "groupBoxTagList";
             this.groupBoxTagList.TabStop = false;
+            this.groupBoxTagList.Enter += new System.EventHandler(this.groupBoxTagList_Enter);
             // 
-            // btnSearchPort
+            // lbSelectedPort
             // 
-            resources.ApplyResources(this.btnSearchPort, "btnSearchPort");
-            this.btnSearchPort.Name = "btnSearchPort";
-            this.btnSearchPort.UseVisualStyleBackColor = true;
-            this.btnSearchPort.Click += new System.EventHandler(this.btnSearchPort_Click);
+            resources.ApplyResources(this.lbSelectedPort, "lbSelectedPort");
+            this.lbSelectedPort.Name = "lbSelectedPort";
             // 
-            // tbxInputPortNum
+            // label1
             // 
-            resources.ApplyResources(this.tbxInputPortNum, "tbxInputPortNum");
-            this.tbxInputPortNum.Name = "tbxInputPortNum";
-            // 
-            // lbPort
-            // 
-            resources.ApplyResources(this.lbPort, "lbPort");
-            this.lbPort.Name = "lbPort";
+            resources.ApplyResources(this.label1, "label1");
+            this.label1.Name = "label1";
             // 
             // listviewTagList
             // 
@@ -430,18 +409,24 @@ namespace ATST.Forms
             resources.ApplyResources(this.virtualListViewIO1, "virtualListViewIO1");
             this.virtualListViewIO1.Name = "virtualListViewIO1";
             // 
+            // tableLayoutPanel1
+            // 
+            resources.ApplyResources(this.tableLayoutPanel1, "tableLayoutPanel1");
+            this.tableLayoutPanel1.Controls.Add(this.virtualListViewIO1, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.tablePanel1, 0, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            // 
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.groupBoxTagList);
-            this.Controls.Add(this.virtualListViewIO1);
             this.Controls.Add(this.rbtnLocal);
             this.Controls.Add(this.rbtnServerConnect);
             this.Controls.Add(this.btnAntCount);
             this.Controls.Add(this.txbAntCount);
             this.Controls.Add(this.lb3);
-            this.Controls.Add(this.tablePanel1);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -462,6 +447,7 @@ namespace ATST.Forms
             this.panel3.PerformLayout();
             this.groupBoxTagList.ResumeLayout(false);
             this.groupBoxTagList.PerformLayout();
+            this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -502,9 +488,7 @@ namespace ATST.Forms
         private System.Windows.Forms.TextBox txbAntCount;
         private System.Windows.Forms.Button btnAntCount;
         private System.Windows.Forms.ToolStripMenuItem selectMaskToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.ToolStripMenuItem webLinkageToolStripMenuItem;
         private System.Windows.Forms.RadioButton rbtnServerConnect;
         private System.Windows.Forms.RadioButton rbtnLocal;
         private System.Windows.Forms.Label lb1;
@@ -515,8 +499,8 @@ namespace ATST.Forms
         private System.Windows.Forms.ColumnHeader columnHeaderPort;
         private System.Windows.Forms.ColumnHeader columnHeaderTag;
         private System.Windows.Forms.ColumnHeader columnHeaderRssi;
-        private System.Windows.Forms.TextBox tbxInputPortNum;
-        private System.Windows.Forms.Label lbPort;
-        private System.Windows.Forms.Button btnSearchPort;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lbSelectedPort;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
     }
 }
