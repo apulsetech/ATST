@@ -19,7 +19,7 @@ namespace ATST.Util
         {
             var data = new Data
             {
-                AntCount = 1
+                
             };
 
             var design = new Design
@@ -110,10 +110,10 @@ namespace ATST.Util
     public class Data
     {
         public string CultureName { get; set; }
-        public int AntCount { get; set; }
         public bool[] States { get; set; }
         public int[] PowerGains { get; set; }
         public int[] DwellTiems { get; set; }
+        public int[] AntPortCount { get; set; }
 
         public Data()
         {
@@ -121,6 +121,7 @@ namespace ATST.Util
             States = Enumerable.Repeat<bool>(false, 128).ToArray<bool>();
             PowerGains = Enumerable.Repeat<int>(1, 128).ToArray<int>();
             DwellTiems = Enumerable.Repeat<int>(50, 128).ToArray<int>();
+            AntPortCount = new int[4] { 4, 8, 16, 128 };
         }           
     }
 

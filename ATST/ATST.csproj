@@ -38,9 +38,15 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\a211_ATST\Src\develop\yeonmin\a211_ATST\a211_ATST\Library\ApulsetechNet.dll</HintPath>
     </Reference>
+    <Reference Include="CircularProgressBar">
+      <HintPath>..\..\..\Test\CircularProgressBar\CircularProgressBar\bin\Debug\CircularProgressBar.dll</HintPath>
+    </Reference>
     <Reference Include="ControlIpAddressBox, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\a211_ATST\Src\develop\yeonmin\a211_ATST\a211_ATST\Library\ControlIpAddressBox.dll</HintPath>
+    </Reference>
+    <Reference Include="CsControl">
+      <HintPath>Library\CsControl.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -57,9 +63,12 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="UserControls, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="UserControls, Version=1.0.9.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\UserControls\UserControls\bin\Release\UserControls.dll</HintPath>
+    </Reference>
+    <Reference Include="WinFormAnimation">
+      <HintPath>..\..\..\Test\CircularProgressBar\CircularProgressBar\bin\Debug\WinFormAnimation.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -77,6 +86,12 @@
     </Compile>
     <Compile Include="Forms\Diagnotics\LogDialog.Designer.cs">
       <DependentUpon>LogDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Settings\AccessForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Settings\AccessForm.Designer.cs">
+      <DependentUpon>AccessForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\WebInterLockForm.cs">
       <SubType>Form</SubType>
@@ -143,6 +158,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Diagnotics\LogDialog.resx">
       <DependentUpon>LogDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Settings\AccessForm.resx">
+      <DependentUpon>AccessForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\WebInterLockForm.resx">
       <DependentUpon>WebInterLockForm.cs</DependentUpon>
@@ -229,6 +247,7 @@
   <ItemGroup>
     <Content Include="Library\ApulsetechNet.dll" />
     <Content Include="Library\ControlIpAddressBox.dll" />
+    <None Include="Resources\ATWS_로그인페이지_그래픽이미지 1.png" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

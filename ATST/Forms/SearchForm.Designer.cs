@@ -52,25 +52,25 @@
             // 
             // btnOk
             // 
-            this.btnOk.DialogResult = System.Windows.Forms.DialogResult.OK;
             resources.ApplyResources(this.btnOk, "btnOk");
+            this.btnOk.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnOk.Name = "btnOk";
             this.btnOk.UseVisualStyleBackColor = true;
             this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
             // btnCancel
             // 
-            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             resources.ApplyResources(this.btnCancel, "btnCancel");
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             // 
             // listviewDeviceList
             // 
+            resources.ApplyResources(this.listviewDeviceList, "listviewDeviceList");
             this.listviewDeviceList.FullRowSelect = true;
             this.listviewDeviceList.GridLines = true;
             this.listviewDeviceList.HideSelection = false;
-            resources.ApplyResources(this.listviewDeviceList, "listviewDeviceList");
             this.listviewDeviceList.Name = "listviewDeviceList";
             this.listviewDeviceList.UseCompatibleStateImageBehavior = false;
             this.listviewDeviceList.View = System.Windows.Forms.View.Details;

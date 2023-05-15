@@ -100,9 +100,7 @@ namespace ATST.Forms
                     current_port, epc, SharedValues.mTagStateDictionary[epc].read_count);
                 }
                 SharedValues.mTagStateDictionary[epc].state_switch = true;  // 입고 후에도 읽히고 있다는 뜻
-                //input_proccess(epc, port, rssi);
             }
-
         }
 
         private void input_proccess(string epc, string port, string rssi)
@@ -132,7 +130,6 @@ namespace ATST.Forms
                              DataFormat.AlertOutputEvent(SharedValues.DeviceId, SharedValues.WorkerId,
                                 SavePort + 1, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), SharedValues.mTagSaveDictionary[epc].Epc);
                         }
-                        virtualListViewIO1.AddListViewItem(DateTime.Now, null, SavePort, epc, "null",1);
                     }
                     SharedValues.mTagSaveDictionary[epc].Rssi = Convert.ToDouble(rssi);
                     SharedValues.mTagSaveDictionary[epc].Check = true;
@@ -146,8 +143,6 @@ namespace ATST.Forms
                                 SharedValues.mTagSaveDictionary[epc].Port + 1, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), SharedValues.mTagSaveDictionary[epc].Epc);
                 }
 
-                virtualListViewIO1.AddListViewItem(DateTime.Now, null, Int32.Parse(port), epc, "null", 0);
-
             }
             catch
             {
@@ -158,7 +153,7 @@ namespace ATST.Forms
         private void output_proccess(string epc, string port, string rssi)
         {
             //현재 리딩된 태그의 포트가 저장된 포트와 다를 때
-            if (SavePort != Int32.Parse(port) && SavePort != -1)
+            if (SavePort != -1 && (SavePort != Int32.Parse(port)))
             {
                 if (SharedValues.mTagSaveDictionary.Count > 0)
                 {
@@ -175,8 +170,8 @@ namespace ATST.Forms
             if (SharedValues.mTagSaveDictionary.Count > 0)
             {
                 switch_countdown(currentport);
-                allport_state_remove(currentport);
-                allport_state_change(currentport);
+                oneport_state_remove(currentport);
+                oneport_state_change(currentport);
             }
         }
 
@@ -233,7 +228,6 @@ namespace ATST.Forms
                         int RemovePort = SharedValues.mTagSaveDictionary[Key_List[i]].Port;
                         string RemoveEpc = SharedValues.mTagSaveDictionary[Key_List[i]].Epc;
 
-                        virtualListViewIO1.AddListViewItem(DateTime.Now, null, RemovePort, RemoveEpc, "null", 1);
                         SharedValues.mTagSaveDictionary.Remove(Key_List[i]);
                         var tag_cnt = SharedValues.mTagSaveDictionary.Where(
                         x => x.Value.Port.Equals(port)).ToList();

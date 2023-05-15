@@ -61,6 +61,16 @@ namespace ATST.Properties {
         }
         
         /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap ATWS_로그인페이지_그래픽이미지_1 {
+            get {
+                object obj = ResourceManager.GetObject("ATWS_로그인페이지_그래픽이미지 1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
         internal static string String1 {

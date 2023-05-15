@@ -18,19 +18,19 @@ namespace ATST.Forms
 {
     public partial class SearchForm : Form
     {
-        private const int SIZE_REMOTE_DEVICE_LISTVIEW_COLUMN_TYPE = 80;
-        private const int SIZE_REMOTE_DEVICE_LISTVIEW_COLUMN_ADDRESS = 130;
-        private const int SIZE_REMOTE_DEVICE_LISTVIEW_COLUMN_BARCODE = 100;
-        private const int SIZE_REMOTE_DEVICE_LISTVIEW_COLUMN_RFID = 100;
-        private const int SIZE_REMOTE_DEVICE_LISTVIEW_COLUMN_STATUS = 70;
-        private const int SIZE_REMOTE_DEVICE_LISTVIEW_COLUMN_FORCE_CONNECTION = 100;
+        private const int SIZE_REMOTE_DEVICE_LISTVIEW_COLUMN_TYPE = 110;
+        private const int SIZE_REMOTE_DEVICE_LISTVIEW_COLUMN_ADDRESS = 260;
+        //private const int SIZE_REMOTE_DEVICE_LISTVIEW_COLUMN_BARCODE = 100;
+        //private const int SIZE_REMOTE_DEVICE_LISTVIEW_COLUMN_RFID = 100;
+        //private const int SIZE_REMOTE_DEVICE_LISTVIEW_COLUMN_STATUS = 70;
+        //private const int SIZE_REMOTE_DEVICE_LISTVIEW_COLUMN_FORCE_CONNECTION = 100;
         private const int SIZE_REMOTE_DEVICE_LISTVIEW_COLUMN_INFO =
             SIZE_REMOTE_DEVICE_LISTVIEW_COLUMN_TYPE +
-            SIZE_REMOTE_DEVICE_LISTVIEW_COLUMN_ADDRESS +
-            SIZE_REMOTE_DEVICE_LISTVIEW_COLUMN_BARCODE +
-            SIZE_REMOTE_DEVICE_LISTVIEW_COLUMN_RFID +
-            SIZE_REMOTE_DEVICE_LISTVIEW_COLUMN_STATUS +
-            SIZE_REMOTE_DEVICE_LISTVIEW_COLUMN_FORCE_CONNECTION;
+            SIZE_REMOTE_DEVICE_LISTVIEW_COLUMN_ADDRESS;
+            //SIZE_REMOTE_DEVICE_LISTVIEW_COLUMN_BARCODE +
+            //SIZE_REMOTE_DEVICE_LISTVIEW_COLUMN_RFID +
+            //SIZE_REMOTE_DEVICE_LISTVIEW_COLUMN_STATUS +
+            //SIZE_REMOTE_DEVICE_LISTVIEW_COLUMN_FORCE_CONNECTION;
 
         public delegate void OpenFormReturn(SearchForm form);
         public static event OpenFormReturn OpenFormEvent;
@@ -48,7 +48,7 @@ namespace ATST.Forms
         {
             InitializeComponent();
             Initialize();
-            OpenFormEvent(this);
+            //OpenFormEvent(this);
             this.KeyPreview = true;
 
             
@@ -65,14 +65,14 @@ namespace ATST.Forms
                 SIZE_REMOTE_DEVICE_LISTVIEW_COLUMN_TYPE);
             listviewDeviceList.Columns.Add(Properties.Resources.StringDeviceAddress,
                 SIZE_REMOTE_DEVICE_LISTVIEW_COLUMN_ADDRESS);
-            listviewDeviceList.Columns.Add(Properties.Resources.StringDeviceBarcode,
-                SIZE_REMOTE_DEVICE_LISTVIEW_COLUMN_BARCODE);
-            listviewDeviceList.Columns.Add(Properties.Resources.StringDeviceRfid,
-                SIZE_REMOTE_DEVICE_LISTVIEW_COLUMN_RFID);
-            listviewDeviceList.Columns.Add(Properties.Resources.StringDeviceStatus,
-                SIZE_REMOTE_DEVICE_LISTVIEW_COLUMN_STATUS);
-            listviewDeviceList.Columns.Add(Properties.Resources.StringDeviceConnection,
-                SIZE_REMOTE_DEVICE_LISTVIEW_COLUMN_FORCE_CONNECTION);
+            //listviewDeviceList.Columns.Add(Properties.Resources.StringDeviceBarcode,
+                //SIZE_REMOTE_DEVICE_LISTVIEW_COLUMN_BARCODE);
+            //listviewDeviceList.Columns.Add(Properties.Resources.StringDeviceRfid,
+                //SIZE_REMOTE_DEVICE_LISTVIEW_COLUMN_RFID);
+            //listviewDeviceList.Columns.Add(Properties.Resources.StringDeviceStatus,
+                //SIZE_REMOTE_DEVICE_LISTVIEW_COLUMN_STATUS);
+            //listviewDeviceList.Columns.Add(Properties.Resources.StringDeviceConnection,
+                //SIZE_REMOTE_DEVICE_LISTVIEW_COLUMN_FORCE_CONNECTION);
 
             InitInterfaceEthernet();
         }

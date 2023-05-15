@@ -34,7 +34,7 @@ namespace ATST.Data
             {
                 // 비동기 Client
                 HttpWebRequest wReq;
-                Uri uri = new Uri(SharedValues.ApiServerUri + "/mwCon/getDeviceList");
+                Uri uri = new Uri("http://" + SharedValues.ApiServerUri + "/mwCon/getDeviceList");
                 wReq = (HttpWebRequest)WebRequest.Create(uri);
                 wReq.Method = "GET";
                 wReq.ContentType = "application/json";
@@ -114,7 +114,7 @@ namespace ATST.Data
             JsonData.Add("ROW_NUM", rowNum);
 
             HttpWebRequest wReq;
-            Uri uri = new Uri(SharedValues.ApiServerUri + "/mwCon/updateColRowNum");
+            Uri uri = new Uri("http://" + SharedValues.ApiServerUri + "/mwCon/updateColRowNum");
             wReq = (HttpWebRequest)WebRequest.Create(uri);
             wReq.Method = "POST";
             wReq.ContentType = "application/json";
@@ -190,7 +190,7 @@ namespace ATST.Data
                 JsonData.Add("EPC", epc);
 
                 HttpWebRequest wReq;
-                Uri uri = new Uri(SharedValues.GatheringServerUri + "/alertInputEvent");
+                Uri uri = new Uri("http://" + SharedValues.GatheringServerUri + "/alertInputEvent");
                 wReq = (HttpWebRequest)WebRequest.Create(uri);
                 wReq.Method = "POST";
                 wReq.ContentType = "application/json";
@@ -329,7 +329,7 @@ namespace ATST.Data
                 JsonData.Add("EPC", epc);
 
                 HttpWebRequest wReq;
-                Uri uri = new Uri(SharedValues.GatheringServerUri + "/alertOutputEvent");
+                Uri uri = new Uri("http://" + SharedValues.GatheringServerUri + "/alertOutputEvent");
                 wReq = (HttpWebRequest)WebRequest.Create(uri);
                 wReq.Method = "POST";
                 wReq.ContentType = "application/json";
@@ -460,7 +460,7 @@ namespace ATST.Data
             try
             {
                 HttpWebRequest wReq;
-                Uri uri = new Uri(SharedValues.GatheringServerUri + "/alertHeartBeatEvent/" + SharedValues.DeviceId);
+                Uri uri = new Uri("http://" + SharedValues.GatheringServerUri + "/alertHeartBeatEvent/" + SharedValues.DeviceId);
                 wReq = (HttpWebRequest)WebRequest.Create(uri);
                 wReq.Method = "GET";
                 wReq.ContentType = "application/json";
@@ -533,7 +533,7 @@ namespace ATST.Data
             try
             {
                 HttpWebRequest wReq;
-                Uri uri = new Uri(SharedValues.GatheringServerUri + "/alertDeviceStartEvent/" + SharedValues.DeviceId);
+                Uri uri = new Uri("http://" + SharedValues.GatheringServerUri + "/alertDeviceStartEvent/" + SharedValues.DeviceId);
                 wReq = (HttpWebRequest)WebRequest.Create(uri);
                 wReq.Method = "GET";
 

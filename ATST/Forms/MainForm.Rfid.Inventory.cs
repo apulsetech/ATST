@@ -42,6 +42,7 @@ namespace ATST.Forms
                     Log.WriteLine("INFO. Successed Inventory Stop.");
                     mRfidInventoryStarted = false;
                     ToggleRfidInventoryButton();
+                    btn_rfid_connect.Enabled = true;
 
                     //await Task.Run(() => tokenSource.Cancel());\
                     //tokenSource.Cancel();
@@ -61,6 +62,7 @@ namespace ATST.Forms
                     Log.WriteLine("INFO. Successed Inventory Start.");
                     mRfidInventoryStarted = true;
                     ToggleRfidInventoryButton();
+                    btn_rfid_connect.Enabled = false;   
 
                     // tokenSource = new CancellationTokenSource();
                     if (SharedValues.NumberOfAntennaPorts == 1)

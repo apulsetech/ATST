@@ -18,6 +18,7 @@ namespace ATST.Data
         public static bool[] AntStates = new bool[128];
         public static int[] AntPowerGains = new int[128];
         public static int[] AntDwellTimes = new int[128];
+        public static int[] AntPortCount = new int[4];
 
         public static int mAntCount = 1;
         public static int mApiServerPort = 0;
@@ -44,9 +45,9 @@ namespace ATST.Data
             AntDwellTimes = config.setting.data.DwellTiems;
             Panel_Row = config.setting.design.panel_row;
             Panel_Column = config.setting.design.panel_column;
-            mAntCount = config.setting.data.AntCount;
             mApiServerPort = config.setting.uri.ApiServerPort;
             mGatheringServerPort = config.setting.uri.GatheringServerPort;
+            AntPortCount = config.setting.data.AntPortCount;
 
             if (config.setting.uri.ApiServerUri != null)
             {
@@ -82,7 +83,6 @@ namespace ATST.Data
             config.setting.uri.GatheringServerPort = mGatheringServerPort;
             config.setting.uri.ApiServerUri = APiServerUri;
             config.setting.uri.GatheringServerUri = GatheringServerUri;
-            config.setting.data.AntCount = mAntCount;
 
             XmlConfigManager.Save(filePath, config);
         }

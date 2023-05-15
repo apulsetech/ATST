@@ -10,6 +10,7 @@ using ATST.Diagnotics;
 using System.Threading;
 using System.Diagnostics;
 using System.Windows.Forms;
+using ATST.Forms.Settings;
 
 namespace ATST.Forms
 {
@@ -168,21 +169,18 @@ namespace ATST.Forms
             tablePanel1.DataViewTagCntNum(Int32.Parse(port), datacount.Count());
         }
 
-        private async void btn_rfid_connect_Click(object sender, EventArgs e)
+        public async Task Rfid_Connect()
         {
-            btn_rfid_connect.Enabled = false;
-
             if (SharedValues.Reader == null)
             {
                 if (SharedValues.ConnectionType == SharedValues.InterfaceType.SERIAL)
                 {
-                    SharedValues.Reader = await Reader.GetReaderAsync(SharedValues.SelectedPort, 115200, Config.mAntCount).ConfigureAwait(true);
+                    SharedValues.Reader = await Reader.GetReaderAsync(SharedValues.SelectedPort, 115200, SharedValues.SelectedPortCount).ConfigureAwait(true);
                     Log.WriteLine("INFO. Reader Setting ConnectionType({0}).", SharedValues.ConnectionType);
-
                 }
                 else if (SharedValues.ConnectionType == SharedValues.InterfaceType.TCP)
                 {
-                    SharedValues.Reader = await Reader.GetReaderAsync(ipAddressBox.GetIpData(), 5000, false, Config.mAntCount).ConfigureAwait(true);
+                    SharedValues.Reader = await Reader.GetReaderAsync(SharedValues.EthernetIpAddress, 5000, false, SharedValues.SelectedPortCount).ConfigureAwait(true);
                     Log.WriteLine("INFO. Reader Setting ConnectionType({0}).", SharedValues.ConnectionType);
                 }
                 else // ConnectionType != SERIAL && ConnectionType != TCP
@@ -210,7 +208,9 @@ namespace ATST.Forms
 
                         SharedValues.tokenSource = new CancellationTokenSource();
                         if (SharedValues.WebInterLockCheck)
-                            await request_hartbit();
+                            request_hartbit();
+
+                        SharedValues.ReaderConnected = true;
                     }
                     else // error - Connection failed
                     {
@@ -243,6 +243,94 @@ namespace ATST.Forms
                 SharedValues.WebInterLockCheck = false;
                 btn_rfid_connect.Text = Properties.Resources.StringDeviceDisConnect;
                 EnableControl(false);
+            }
+        }
+
+        public async void btn_rfid_connect_Click(object sender, EventArgs e)
+        {
+            //AccessForm accessform = (AccessForm)sender;
+
+            btn_rfid_connect.Enabled = false;
+
+            if (SharedValues.Reader == null)
+            {
+                if (SharedValues.ConnectionType == SharedValues.InterfaceType.SERIAL)
+                {
+                    SharedValues.Reader = await Reader.GetReaderAsync(SharedValues.SelectedPort, 115200, SharedValues.SelectedPortCount).ConfigureAwait(true);
+                    Log.WriteLine("INFO. Reader Setting ConnectionType({0}).", SharedValues.ConnectionType);
+                }
+                else if (SharedValues.ConnectionType == SharedValues.InterfaceType.TCP)
+                {
+                    SharedValues.Reader = await Reader.GetReaderAsync(SharedValues.EthernetIpAddress, 5000, false, SharedValues.SelectedPortCount).ConfigureAwait(true);
+                    Log.WriteLine("INFO. Reader Setting ConnectionType({0}).", SharedValues.ConnectionType);
+                }
+                else // ConnectionType != SERIAL && ConnectionType != TCP
+                {
+                    Log.WriteLine("ERROR. NonExistent ConnectionType.");
+                    return;
+                }
+
+                if (SharedValues.Reader != null)
+                {
+                    Log.WriteLine("INFO. Start Device Connect.");
+                    // 현재 폼에 이벤트 발생 설정
+                    SharedValues.Reader.SetEventListener(this);
+                    if (await SharedValues.Reader.StartAsync().ConfigureAwait(true))
+                    {
+                        Log.WriteLine("INFO. Sucessed Device Connect.");
+                        await LoadRfidSettings().ConfigureAwait(true);
+
+                        SharedValues.NumberOfAntennaPorts = SharedValues.Reader.GetAntennaPortCount();
+
+                        btn_rfid_connect.Text = Properties.Resources.StringDeviceConnect;
+                        EnableControl(true);
+
+                        LoadConfigInfo(SharedValues.NumberOfAntennaPorts);
+
+                        SharedValues.tokenSource = new CancellationTokenSource();
+                        if (SharedValues.WebInterLockCheck)
+                            await request_hartbit();
+
+                        SharedValues.ReaderConnected = true;
+                        //accessform.DialogResult = DialogResult.OK;
+                        //accessform.Dispose();
+                    }
+                    else // error - Connection failed
+                    {
+                        Log.WriteLine("ERROR. Failed Device Connect.");
+                    }
+                }
+                else // error - Connection failed
+                {
+                    Log.WriteLine("ERROR. Failed Device Connect(No Reader Info).");
+                }
+            }
+            else // SharedValues.Reader != null
+            {
+                if (await SharedValues.Reader.GetConnectionStatusAsync().ConfigureAwait(true))
+                {
+                    await SharedValues.Reader.DestroyAsync().ConfigureAwait(true);
+                    Log.WriteLine("INFO. Sucessed Device DisConnect.");
+
+                    if (SharedValues.tokenSource != null)
+                    {
+                        SharedValues.tokenSource.Cancel();
+                        SharedValues.tokenSource.Dispose();
+                    }
+                }
+
+                Log.WriteLine("INFO. RemoveEventListener().");
+                SharedValues.Reader.RemoveEventListener(this);
+                SharedValues.Reader = null;
+                SharedValues.ReaderConnected = false;
+
+                SharedValues.WebInterLockCheck = false;
+                btn_rfid_connect.Text = Properties.Resources.StringDeviceDisConnect;
+                EnableControl(false);
+
+                this.Hide();
+                DeviceConnectSetting();
+                
             }
         }
 

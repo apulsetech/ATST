@@ -28,8 +28,11 @@ namespace ATST.Data
         private static string mApiServerUri = string.Empty;
         private static string mGatheringServerUri = string.Empty;
         private static string mDeviceId = string.Empty;
+        private static string mDeviceName = string.Empty;
         private static string mWorkerId = "anonymous";
         private static bool mWebInterLockCheck = false;
+        private static int mSelectedPortCount = 0;
+        private static string mEthernetIpAddress = string.Empty;
         public static CancellationTokenSource tokenSource;
         public static Dictionary<string, TagInfo> mTagSaveDictionary = new Dictionary<string, TagInfo>();
         public static Dictionary<string, ReadInfo> mTagStateDictionary = new Dictionary<string, ReadInfo>();
@@ -127,6 +130,12 @@ namespace ATST.Data
             set => mDeviceId = value;
         }
 
+        public static string DeviceName
+        {
+            get => mDeviceName;
+            set => mDeviceName = value;
+        }
+
         public static string WorkerId
         {
             get => mWorkerId;
@@ -137,6 +146,18 @@ namespace ATST.Data
         {
             get => mWebInterLockCheck;
             set => mWebInterLockCheck = value;
+        }
+
+        public static int SelectedPortCount
+        {
+            get => mSelectedPortCount;
+            set => mSelectedPortCount = value;
+        }
+
+        public static string EthernetIpAddress
+        {
+            get => mEthernetIpAddress;
+            set => mEthernetIpAddress = value;
         }
     }
 }
